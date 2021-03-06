@@ -9,6 +9,8 @@ public class PlayerData : MonoBehaviour
     public bool hidden = false;
     public int bushes = -1;
 
+    public GameObject Minimapicon;
+
     void Start()
     {
         origen = transform.position;

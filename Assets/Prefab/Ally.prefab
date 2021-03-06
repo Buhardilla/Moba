@@ -220,5 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hidden: 0
   bushes: 0
+  Minimapicon: {fileID: 6239389541284803501, guid: 71b573a135bf06646aef8e40bffd965b,
+    type: 3}
   final: {x: 0, y: 0, z: 0}
   velocidad: 0

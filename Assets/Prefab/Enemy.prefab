@@ -127,6 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hidden: 0
   bushes: 0
+  Minimapicon: {fileID: 3991316987604585721, guid: 99451003fa08a3e4e80ccfdd563b2cd2,
+    type: 3}
   final: {x: 0, y: 0, z: 0}
   velocidad: 0
 --- !u!1 &3223205492593625039
