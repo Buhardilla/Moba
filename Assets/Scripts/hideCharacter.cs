@@ -25,7 +25,7 @@ public class hideCharacter : MonoBehaviour
         other.GetComponent<PlayerData>().hidden = true;
         other.GetComponent<PlayerData>().bushes = bushID;
         ChangeOpacity(other.GetComponent<MeshRenderer>(), 0.5f);
-        if(other.tag == "Ally"){
+        if(other.tag.Contains("Ally")){
             for (int i = 0; i < transform.childCount; i++)
             {
                 ChangeOpacity(transform.GetChild(i).GetComponent<MeshRenderer>(), 0.5f);

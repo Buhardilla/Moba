@@ -410,8 +410,8 @@ GameObject:
   - component: {fileID: 513294718445053223}
   - component: {fileID: 513294718445053222}
   m_Layer: 0
-  m_Name: Arbustos
-  m_TagString: Untagged
+  m_Name: Bushes
+  m_TagString: Bush
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

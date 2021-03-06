@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class CalculateVisibility : MonoBehaviour
 {
+    public GameObject[] Allies;
+    public GameObject[] Enemies;
+    public GameObject[] AllyMinions;
+    public GameObject[] EnemyMinions;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Allies = GameObject.FindGameObjectsWithTag("Ally");
+        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        AllyMinions = GameObject.FindGameObjectsWithTag("AllyMinion");
+        EnemyMinions = GameObject.FindGameObjectsWithTag("EnemyMinion");
     }
 
     // Update is called once per frame
@@ -16,35 +23,39 @@ public class CalculateVisibility : MonoBehaviour
         findEnemies(); 
     }
      private void findEnemies(){
-        GameObject[] Allies = GameObject.FindGameObjectsWithTag("Ally");
-        GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        
-        foreach(GameObject ally in Enemies){
-            ally.GetComponent<MeshRenderer>().enabled = false;
+
+        foreach(GameObject enemy in Enemies){
+            enemy.GetComponent<MeshRenderer>().enabled = false;
+        }
+        foreach(GameObject enemy in EnemyMinions){
+            enemy.GetComponent<MeshRenderer>().enabled = false;
         }
 
         foreach (GameObject ally in Allies)
         {
-            PlayerData dataAlly = ally.GetComponent<PlayerData>();
-            foreach (GameObject enemy in Enemies)
+            areEnemiesVisible(ally, ally.GetComponent<PlayerData>(),Enemies);
+            areEnemiesVisible(ally, ally.GetComponent<PlayerData>(),EnemyMinions);
+        }
+        foreach (GameObject minion in AllyMinions)
+        {
+            areEnemiesVisible(minion, minion.GetComponent<PlayerData>(),Enemies);
+            areEnemiesVisible(minion, minion.GetComponent<PlayerData>(),EnemyMinions);
+        }
+    }
+
+    private void areEnemiesVisible(GameObject ally, PlayerData allyData, GameObject[] enemyArray){
+            foreach (GameObject enemy in enemyArray)
             {
                 PlayerData dataEnemy = enemy.GetComponent<PlayerData>();
-                    if(dataAlly.hidden){
-                        if(!dataEnemy.hidden){
+
+                    if(allyData.hidden && dataEnemy.hidden){
+                        if(allyData.bushes == dataEnemy.bushes){
                             enemy.GetComponent<MeshRenderer>().enabled = true;
                         }
-                        else{
-                            if(dataAlly.bushes == dataEnemy.bushes){
-                                enemy.GetComponent<MeshRenderer>().enabled = true;
-                            }
-                        }
-                    }
-                    else{
-                        if(!dataEnemy.hidden){
-                            enemy.GetComponent<MeshRenderer>().enabled = true;
-                        }
+                    } 
+                    else if(!dataEnemy.hidden){
+                        enemy.GetComponent<MeshRenderer>().enabled = true;
                     }
             }
-        }
     }
 }
