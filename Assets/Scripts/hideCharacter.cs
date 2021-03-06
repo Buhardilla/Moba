@@ -5,10 +5,10 @@ using UnityEngine;
 public class hideCharacter : MonoBehaviour
 {
     public int bushID;
+    public int hiddenAllies = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -26,6 +26,7 @@ public class hideCharacter : MonoBehaviour
         other.GetComponent<PlayerData>().bushes = bushID;
         ChangeOpacity(other.GetComponent<MeshRenderer>(), 0.5f);
         if(other.tag.Contains("Ally")){
+            ++hiddenAllies;
             for (int i = 0; i < transform.childCount; i++)
             {
                 ChangeOpacity(transform.GetChild(i).GetComponent<MeshRenderer>(), 0.5f);
@@ -47,10 +48,13 @@ public class hideCharacter : MonoBehaviour
         other.GetComponent<PlayerData>().hidden = false;
         other.GetComponent<PlayerData>().bushes = -1;
         ChangeOpacity(other.GetComponent<MeshRenderer>(), 1f);
-        if(other.tag == "Ally"){
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                ChangeOpacity(transform.GetChild(i).GetComponent<MeshRenderer>(),1f);
+        if(other.tag.Contains("Ally")){
+            --hiddenAllies;
+            if(hiddenAllies == 0){
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    ChangeOpacity(transform.GetChild(i).GetComponent<MeshRenderer>(),1f);
+                }
             }
         }
     }

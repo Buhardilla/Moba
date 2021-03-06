@@ -29,10 +29,10 @@ public class CalculatePositionsMinimap : MonoBehaviour
     {
         Allies = GameObject.FindGameObjectsWithTag("Ally");
         Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        EnemyTowers = GameObject.FindGameObjectsWithTag("EnemyTower");
-        AllyTowers = GameObject.FindGameObjectsWithTag("AllyTower");
-        EnemyMinions = GameObject.FindGameObjectsWithTag("EnemyMinion");
         AllyMinions = GameObject.FindGameObjectsWithTag("AllyMinion");
+        EnemyMinions = GameObject.FindGameObjectsWithTag("EnemyMinion");
+        AllyTowers = GameObject.FindGameObjectsWithTag("AllyTower");
+        EnemyTowers = GameObject.FindGameObjectsWithTag("EnemyTower");
         icons = new List<GameObject>();
 
         MapWidth = BottomRight.transform.position.x - TopLeft.transform.position.x;
@@ -79,21 +79,18 @@ public class CalculatePositionsMinimap : MonoBehaviour
 
         for (int i = 0; i < Enemies.Length; i++)
         {
-            icons[length + i].GetComponent<RawImage>().enabled = Enemies[i].GetComponent<MeshRenderer>().enabled;
-            icons[length + i].GetComponent<RectTransform>().localPosition = WorldtoMapPosition(Enemies[i].transform.position);
+            ChangePositionAndVisibility(length + i, Enemies, i);
         }
         
         length += Enemies.Length;
         for (int i = 0; i < AllyMinions.Length; i++)
         {
-            icons[length + i].GetComponent<RawImage>().enabled = AllyMinions[i].GetComponent<MeshRenderer>().enabled;
-            icons[length + i].GetComponent<RectTransform>().localPosition = WorldtoMapPosition(AllyMinions[i].transform.position);
+            ChangePositionAndVisibility(length + i, AllyMinions, i);
         }
         length += AllyMinions.Length;
         for (int i = 0; i < EnemyMinions.Length; i++)
         {
-            icons[length + i].GetComponent<RawImage>().enabled = EnemyMinions[i].GetComponent<MeshRenderer>().enabled;
-            icons[length + i].GetComponent<RectTransform>().localPosition = WorldtoMapPosition(EnemyMinions[i].transform.position);
+            ChangePositionAndVisibility(length + i, EnemyMinions, i);
         }
         length += EnemyMinions.Length;
         for (int i = 0; i < AllyTowers.Length; i++)
@@ -105,5 +102,11 @@ public class CalculatePositionsMinimap : MonoBehaviour
         {
             icons[length + i].GetComponent<RawImage>().enabled = EnemyTowers[i].GetComponent<MeshRenderer>().enabled;
         }
+        
+    }
+
+    private void ChangePositionAndVisibility(int iconIndex,GameObject[] objectArray, int objectIndex){
+        icons[iconIndex].GetComponent<RawImage>().enabled = objectArray[objectIndex].GetComponent<MeshRenderer>().enabled;
+        icons[iconIndex].GetComponent<RectTransform>().localPosition = WorldtoMapPosition(objectArray[objectIndex].transform.position);
     }
 }
