@@ -60,7 +60,7 @@ public class CalculatePositionsMinimap : MonoBehaviour
         Vector3 vectorunitario = minimapPos/MapWidth;
         vectorunitario *= MiniWidth;
 
-        return new Vector3(vectorunitario.z,-vectorunitario.x,vectorunitario.y);
+        return new Vector3(vectorunitario.x,vectorunitario.z,vectorunitario.y);
     }
 
     // Start is called before the first frame update
