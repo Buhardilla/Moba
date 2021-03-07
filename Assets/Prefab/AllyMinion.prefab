@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8507625335458390400}
   - component: {fileID: 8507625335458390401}
   - component: {fileID: 8507625335458390402}
-  - component: {fileID: 8507625335458390403}
+  - component: {fileID: -631607681263250670}
   m_Layer: 0
   m_Name: AllyMinion
   m_TagString: AllyMinion
@@ -113,7 +113,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &8507625335458390403
+--- !u!114 &-631607681263250670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,15 +122,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 8507625335458390404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e9b86e2fc0005e4594bdaca5080ae2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c3336232d50b6b4fa2e35e0d8dd2a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hidden: 0
   bushes: -1
-  Minimapicon: {fileID: 6239389541284803501, guid: 71b573a135bf06646aef8e40bffd965b,
-    type: 3}
-  final: {x: 0, y: 0, z: 0}
-  velocidad: 0
+  Minimapicon: {fileID: 0}
+  nivel:
+    baseValue: 0
+  exp:
+    baseValue: 0
+  vida:
+    baseValue: 0
+  regenVida:
+    baseValue: 0
+  mana:
+    baseValue: 0
+  regenMana:
+    baseValue: 0
+  AD:
+    baseValue: 0
+  ADpen:
+    baseValue: 0
+  ADR:
+    baseValue: 0
+  AP:
+    baseValue: 0
+  APpen:
+    baseValue: 0
+  MR:
+    baseValue: 0
+  AS:
+    baseValue: 0
+  VEL:
+    baseValue: 0
+  CDR:
+    baseValue: 0
+  RNG:
+    baseValue: 0
+  timerMuerte: 0
 --- !u!1 &8507625336174638266
 GameObject:
   m_ObjectHideFlags: 0
