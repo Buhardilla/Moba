@@ -18,8 +18,11 @@ public class VidaPlayer : MonoBehaviour
     }
     void LateUpdate()
     {
-        chStats = GetComponent<CharacterStats>();
-        vidaActual = chStats.vidaActual;
+        setHealth(GetComponent<CharacterStats>().vidaActual);
+    }
+    
+    public void setHealth(float health){
+        vidaActual = health;
 
         //para hacer que la vida esté entre esos 2 valores, habra que cambiarlo para cada pj
         vidaActual = Mathf.Clamp(vidaActual, 0, vidaMax);

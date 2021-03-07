@@ -39,13 +39,6 @@ public class Movimiento : MonoBehaviour
             //moveRotation = new Vector3(0.0f, Input.GetAxis("Horizontal"), 0.0f);
             //moveRotation *= rotationSpeed;
 
-            /*
-            if (Input.GetButton("Jump"))
-            {
-                moveDirection.y = jumpSpeed;
-            }
-            */
-
 
         }
 
@@ -58,10 +51,7 @@ public class Movimiento : MonoBehaviour
 
 
         // Move the controller
-
         characterController.Move(moveDirection * Time.deltaTime);
-        //transform.Rotate(moveRotation * Time.deltaTime);
         transform.eulerAngles = new Vector3(0, -Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal")) * 180 / Mathf.PI, 0);
-
     }
 }
