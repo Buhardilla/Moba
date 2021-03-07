@@ -148,9 +148,16 @@ public class MinionAI : MonoBehaviour
 
     void Start()
     {
-        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        EnemyMinions = GameObject.FindGameObjectsWithTag("EnemyMinion");
-        EnemyTowers = GameObject.FindGameObjectsWithTag("EnemyTower");
+        if(this.tag.Contains("Enemy")){
+            Enemies = GameObject.FindGameObjectsWithTag("Ally");
+            EnemyMinions = GameObject.FindGameObjectsWithTag("AllyMinion");
+            EnemyTowers = GameObject.FindGameObjectsWithTag("AllyTower");
+        }
+        else{
+            Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            EnemyMinions = GameObject.FindGameObjectsWithTag("EnemyMinion");
+            EnemyTowers = GameObject.FindGameObjectsWithTag("EnemyTower");
+        }
         frameCount = 0;
         distanceTimer = 0;
         needHelp = false;
