@@ -12,6 +12,7 @@ TagManager:
   - AllyTower
   - EnemyTower
   - Bush
+  - AttackCollision
   layers:
   - Default
   - TransparentFX
