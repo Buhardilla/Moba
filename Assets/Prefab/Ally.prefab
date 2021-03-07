@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4135142815068157905}
   - component: {fileID: 4135142815068157904}
   - component: {fileID: 4135142815068157907}
-  - component: {fileID: 4135142815068157906}
+  - component: {fileID: 3541249578191167237}
   m_Layer: 0
   m_Name: Ally
   m_TagString: Ally
@@ -206,7 +206,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &4135142815068157906
+--- !u!114 &3541249578191167237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,12 +215,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 4135142815068157909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e9b86e2fc0005e4594bdaca5080ae2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c3336232d50b6b4fa2e35e0d8dd2a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hidden: 0
   bushes: -1
-  Minimapicon: {fileID: 6239389541284803501, guid: 71b573a135bf06646aef8e40bffd965b,
-    type: 3}
-  final: {x: 0, y: 0, z: 0}
-  velocidad: 0
+  Minimapicon: {fileID: 0}
+  nivel:
+    baseValue: 0
+  exp:
+    baseValue: 0
+  vida:
+    baseValue: 0
+  regenVida:
+    baseValue: 0
+  mana:
+    baseValue: 0
+  regenMana:
+    baseValue: 0
+  AD:
+    baseValue: 0
+  ADpen:
+    baseValue: 0
+  ADR:
+    baseValue: 0
+  AP:
+    baseValue: 0
+  APpen:
+    baseValue: 0
+  MR:
+    baseValue: 0
+  AS:
+    baseValue: 0
+  VEL:
+    baseValue: 0
+  CDR:
+    baseValue: 0
+  RNG:
+    baseValue: 0
+  timerMuerte: 0

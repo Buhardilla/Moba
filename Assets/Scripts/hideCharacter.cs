@@ -22,16 +22,22 @@ public class hideCharacter : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<PlayerData>().hidden = true;
-        other.GetComponent<PlayerData>().bushes = bushID;
-        ChangeOpacity(other.GetComponent<MeshRenderer>(), 0.5f);
-        if(other.tag.Contains("Ally")){
-            ++hiddenAllies;
-            for (int i = 0; i < transform.childCount; i++)
+        if(other.tag.Contains("Ally") || other.tag.Contains("Enemy"))
+        {
+            other.GetComponent<CharacterStats>().hidden = true;
+            other.GetComponent<CharacterStats>().bushes = bushID;
+            ChangeOpacity(other.GetComponent<MeshRenderer>(), 0.5f);
+            if (other.tag.Contains("Ally"))
             {
-                ChangeOpacity(transform.GetChild(i).GetComponent<MeshRenderer>(), 0.5f);
+                ++hiddenAllies;
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    ChangeOpacity(transform.GetChild(i).GetComponent<MeshRenderer>(), 0.5f);
+                }
             }
         }
+        
+        
     }
     private void ChangeOpacity(MeshRenderer meshRenderer, float alpha){
         Color newColor = meshRenderer.material.color;
@@ -45,15 +51,20 @@ public class hideCharacter : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerExit(Collider other)
     {
-        other.GetComponent<PlayerData>().hidden = false;
-        other.GetComponent<PlayerData>().bushes = -1;
-        ChangeOpacity(other.GetComponent<MeshRenderer>(), 1f);
-        if(other.tag.Contains("Ally")){
-            --hiddenAllies;
-            if(hiddenAllies == 0){
-                for (int i = 0; i < transform.childCount; i++)
+        if (other.tag.Contains("Ally") || other.tag.Contains("Enemy"))
+        {
+            other.GetComponent<CharacterStats>().hidden = false;
+            other.GetComponent<CharacterStats>().bushes = -1;
+            ChangeOpacity(other.GetComponent<MeshRenderer>(), 1f);
+            if (other.tag.Contains("Ally"))
+            {
+                --hiddenAllies;
+                if (hiddenAllies == 0)
                 {
-                    ChangeOpacity(transform.GetChild(i).GetComponent<MeshRenderer>(),1f);
+                    for (int i = 0; i < transform.childCount; i++)
+                    {
+                        ChangeOpacity(transform.GetChild(i).GetComponent<MeshRenderer>(), 1f);
+                    }
                 }
             }
         }

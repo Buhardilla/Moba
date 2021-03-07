@@ -33,20 +33,20 @@ public class CalculateVisibility : MonoBehaviour
 
         foreach (GameObject ally in Allies)
         {
-            areEnemiesVisible(ally, ally.GetComponent<PlayerData>(),Enemies);
-            areEnemiesVisible(ally, ally.GetComponent<PlayerData>(),EnemyMinions);
+            areEnemiesVisible(ally, ally.GetComponent<CharacterStats>(),Enemies);
+            areEnemiesVisible(ally, ally.GetComponent<CharacterStats>(),EnemyMinions);
         }
         foreach (GameObject minion in AllyMinions)
         {
-            areEnemiesVisible(minion, minion.GetComponent<PlayerData>(),Enemies);
-            areEnemiesVisible(minion, minion.GetComponent<PlayerData>(),EnemyMinions);
+            areEnemiesVisible(minion, minion.GetComponent<CharacterStats>(),Enemies);
+            areEnemiesVisible(minion, minion.GetComponent<CharacterStats>(),EnemyMinions);
         }
     }
 
-    private void areEnemiesVisible(GameObject ally, PlayerData allyData, GameObject[] enemyArray){
+    private void areEnemiesVisible(GameObject ally, CharacterStats allyData, GameObject[] enemyArray){
             foreach (GameObject enemy in enemyArray)
             {
-                PlayerData dataEnemy = enemy.GetComponent<PlayerData>();
+            CharacterStats dataEnemy = enemy.GetComponent<CharacterStats>();
 
                     if(allyData.hidden && dataEnemy.hidden){
                         if(allyData.bushes == dataEnemy.bushes){
