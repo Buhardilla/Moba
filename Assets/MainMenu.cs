@@ -8,8 +8,14 @@ public class MainMenu : MonoBehaviour
 {
     public Canvas canvas;
     Image image;
-    public void PlayGame(){
-        //SceneManager.LoadScene();
+    public void PlayGameChange(){
+        GameObject tempObject = GameObject.Find("Canvas");
+        canvas = tempObject.GetComponent<Canvas>();
+        GameObject backimage = canvas.transform.Find("Background").gameObject;
+        if(backimage!=null){
+            image = backimage.GetComponent<Image>();
+            image.sprite = Resources.Load<Sprite>("MenuBackgrounds/OnlineMenu");
+        }
     }
 
     public void HeroesTutorialChange(){
