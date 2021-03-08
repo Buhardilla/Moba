@@ -262,6 +262,8 @@ MonoBehaviour:
   money: 0
   killreward: 5
   rewardrange: 10
+  experience: 0
+  expreward: 5
   AD:
     baseValue: 0
   ADpen:
