@@ -48,9 +48,9 @@ public class AtaqueMelee : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("colisiona");
         if (other.tag.Contains("Enemy"))
         {
+            print(this.gameObject.name);
             enemigosEnRango.Add(other.gameObject);
         }
     }
@@ -63,21 +63,18 @@ public class AtaqueMelee : MonoBehaviour
 
         if(enemigosEnRango.ToArray().Length > 0)
         {
+            print("enemigos en rango" + enemigosEnRango.ToArray());
+            masCercano = enemigosEnRango[0];
             foreach(GameObject enemigo in enemigosEnRango)
             {
-                if(masCercano == null)
+                if(Vector3.Distance(this.transform.position, enemigo.transform.position) < Vector3.Distance(this.transform.position, masCercano.transform.position))
                 {
                     masCercano = enemigo;
-                } else
-                {
-                    if(Vector3.Distance(this.transform.position, enemigo.transform.position) < Vector3.Distance(this.transform.position, masCercano.transform.position))
-                    {
-                        masCercano = enemigo;
-                    }
                 }
             }
-            masCercano.GetComponent<CharacterStats>().RecibeDmg(5);
-            enemigosEnRango = new List<GameObject>();
+            print(this.gameObject.name);
+            masCercano.GetComponent<CharacterStats>().RecibeDmg(5,this.gameObject);
+            enemigosEnRango.Clear();
         }
 
 

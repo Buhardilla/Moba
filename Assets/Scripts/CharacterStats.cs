@@ -8,18 +8,21 @@ public class CharacterStats : MonoBehaviour
     public GameObject Minimapicon;
 
     Vector3 initialPos = new Vector3(0, 1, 0);
-    public int vidaActual { get; private set; }
-    public int manaActual { get; private set; }
+    public int currentHealth { get; private set; }
+    public int currentMana { get; private set; }
 
-    public Stat nivel;
+    public Stat level;
     public Stat exp;
 
-    public Stat vida;
-    public Stat regenVida;
+    public Stat health;
+    public Stat regenhealth;
 
     public Stat mana;
     public Stat regenMana;
 
+    public int money;
+    public int killreward;
+    public float rewardrange;
     public Stat AD;
     public Stat ADpen;
     public Stat ADR;
@@ -34,11 +37,18 @@ public class CharacterStats : MonoBehaviour
     public Stat RNG;
 
     public float timerMuerte = 0;
-
+    GameObject[] enemies;
     private void Start()
     {
-        vidaActual = vida.getStat();
-        manaActual = mana.getStat();
+        currentHealth = health.getStat();
+        currentMana = mana.getStat();
+
+        if(gameObject.tag.Contains("Enemy")){
+            enemies = GameObject.FindGameObjectsWithTag("Ally");
+        }
+        else{
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        }
     }
     void Update()
     {
@@ -55,32 +65,39 @@ public class CharacterStats : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.T))
         {
-            vidaActual -= 10;
+            currentHealth -= 10;
             print("me dolio wey");
-            manaActual -= 10;
+            currentMana -= 10;
         }
         
     }
-    public void RecibeDmg(int dmg)
+    public void RecibeDmg(int dmg, GameObject other)
     {
         
-        vidaActual -= dmg;
-        print(transform.name + " recibe " + dmg + " de daño.");
-        print("Vida actual: " + vidaActual);
+        currentHealth -= dmg;
 
-        if(vidaActual <= 0)
+        if(currentHealth <= 0)
         {
-            Morir();
+            print("estoy muerto");
+            Morir(other);
         }
     }
 
-    public virtual void Morir()
+    public virtual void Morir(GameObject other)
     {
-        if (!this.tag.Contains("EmemyMinion"))
+        //TODO aquí habría que llamar al servidor
+        giveReward( other);
+    }
+
+    public void giveReward(GameObject other){
+        foreach (GameObject enemy in enemies)
         {
-            timerMuerte = 5;
-            this.GetComponent<AtaqueMelee>().enabled = false;
-            //this.GetComponent<Movimiento>().enabled = false;
+            if(enemy == other){
+                enemy.GetComponent<CharacterStats>().money += killreward;
+            }
+            else if(Vector3.Distance(enemy.transform.position,transform.position) < rewardrange){
+                enemy.GetComponent<CharacterStats>().money += killreward / 2;
+            }
         }
     }
 }
