@@ -6,25 +6,25 @@ using UnityEngine.UI;
 public class VidaPlayer : MonoBehaviour
 {
     CharacterStats chStats;
-    public float vidaMax;
-    public float vidaActual;
+    public float maxHealth;
+    public float currentHealth;
 
     public Image barraDeVida;
 
     private void Start()
     {
         chStats = GetComponent<CharacterStats>();
-        vidaMax = chStats.vida.getStat();
+        maxHealth = chStats.health.getStat();
     }
     void LateUpdate()
     {
         chStats = GetComponent<CharacterStats>();
-        vidaActual = chStats.vidaActual;
+        currentHealth = chStats.currentHealth;
 
         //para hacer que la vida esté entre esos 2 valores, habra que cambiarlo para cada pj
-        vidaActual = Mathf.Clamp(vidaActual, 0, vidaMax);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         
         //para la animacion de la barra de vida, habra que ponerlo entre la vida maxima.
-        barraDeVida.fillAmount = vidaActual / vidaMax;
+        barraDeVida.fillAmount = currentHealth / maxHealth;
     }
 }

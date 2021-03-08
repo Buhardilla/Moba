@@ -7,9 +7,14 @@ public class Stat
 {
     [SerializeField]
     private int baseValue;
+    private int scale;
 
     public int getStat()
     {
         return baseValue;
+    }
+
+    public int getScale(){
+        return scale;
     }
 }

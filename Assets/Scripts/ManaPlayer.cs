@@ -19,7 +19,7 @@ public class ManaPlayer : MonoBehaviour
     void LateUpdate()
     {
         chStats = GetComponent<CharacterStats>();
-        manaActual = chStats.vidaActual;
+        manaActual = chStats.currentMana;
 
         //para hacer que la vida esté entre esos 2 valores, habra que cambiarlo para cada pj
         manaActual = Mathf.Clamp(manaActual, 0, manaMax);

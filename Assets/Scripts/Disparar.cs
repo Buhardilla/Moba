@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Disparar : MonoBehaviour
 {
-    public int danyo = 10;
+    public int damage;
     public float cadencia;
     public GameObject target;
     public GameObject proyectil;
@@ -31,7 +31,7 @@ public class Disparar : MonoBehaviour
         misSpawns.Clear();
         misSpawns.Add(Instantiate(proyectil, origen, Quaternion.Euler(0,0,0)) as GameObject);
         bulletcount = misSpawns.ToArray().Length-1;
-        misSpawns[bulletcount].GetComponent<TrackingProjectile>().FireProjectile(gameObject, target, danyo);
+        misSpawns[bulletcount].GetComponent<TrackingProjectile>().FireProjectile(gameObject, target, damage);
     }
 
     public void setTarget(GameObject e_target)
