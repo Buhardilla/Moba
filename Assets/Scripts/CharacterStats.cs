@@ -10,7 +10,6 @@ public class CharacterStats : MonoBehaviour
     Vector3 initialPos = new Vector3(0, 1, 0);
     public int currentHealth { get; private set; }
     public int currentMana { get; private set; }
-    public int expMax;
 
     public int level;
     public Stat exp;

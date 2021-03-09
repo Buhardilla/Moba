@@ -221,10 +221,10 @@ MonoBehaviour:
   hidden: 0
   bushes: -1
   Minimapicon: {fileID: 0}
-  level:
-    baseValue: 0
+  expMax: 0
+  level: 1
   exp:
-    baseValue: 0
+    baseValue: 100
   health:
     baseValue: 100
   regenhealth:
@@ -236,7 +236,6 @@ MonoBehaviour:
   money: 0
   killreward: 20
   rewardrange: 5
-  experience: 0
   expreward: 10
   AD:
     baseValue: 0

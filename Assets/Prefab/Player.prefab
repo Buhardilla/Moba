@@ -313,10 +313,9 @@ MonoBehaviour:
   hidden: 0
   bushes: -1
   Minimapicon: {fileID: 0}
-  level:
-    baseValue: 0
+  level: 1
   exp:
-    baseValue: 0
+    baseValue: 100
   health:
     baseValue: 100
   regenhealth:
@@ -328,8 +327,7 @@ MonoBehaviour:
   money: 0
   killreward: 20
   rewardrange: 5
-  experience: 0
-  expreward: 0
+  expreward: 10
   AD:
     baseValue: 0
   ADpen:
@@ -429,7 +427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6243902ee6af744805407bbe9d168d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: {fileID: 0}
+  moneyCount: {fileID: 0}
+  levelCount: {fileID: 0}
   healthBar: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
@@ -438,4 +437,4 @@ MonoBehaviour:
   currentMana: 0
   expBar: {fileID: 0}
   expMax: 0
-  ActualExp: 0
+  currentExp: 0
