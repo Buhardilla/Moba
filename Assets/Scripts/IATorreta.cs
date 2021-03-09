@@ -4,23 +4,25 @@ using System.Collections.Generic;
 
 public class IATorreta : MonoBehaviour
 {
-    public enum EstadosIA {NEARESTALLYMINION,NEARESTENEMYMINION,CHAMPION};
-    public EstadosIA estado = EstadosIA.NEARESTALLYMINION; //se inicia para atacar al mas cercano
+    public enum EstadosIA {NEARESTMINION,CHAMPION};
+    public EstadosIA estado;//se inicia para atacar al mas cercano
 
 
     Disparar torreta;
-    public GameObject[] Allies;
+    public GameObject[] TargetMinions;
     public GameObject[] Enemies;
-    public GameObject[] AllyMinions;
-    public GameObject[] EnemyMinions;
-    // Start is called before the first frame update
-    public float range = 1;
+    public float range;
     void Start()
     {
-        Allies = GameObject.FindGameObjectsWithTag("Ally");
-        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        AllyMinions = GameObject.FindGameObjectsWithTag("AllyMinion");
-        EnemyMinions = GameObject.FindGameObjectsWithTag("EnemyMinion");
+        if (gameObject.tag.Contains("Enemy"))
+        {
+            TargetMinions = GameObject.FindGameObjectsWithTag("AllyMinion");
+            Enemies = GameObject.FindGameObjectsWithTag("Ally");
+        }
+        else {
+            TargetMinions = GameObject.FindGameObjectsWithTag("EnemyMinion");
+            Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        }
         torreta = this.GetComponent<Disparar>();
         torreta.origen = transform.position;
     }
@@ -28,14 +30,14 @@ public class IATorreta : MonoBehaviour
     void Update()
     {
         switch (estado) {
-            case EstadosIA.NEARESTALLYMINION:
-                TargetNearest(AllyMinions);
-                break;
-            case EstadosIA.NEARESTENEMYMINION:
-                TargetNearest(EnemyMinions);
+            case EstadosIA.NEARESTMINION:
+                TargetNearest(TargetMinions);
+                if (!torreta.target) { 
+                    TargetNearest(Enemies);
+                }
                 break;
             case EstadosIA.CHAMPION:
-                TargetNearest(Enemies);
+                TargetObject(torreta.target);
                 break;
         }
         torreta.Shoot();
@@ -58,5 +60,28 @@ public class IATorreta : MonoBehaviour
         else{
             torreta.setTarget(curTarget);
         }
+    }
+
+
+    void TargetObject(GameObject enemy)
+    {
+        if (enemy)
+        {
+            
+            float dist = (enemy.transform.position - transform.position).magnitude;
+            print(dist); print(range);
+            if (dist < range)
+            {
+                torreta.setTarget(enemy);
+                estado = EstadosIA.CHAMPION;
+            }
+            else {
+                estado = EstadosIA.NEARESTMINION;
+            }
+        }
+        else {
+            estado = EstadosIA.NEARESTMINION;
+        }
+        
     }
 }
