@@ -10,6 +10,7 @@ public class CharacterStats : MonoBehaviour
     Vector3 initialPos = new Vector3(0, 1, 0);
     public int currentHealth { get; private set; }
     public int currentMana { get; private set; }
+    public int expMax;
 
     public Stat level;
     public Stat exp;
@@ -23,6 +24,9 @@ public class CharacterStats : MonoBehaviour
     public int money;
     public int killreward;
     public float rewardrange;
+
+    public int experience;
+    public int expreward;
     public Stat AD;
     public Stat ADpen;
     public Stat ADR;
@@ -67,7 +71,7 @@ public class CharacterStats : MonoBehaviour
         {
             currentHealth -= 10;
             print("me dolio wey");
-            currentMana -= 10;
+            currentMana -= 5;
         }
         
     }
@@ -94,9 +98,11 @@ public class CharacterStats : MonoBehaviour
         {
             if(enemy == other){
                 enemy.GetComponent<CharacterStats>().money += killreward;
+                enemy.GetComponent<CharacterStats>().experience += expreward;
             }
             else if(Vector3.Distance(enemy.transform.position,transform.position) < rewardrange){
                 enemy.GetComponent<CharacterStats>().money += killreward / 2;
+                enemy.GetComponent<CharacterStats>().experience += expreward;
             }
         }
     }
