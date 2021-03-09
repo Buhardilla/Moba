@@ -53,13 +53,6 @@ public class CharacterStats : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            vidaActual -= 10;
-            print("me dolio wey");
-            manaActual -= 10;
-        }
-        
     }
     public void RecibeDmg(int dmg)
     {

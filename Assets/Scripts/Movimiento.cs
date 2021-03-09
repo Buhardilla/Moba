@@ -57,7 +57,7 @@ public class Movimiento : MonoBehaviour
 
 
         moveDirection.y -= gravity * Time.deltaTime;
-
+        print("uso movimiento");
 
         // Move the controller
 

@@ -22,7 +22,7 @@ public class LookAtPlayer : MonoBehaviour
     void LateUpdate()
     {
         Vector3 newposition = player.transform.position + offset;
-        transform.position  = Vector3.Lerp(transform.position, newposition, Time.deltaTime * amount);
+        transform.position = newposition;
         transform.LookAt(player.transform);
     }
 }
