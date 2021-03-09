@@ -50,7 +50,7 @@ public class AtaqueMelee : MonoBehaviour
     {
         if (other.tag.Contains("Enemy"))
         {
-            print(this.gameObject.name);
+            print("Yo, "+this.gameObject.name+" colisiono con "+other.gameObject.name);
             enemigosEnRango.Add(other.gameObject);
         }
     }

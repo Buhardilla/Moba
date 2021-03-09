@@ -7,8 +7,8 @@ public class ManageBars : MonoBehaviour
 {
     CharacterStats chStats;
 
-    public GameObject moneyCount;
-
+    public Text moneyCount;
+    public Text levelCount;
 
     public Image healthBar;
     public float maxHealth;
@@ -19,20 +19,20 @@ public class ManageBars : MonoBehaviour
     public float currentMana;
 
     public Image expBar;
-    public int expMax;
-    public int ActualExp;
+    public float expMax;
+    public float currentExp;
 
     private void Start()
     {
         chStats = GetComponent<CharacterStats>();
         maxHealth = chStats.health.getStat();
         manaMax = chStats.mana.getStat();
-        expMax = chStats.expMax;
+        expMax = chStats.exp.getStat();
     }
     void LateUpdate()
     {
         //Update money value
-        moneyCount.GetComponent<UnityEngine.UI.Text>().text = gameObject.GetComponent<CharacterStats>().money.ToString();
+        moneyCount.text = chStats.money.ToString();
 
         //Update health value
         currentHealth = chStats.currentHealth;
@@ -43,5 +43,13 @@ public class ManageBars : MonoBehaviour
         currentMana = chStats.currentMana;
         currentMana = Mathf.Clamp(currentMana, 0, manaMax);
         manaBar.fillAmount = currentMana / manaMax;
+
+        //Update exp value
+        currentExp = chStats.currentExp;
+        currentExp = Mathf.Clamp(currentExp, 0, expMax);
+        expBar.fillAmount = currentExp / expMax;
+
+        //Update level value
+        levelCount.text = chStats.level.ToString();
     }
 }

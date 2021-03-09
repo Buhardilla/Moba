@@ -12,8 +12,9 @@ public class CharacterStats : MonoBehaviour
     public int currentMana { get; private set; }
     public int expMax;
 
-    public Stat level;
+    public int level;
     public Stat exp;
+    public int currentExp{get; private set;}
 
     public Stat health;
     public Stat regenhealth;
@@ -25,7 +26,7 @@ public class CharacterStats : MonoBehaviour
     public int killreward;
     public float rewardrange;
 
-    public int experience;
+
     public int expreward;
     public Stat AD;
     public Stat ADpen;
@@ -72,6 +73,8 @@ public class CharacterStats : MonoBehaviour
             currentHealth -= 10;
             print("me dolio wey");
             currentMana -= 5;
+            currentExp += 30;
+            detectLevelUp();
         }
         
     }
@@ -87,6 +90,13 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
+    public void detectLevelUp(){
+        if(currentExp>=exp.getStat()){
+            ++level;
+            currentExp-=exp.getStat();
+        }
+    }
+
     public virtual void Morir(GameObject other)
     {
         //TODO aquí habría que llamar al servidor
@@ -98,11 +108,11 @@ public class CharacterStats : MonoBehaviour
         {
             if(enemy == other){
                 enemy.GetComponent<CharacterStats>().money += killreward;
-                enemy.GetComponent<CharacterStats>().experience += expreward;
+                enemy.GetComponent<CharacterStats>().currentExp += expreward;
             }
             else if(Vector3.Distance(enemy.transform.position,transform.position) < rewardrange){
                 enemy.GetComponent<CharacterStats>().money += killreward / 2;
-                enemy.GetComponent<CharacterStats>().experience += expreward;
+                enemy.GetComponent<CharacterStats>().currentExp += expreward;
             }
         }
     }
