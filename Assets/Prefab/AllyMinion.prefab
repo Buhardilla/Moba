@@ -129,18 +129,23 @@ MonoBehaviour:
   hidden: 0
   bushes: -1
   Minimapicon: {fileID: 0}
-  nivel:
+  level:
     baseValue: 0
   exp:
     baseValue: 0
-  vida:
-    baseValue: 0
-  regenVida:
+  health:
+    baseValue: 20
+  regenhealth:
     baseValue: 0
   mana:
     baseValue: 0
   regenMana:
     baseValue: 0
+  money: 0
+  killreward: 10
+  rewardrange: 5
+  experience: 0
+  expreward: 5
   AD:
     baseValue: 0
   ADpen:

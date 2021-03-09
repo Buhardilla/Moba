@@ -159,13 +159,13 @@ GameObject:
   - component: {fileID: 4557761022472111446}
   - component: {fileID: 4557761022472111445}
   - component: {fileID: 4557761022472111444}
-  - component: {fileID: 4557761022472111442}
+  - component: {fileID: 4557761022472111454}
   - component: {fileID: 4557761022472111441}
   - component: {fileID: 4557761022472111440}
+  - component: {fileID: 8679168399474527390}
   - component: {fileID: 4557761022472111455}
-  - component: {fileID: 4557761022472111454}
-  - component: {fileID: 4557761022472111434}
-  - component: {fileID: 4557761022472111433}
+  - component: {fileID: 4557761022472111442}
+  - component: {fileID: 2052934070478106801}
   m_Layer: 0
   m_Name: Player
   m_TagString: Ally
@@ -266,22 +266,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!114 &4557761022472111442
-MonoBehaviour:
+--- !u!143 &4557761022472111454
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4557761022472111453}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e33ee414e3d4d144943fc379fb426c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Allies: []
-  Enemies: []
-  AllyMinions: []
-  EnemyMinions: []
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4557761022472111441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,18 +313,21 @@ MonoBehaviour:
   hidden: 0
   bushes: -1
   Minimapicon: {fileID: 0}
-  nivel:
-    baseValue: 0
+  level: 1
   exp:
-    baseValue: 0
-  vida:
     baseValue: 100
-  regenVida:
+  health:
+    baseValue: 100
+  regenhealth:
     baseValue: 0
   mana:
     baseValue: 100
   regenMana:
     baseValue: 0
+  money: 0
+  killreward: 20
+  rewardrange: 5
+  expreward: 10
   AD:
     baseValue: 0
   ADpen:
@@ -344,6 +349,33 @@ MonoBehaviour:
   RNG:
     baseValue: 0
   timerMuerte: 0
+--- !u!114 &8679168399474527390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4557761022472111453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53501a524e84fd54fb69937c8c58a15b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exp: 0
+  health: 0
+  regenhealth: 0
+  mana: 0
+  regenMana: 0
+  AD: 0
+  ADpen: 0
+  ADR: 0
+  AP: 0
+  APpen: 0
+  MR: 0
+  AS: 0
+  VEL: 0
+  CDR: 0
+  RNG: 0
 --- !u!114 &4557761022472111455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,25 +399,7 @@ MonoBehaviour:
   cooldownHechizo: 0
   timerBasico: 0
   activarTimer: 0.5
---- !u!143 &4557761022472111454
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4557761022472111453}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4557761022472111434
+--- !u!114 &4557761022472111442
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -394,13 +408,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4557761022472111453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41f728094b5cd5e4cba4686d9e21b711, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e33ee414e3d4d144943fc379fb426c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMax: 0
-  vidaActual: 0
-  barraDeVida: {fileID: 0}
---- !u!114 &4557761022472111433
+  Allies: []
+  Enemies: []
+  AllyMinions: []
+  EnemyMinions: []
+--- !u!114 &2052934070478106801
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -409,9 +424,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4557761022472111453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 039f0877db617514bb30ee02d7d3deec, type: 3}
+  m_Script: {fileID: 11500000, guid: ca6243902ee6af744805407bbe9d168d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moneyCount: {fileID: 0}
+  levelCount: {fileID: 0}
+  healthBar: {fileID: 0}
+  maxHealth: 0
+  currentHealth: 0
+  manaBar: {fileID: 0}
   manaMax: 0
-  manaActual: 0
-  barraDeMana: {fileID: 0}
+  currentMana: 0
+  expBar: {fileID: 0}
+  expMax: 0
+  currentExp: 0
