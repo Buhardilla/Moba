@@ -44,21 +44,23 @@ public class IATorreta : MonoBehaviour
     }
 
     void TargetNearest(GameObject[] array) {
-        GameObject curTarget = array[0]; //current target
-        float closestDist = (array[0].transform.position - transform.position).magnitude;
-        float dist = 0;
-        for (int i = 1; i < array.Length; i++) {
-            dist = (array[i].transform.position - transform.position).magnitude;
-            if (dist < closestDist) {
-                curTarget = array[i];
-                closestDist = dist;
+        if(array.Length > 0){
+            GameObject curTarget = array[0]; //current target
+            float closestDist = (array[0].transform.position - transform.position).magnitude;
+            float dist = 0;
+            for (int i = 1; i < array.Length; i++) {
+                dist = (array[i].transform.position - transform.position).magnitude;
+                if (dist < closestDist) {
+                    curTarget = array[i];
+                    closestDist = dist;
+                }
             }
-        }
-        if( closestDist > range ){
-            torreta.setTarget(null);
-        }
-        else{
-            torreta.setTarget(curTarget);
+            if( closestDist > range ){
+                torreta.setTarget(null);
+            }
+            else{
+                torreta.setTarget(curTarget);
+            }
         }
     }
 
@@ -69,7 +71,6 @@ public class IATorreta : MonoBehaviour
         {
             
             float dist = (enemy.transform.position - transform.position).magnitude;
-            print(dist); print(range);
             if (dist < range)
             {
                 torreta.setTarget(enemy);

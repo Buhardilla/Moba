@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7211990172111560821}
   - component: {fileID: 2565729348587446334}
   - component: {fileID: 8722521979373558298}
+  - component: {fileID: -932126685433137133}
   m_Layer: 0
   m_Name: AllyNexus
   m_TagString: Untagged
@@ -115,3 +116,57 @@ MonoBehaviour:
   delayInicial: 5
   delayOleadas: 10
   delayMinions: 1
+--- !u!114 &-932126685433137133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2373594027186038709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3336232d50b6b4fa2e35e0d8dd2a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hidden: 0
+  bushes: -1
+  Minimapicon: {fileID: 0}
+  expMax: 0
+  level:
+    baseValue: 0
+  exp:
+    baseValue: 0
+  health:
+    baseValue: 100
+  regenhealth:
+    baseValue: 0
+  mana:
+    baseValue: 0
+  regenMana:
+    baseValue: 0
+  money: 0
+  killreward: 0
+  rewardrange: 0
+  experience: 0
+  expreward: 0
+  AD:
+    baseValue: 0
+  ADpen:
+    baseValue: 0
+  ADR:
+    baseValue: 0
+  AP:
+    baseValue: 0
+  APpen:
+    baseValue: 0
+  MR:
+    baseValue: 0
+  AS:
+    baseValue: 0
+  VEL:
+    baseValue: 0
+  CDR:
+    baseValue: 0
+  RNG:
+    baseValue: 0
+  timerMuerte: 0

@@ -97,8 +97,9 @@ GameObject:
   - component: {fileID: 7201630107181803661}
   - component: {fileID: 4327729635914563583}
   - component: {fileID: 8763995257404634758}
+  - component: {fileID: 8426733318052533213}
   m_Layer: 0
-  m_Name: TorreEnemiga
+  m_Name: EnemyTower
   m_TagString: EnemyTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,8 +193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54029f50f4dc8224180163168fa5fca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  danyo: 10
-  cadencia: 1
   target: {fileID: 0}
   proyectil: {fileID: 4781795942004701236, guid: c91ac49ec67cd3a4cb28482814082dac,
     type: 3}
@@ -212,12 +211,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa82460e6a016c42b83d2d289acfc16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  estado: 0
-  Allies: []
+  estado: 1
+  TargetMinions: []
   Enemies: []
-  AllyMinions: []
-  EnemyMinions: []
   range: 10
+--- !u!114 &8426733318052533213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7201630107181803658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3336232d50b6b4fa2e35e0d8dd2a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hidden: 0
+  bushes: -1
+  Minimapicon: {fileID: 0}
+  expMax: 0
+  level:
+    baseValue: 0
+  exp:
+    baseValue: 0
+  health:
+    baseValue: 100
+  regenhealth:
+    baseValue: 0
+  mana:
+    baseValue: 0
+  regenMana:
+    baseValue: 0
+  money: 0
+  killreward: 0
+  rewardrange: 0
+  experience: 0
+  expreward: 0
+  AD:
+    baseValue: 50
+  ADpen:
+    baseValue: 0
+  ADR:
+    baseValue: 0
+  AP:
+    baseValue: 0
+  APpen:
+    baseValue: 0
+  MR:
+    baseValue: 0
+  AS:
+    baseValue: 2
+  VEL:
+    baseValue: 0
+  CDR:
+    baseValue: 0
+  RNG:
+    baseValue: 0
+  timerMuerte: 0
 --- !u!1001 &5034559413192677636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229,6 +280,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rango Torre
+      objectReference: {fileID: 0}
+    - target: {fileID: 7349424953180616710, guid: 2abef67d7b4e82b47a483ea73ed0edec,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7349424953180616710, guid: 2abef67d7b4e82b47a483ea73ed0edec,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7349424953180616710, guid: 2abef67d7b4e82b47a483ea73ed0edec,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.099999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 7349424953180616710, guid: 2abef67d7b4e82b47a483ea73ed0edec,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7349424953180616710, guid: 2abef67d7b4e82b47a483ea73ed0edec,
         type: 3}
@@ -247,6 +318,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7349424953180616710, guid: 2abef67d7b4e82b47a483ea73ed0edec,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7349424953180616710, guid: 2abef67d7b4e82b47a483ea73ed0edec,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -262,16 +338,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7349424953180616710, guid: 2abef67d7b4e82b47a483ea73ed0edec,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7349424953180616710, guid: 2abef67d7b4e82b47a483ea73ed0edec,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7349424953180616710, guid: 2abef67d7b4e82b47a483ea73ed0edec,
-        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -284,21 +350,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7349424953180616710, guid: 2abef67d7b4e82b47a483ea73ed0edec,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7349424953180616710, guid: 2abef67d7b4e82b47a483ea73ed0edec,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.099999994
-      objectReference: {fileID: 0}
-    - target: {fileID: 7349424953180616710, guid: 2abef67d7b4e82b47a483ea73ed0edec,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

@@ -9,6 +9,8 @@ public class MinionAI : MonoBehaviour
     public GameObject[] Enemies;
     public GameObject[] EnemyMinions;
     public GameObject[] EnemyTowers;
+
+    public GameObject nexus;
     public int speed;
     public int detectionRadius;
     public int attackRadius;
@@ -17,7 +19,7 @@ public class MinionAI : MonoBehaviour
 
     // Private variables
     private int frameCount;
-    private int targetTurretID;
+    private GameObject targetTurret;
 
     private GameObject targetMinion;
     private GameObject targetPlayer;
@@ -27,20 +29,27 @@ public class MinionAI : MonoBehaviour
 
     // Start is called before the first frame update
     void TurretTarget()
-    {
-        int closestID = -1;  // if there is no turrets target nexus
+    {    
+        GameObject closest = null;
         float closestDistance = 10000;
         float distance = 10000;
         for (int i = 0; i<EnemyTowers.Length; i++)
         {
-            distance = (EnemyTowers[i].transform.position - gameObject.transform.position).magnitude;
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestID = i;
+            if(EnemyTowers[i].activeSelf){
+                distance = (EnemyTowers[i].transform.position - gameObject.transform.position).magnitude;
+                if (distance < closestDistance )
+                {
+                    closestDistance = distance;
+                    closest = EnemyTowers[i];
+                }
             }
         }
-        targetTurretID = closestID;
+        if(closest){
+            targetTurret = closest;
+        }
+        else{
+            AttackNexus();
+        }
     }
 
     void MinionTarget(){
@@ -110,15 +119,30 @@ public class MinionAI : MonoBehaviour
     }
 
     void AttackTurret(){
-        float step = speed * Time.deltaTime;
-        float distance = (EnemyTowers[targetTurretID].transform.position - gameObject.transform.position).magnitude;
+        if(targetTurret && targetTurret.activeSelf){
+            float step = speed * Time.deltaTime;
+            float distance = (targetTurret.transform.position - gameObject.transform.position).magnitude;
 
-        // Si no esta a distancia de ataque se acerca a el
-        if(distance > attackRadius){
-            transform.position = Vector3.MoveTowards(transform.position, EnemyTowers[targetTurretID].transform.position, step);
+            // Si no esta a distancia de ataque se acerca a el
+            if(distance > attackRadius){
+                transform.position = Vector3.MoveTowards(transform.position, targetTurret.transform.position, step);
+            }
+        }
+        else{
+            targetTurret = null;
+            TurretTarget();
         }
     }
 
+    void AttackNexus(){
+        float step = speed * Time.deltaTime;
+        float distance = (nexus.transform.position - gameObject.transform.position).magnitude;
+
+        // Si no esta a distancia de ataque se acerca a el
+        if(distance > attackRadius){
+            transform.position = Vector3.MoveTowards(transform.position,nexus.transform.position, step);
+        }
+    }
     void AttackPlayer(){
         PlayerTarget();
         if(targetPlayer == null){
@@ -152,11 +176,13 @@ public class MinionAI : MonoBehaviour
             Enemies = GameObject.FindGameObjectsWithTag("Ally");
             EnemyMinions = GameObject.FindGameObjectsWithTag("AllyMinion");
             EnemyTowers = GameObject.FindGameObjectsWithTag("AllyTower");
+            nexus = GameObject.FindGameObjectWithTag("AllyNexus");
         }
         else{
             Enemies = GameObject.FindGameObjectsWithTag("Enemy");
             EnemyMinions = GameObject.FindGameObjectsWithTag("EnemyMinion");
             EnemyTowers = GameObject.FindGameObjectsWithTag("EnemyTower");
+            nexus = GameObject.FindGameObjectWithTag("EnemyNexus");
         }
         frameCount = 0;
         distanceTimer = 0;
@@ -179,14 +205,17 @@ public class MinionAI : MonoBehaviour
                 frameCount = 0;
             }        
             if(targetMinion != null){
+                print("ataco minions");
                 AttackMinion();
             }
-            else{   
+            else if(targetTurret){   
+                print("ataco torre");
                 AttackTurret();
             }
+            else{
+                print("ataco nexo");
+                AttackNexus();
+            }
         }
-
-        
-
     }
 }

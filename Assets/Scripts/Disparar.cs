@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class Disparar : MonoBehaviour
 {
-    public int damage;
-    public float cadencia;
+    private float cadencia;
     public GameObject target;
     public GameObject proyectil;
     List<GameObject> misSpawns = new List<GameObject>();
     public float temporizadordisparo = 0.0f;
     public Vector3 origen;
     public int bulletcount;
+    private float damage;
+
+    void Start()
+    {
+        damage = gameObject.GetComponent<CharacterStats>().AD.getStat();
+        cadencia = gameObject.GetComponent<CharacterStats>().AS.getStat();
+    }
+
    public void Shoot()
     {
         if (target) {

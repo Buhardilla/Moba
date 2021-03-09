@@ -75,22 +75,34 @@ public class CharacterStats : MonoBehaviour
         }
         
     }
-    public void RecibeDmg(int dmg, GameObject other)
+    public void RecibeDmg(float dmg, GameObject other)
     {
-        
-        currentHealth -= dmg;
+        currentHealth -= (int) dmg;
 
         if(currentHealth <= 0)
         {
-            print("estoy muerto");
             Morir(other);
         }
     }
 
     public virtual void Morir(GameObject other)
     {
+        if(gameObject.tag.Contains("Minion")){
+            gameObject.SetActive(false);
+            print("se ha muerto una torre o un minion");
+        }
+        else if(gameObject.tag.Contains("Tower")){
+            gameObject.SetActive(false);
+            //GameObject.FindGameObjectsWithTag("");
+        }
+        else if(gameObject.tag.Contains("Nexus")){
+            print("fin del juego, llamar al servidor y que jose haga cosas");
+        }
+        else{
+            print("soy un jugador y me muero");
+        }
         //TODO aquí habría que llamar al servidor
-        giveReward( other);
+        giveReward(other);
     }
 
     public void giveReward(GameObject other){
