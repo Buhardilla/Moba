@@ -66,15 +66,6 @@ public class CharacterStats : MonoBehaviour
                 }
             }
         }
-
-
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            if(Overlay){
-                print("T");
-                RecibeDmg(10);
-            }
-        }
     }
     public void RecibeDmg(int dmg)
     {

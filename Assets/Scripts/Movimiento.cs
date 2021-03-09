@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//DESFASADO
+
 // This script moves the character controller forward
 // and sideways based on the arrow keys.
 // It also jumps when pressing space.
@@ -48,7 +50,7 @@ public class Movimiento : MonoBehaviour
 
 
         moveDirection.y -= gravity * Time.deltaTime;
-
+        print("uso movimiento");
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
