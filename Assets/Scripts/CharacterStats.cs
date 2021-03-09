@@ -6,6 +6,7 @@ public class CharacterStats : MonoBehaviour
     public bool hidden = false;
     public int bushes = -1;
     public GameObject Minimapicon;
+    public GameObject Overlay;
 
     Vector3 initialPos = new Vector3(0, 1, 0);
     public int vidaActual { get; private set; }
@@ -42,17 +43,37 @@ public class CharacterStats : MonoBehaviour
     }
     void Update()
     {
-        if(timerMuerte > 0)
+        if (timerMuerte > 0)
         {
             timerMuerte -= Time.deltaTime;
             if (timerMuerte <= 0)
             {
-                this.GetComponent<AtaqueMelee>().enabled = true;
-                //this.GetComponent<Movimiento>().enabled = true;
-                this.GetComponent<Transform>().position = initialPos;
+                print("revivir");
+                this.GetComponent<MeshRenderer>().enabled = true;
+                if (Overlay)
+                {
+                    Overlay.SetActive(false);
+                    this.GetComponent<Movimiento>().enabled = true;
+                    this.GetComponent<AtaqueMelee>().enabled = true;
+                    this.GetComponent<Transform>().position = initialPos;
+                    vidaActual = vida.getStat();
+                    manaActual = mana.getStat();
+                }
+            }
+            else
+            {
+                print("Sigo muerto");
+                if (Overlay)
+                {
+                    Overlay.GetComponentsInChildren<UnityEngine.UI.Text>()[1].text = timerMuerte.ToString();
+                }
             }
         }
-
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Morir();
+            print("he muerto");
+        }
     }
     public void RecibeDmg(int dmg)
     {
@@ -73,7 +94,10 @@ public class CharacterStats : MonoBehaviour
         {
             timerMuerte = 5;
             this.GetComponent<AtaqueMelee>().enabled = false;
-            //this.GetComponent<Movimiento>().enabled = false;
+            this.GetComponent<Movimiento>().enabled = false;
+            this.gameObject.transform.localPosition = gameObject.transform.position;
+            Overlay.SetActive(true);
+            timerMuerte = 2.5f;
         }
     }
 }
