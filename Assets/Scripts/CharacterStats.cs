@@ -70,8 +70,8 @@ public class CharacterStats : MonoBehaviour
                     this.GetComponent<Movimiento>().enabled = true;
                     this.GetComponent<AtaqueMelee>().enabled = true;
                     this.GetComponent<Transform>().position = initialPos;
-                    vidaActual = vida.getStat();
-                    manaActual = mana.getStat();
+                    currentHealth = health.getStat();
+                    currentMana = mana.getStat();
                 }
             }
             else
