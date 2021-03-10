@@ -113,7 +113,9 @@ public class MinionAI : MonoBehaviour
         else{
             // Si no esta a distancia de ataque se acerca a el
             if(distance > attackRadius){
-                transform.position = Vector3.MoveTowards(transform.position, targetMinion.transform.position, step);
+                Vector3 endpos = targetMinion.transform.position;
+                endpos.y = 0;
+                transform.position = Vector3.MoveTowards(transform.position, endpos, step);
             }
         }
     }
@@ -125,7 +127,9 @@ public class MinionAI : MonoBehaviour
 
             // Si no esta a distancia de ataque se acerca a el
             if(distance > attackRadius){
-                transform.position = Vector3.MoveTowards(transform.position, targetTurret.transform.position, step);
+                Vector3 endpos = targetTurret.transform.position;
+                endpos.y = 0;
+                transform.position = Vector3.MoveTowards(transform.position, endpos, step);
             }
         }
         else{
@@ -140,7 +144,9 @@ public class MinionAI : MonoBehaviour
 
         // Si no esta a distancia de ataque se acerca a el
         if(distance > attackRadius){
-            transform.position = Vector3.MoveTowards(transform.position,nexus.transform.position, step);
+            Vector3 endpos = nexus.transform.position;
+            endpos.y = 0;
+            transform.position = Vector3.MoveTowards(transform.position,endpos, step);
         }
     }
     void AttackPlayer(){
@@ -165,7 +171,9 @@ public class MinionAI : MonoBehaviour
         else
         {
             if(distance > attackRadius){
-                transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, step);
+                Vector3 endpos = targetPlayer.transform.position;
+                endpos.y = 0;
+                transform.position = Vector3.MoveTowards(transform.position, endpos, step);
             }    
         }
     }

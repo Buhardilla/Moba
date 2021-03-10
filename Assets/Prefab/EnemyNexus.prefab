@@ -112,7 +112,7 @@ MonoBehaviour:
     type: 3}
   game: 1
   numerominions: 3
-  offset: {x: -10, y: 0, z: 0}
+  offset: {x: -10, y: -0.42, z: 0}
   delayInicial: 5
   delayOleadas: 10
   delayMinions: 1
