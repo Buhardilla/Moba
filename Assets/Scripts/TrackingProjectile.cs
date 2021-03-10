@@ -5,15 +5,15 @@ using UnityEngine;
 public class TrackingProjectile : MonoBehaviour
 {
     public float speed;
-    public int damage;
+    private float damage;
     public GameObject mytarget;
     public GameObject mylauncher;
 
     
-    public void FireProjectile(GameObject lanzador, GameObject target, int damage) { //se puede abstraer para herencia este constructor
+    public void FireProjectile(GameObject lanzador, GameObject target, float damage) { //se puede abstraer para herencia este constructor
         //para el linea recta se añadiria direccion y disparo y esta clase de trackingprojectile pasa a heredar de proyectil Base
         mytarget = target;
-
+        this.damage = damage;
         if (lanzador)
         {
             mylauncher = lanzador;

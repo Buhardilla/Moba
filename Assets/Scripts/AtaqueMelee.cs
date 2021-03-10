@@ -36,7 +36,7 @@ public class AtaqueMelee : MonoBehaviour
     void AtaqueBasico()
     {
         //Pendiente hacer animación de ataque
-        Debug.Log("ataca");
+        //Debug.Log("ataca");
 
         //Para el movimiento del personaje
         
@@ -50,7 +50,6 @@ public class AtaqueMelee : MonoBehaviour
     {
         if (other.tag.Contains("Enemy"))
         {
-            print(this.gameObject.name);
             enemigosEnRango.Add(other.gameObject);
         }
     }
@@ -63,7 +62,6 @@ public class AtaqueMelee : MonoBehaviour
 
         if(enemigosEnRango.ToArray().Length > 0)
         {
-            print("enemigos en rango" + enemigosEnRango.ToArray());
             masCercano = enemigosEnRango[0];
             foreach(GameObject enemigo in enemigosEnRango)
             {
@@ -72,7 +70,6 @@ public class AtaqueMelee : MonoBehaviour
                     masCercano = enemigo;
                 }
             }
-            print(this.gameObject.name);
             masCercano.GetComponent<CharacterStats>().RecibeDmg(5,this.gameObject);
             enemigosEnRango.Clear();
         }

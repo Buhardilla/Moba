@@ -12,16 +12,15 @@ public class IATorreta : MonoBehaviour
     public GameObject[] TargetMinions;
     public GameObject[] Enemies;
     public float range;
+    string enemiestag;
     void Start()
     {
         if (gameObject.tag.Contains("Enemy"))
         {
-            TargetMinions = GameObject.FindGameObjectsWithTag("AllyMinion");
-            Enemies = GameObject.FindGameObjectsWithTag("Ally");
+            enemiestag = "Ally";
         }
         else {
-            TargetMinions = GameObject.FindGameObjectsWithTag("EnemyMinion");
-            Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            enemiestag = "Enemy";
         }
         torreta = this.GetComponent<Disparar>();
         torreta.origen = transform.position;
@@ -29,6 +28,10 @@ public class IATorreta : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        TargetMinions = GameObject.FindGameObjectsWithTag(enemiestag + "Minion");
+        Enemies = GameObject.FindGameObjectsWithTag(enemiestag);
+
         switch (estado) {
             case EstadosIA.NEARESTMINION:
                 TargetNearest(TargetMinions);
@@ -44,15 +47,24 @@ public class IATorreta : MonoBehaviour
     }
 
     void TargetNearest(GameObject[] array) {
-        GameObject curTarget = array[0]; //current target
-        float closestDist = (array[0].transform.position - transform.position).magnitude;
+
+        GameObject curTarget = null; //current target
+        float closestDist = 0;
         float dist = 0;
-        for (int i = 1; i < array.Length; i++) {
+        for (int i = 0; i < array.Length; i++) {
             dist = (array[i].transform.position - transform.position).magnitude;
-            if (dist < closestDist) {
+            if(curTarget){
+                if (dist < closestDist) {
+                    curTarget = array[i];
+                    closestDist = dist;
+                }
+
+            }
+            else{
                 curTarget = array[i];
                 closestDist = dist;
             }
+           
         }
         if( closestDist > range ){
             torreta.setTarget(null);
@@ -69,7 +81,6 @@ public class IATorreta : MonoBehaviour
         {
             
             float dist = (enemy.transform.position - transform.position).magnitude;
-            print(dist); print(range);
             if (dist < range)
             {
                 torreta.setTarget(enemy);
