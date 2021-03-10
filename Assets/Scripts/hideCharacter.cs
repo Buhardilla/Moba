@@ -26,24 +26,11 @@ public class hideCharacter : MonoBehaviour
         {
             other.GetComponent<CharacterStats>().hidden = true;
             other.GetComponent<CharacterStats>().bushes = bushID;
-            ChangeOpacity(other.GetComponent<MeshRenderer>(), 0.5f);
-            if (other.tag.Contains("Ally"))
-            {
-                ++hiddenAllies;
-                for (int i = 0; i < transform.childCount; i++)
-                {
-                    ChangeOpacity(transform.GetChild(i).GetComponent<MeshRenderer>(), 0.5f);
-                }
-            }
         }
         
         
     }
-    private void ChangeOpacity(MeshRenderer meshRenderer, float alpha){
-        Color newColor = meshRenderer.material.color;
-        newColor.a = alpha;
-        meshRenderer.material.SetColor("_Color",newColor);
-    }
+
 
     /// <summary>
     /// OnTriggerExit is called when the Collider other has stopped touching the trigger.
@@ -55,18 +42,6 @@ public class hideCharacter : MonoBehaviour
         {
             other.GetComponent<CharacterStats>().hidden = false;
             other.GetComponent<CharacterStats>().bushes = -1;
-            ChangeOpacity(other.GetComponent<MeshRenderer>(), 1f);
-            if (other.tag.Contains("Ally"))
-            {
-                --hiddenAllies;
-                if (hiddenAllies == 0)
-                {
-                    for (int i = 0; i < transform.childCount; i++)
-                    {
-                        ChangeOpacity(transform.GetChild(i).GetComponent<MeshRenderer>(), 1f);
-                    }
-                }
-            }
         }
     }
 }
