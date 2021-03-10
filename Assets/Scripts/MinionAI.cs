@@ -205,15 +205,12 @@ public class MinionAI : MonoBehaviour
                 frameCount = 0;
             }        
             if(targetMinion != null){
-                print("ataco minions");
                 AttackMinion();
             }
             else if(targetTurret){   
-                print("ataco torre");
                 AttackTurret();
             }
             else{
-                print("ataco nexo");
                 AttackNexus();
             }
         }

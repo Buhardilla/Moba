@@ -2,7 +2,7 @@
 
 public class CharacterStats : MonoBehaviour
 {
-
+    public GameObject[] previoustowers;
     public bool hidden = false;
     public int bushes = -1;
     public GameObject Minimapicon;
@@ -42,7 +42,11 @@ public class CharacterStats : MonoBehaviour
 
     public float timerMuerte = 0;
     GameObject[] enemies;
-    private void Start()
+
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake()
     {
         currentHealth = health.getStat();
         currentMana = mana.getStat();
@@ -77,12 +81,28 @@ public class CharacterStats : MonoBehaviour
     }
     public void RecibeDmg(float dmg, GameObject other)
     {
-        currentHealth -= (int) dmg;
+        //si es un nexo o torre compruebo si se han muerto las torres anteriores, en otro caso no hago comprobación
+        if(((gameObject.tag.Contains("Tower") || gameObject.tag.Contains("Nexus")) && activeTowers() == 0) || (!gameObject.tag.Contains("Tower") && !gameObject.tag.Contains("Nexus"))){
 
-        if(currentHealth <= 0)
-        {
-            Morir(other);
+            currentHealth -= (int) dmg;
+
+            if(currentHealth <= 0)
+            {
+                Morir(other);
+            }
         }
+    }
+
+    public int activeTowers(){
+        int count = 0;
+        foreach (GameObject tower in previoustowers)
+        {
+            if(tower.activeSelf){
+                ++count;
+            }
+        }
+        print(count);
+        return count;
     }
 
     public virtual void Morir(GameObject other)

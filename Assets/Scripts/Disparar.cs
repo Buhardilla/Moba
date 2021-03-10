@@ -15,7 +15,7 @@ public class Disparar : MonoBehaviour
 
     void Start()
     {
-        damage = gameObject.GetComponent<CharacterStats>().AD.getStat();
+        damage = this.gameObject.GetComponent<CharacterStats>().AD.getStat();        
         cadencia = gameObject.GetComponent<CharacterStats>().AS.getStat();
     }
 

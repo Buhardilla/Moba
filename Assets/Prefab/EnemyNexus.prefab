@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2424466064152807326}
   - component: {fileID: 2424466064152807327}
   - component: {fileID: 2424466064152807324}
+  - component: {fileID: 3943432}
   m_Layer: 0
   m_Name: EnemyNexus
-  m_TagString: Untagged
+  m_TagString: EnemyNexus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,3 +116,60 @@ MonoBehaviour:
   delayInicial: 5
   delayOleadas: 10
   delayMinions: 1
+--- !u!114 &3943432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2424466064152807325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3336232d50b6b4fa2e35e0d8dd2a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previoustowers:
+  - {fileID: 0}
+  - {fileID: 0}
+  hidden: 0
+  bushes: -1
+  Minimapicon: {fileID: 0}
+  expMax: 0
+  level:
+    baseValue: 0
+  exp:
+    baseValue: 0
+  health:
+    baseValue: 5
+  regenhealth:
+    baseValue: 0
+  mana:
+    baseValue: 0
+  regenMana:
+    baseValue: 0
+  money: 50
+  killreward: 0
+  rewardrange: 0
+  experience: 0
+  expreward: 0
+  AD:
+    baseValue: 0
+  ADpen:
+    baseValue: 0
+  ADR:
+    baseValue: 0
+  AP:
+    baseValue: 0
+  APpen:
+    baseValue: 0
+  MR:
+    baseValue: 0
+  AS:
+    baseValue: 0
+  VEL:
+    baseValue: 0
+  CDR:
+    baseValue: 0
+  RNG:
+    baseValue: 0
+  timerMuerte: 0

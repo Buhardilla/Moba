@@ -36,7 +36,7 @@ public class AtaqueMelee : MonoBehaviour
     void AtaqueBasico()
     {
         //Pendiente hacer animación de ataque
-        Debug.Log("ataca");
+        //Debug.Log("ataca");
 
         //Para el movimiento del personaje
         
@@ -50,7 +50,6 @@ public class AtaqueMelee : MonoBehaviour
     {
         if (other.tag.Contains("Enemy"))
         {
-            print(this.gameObject.name);
             enemigosEnRango.Add(other.gameObject);
         }
     }
