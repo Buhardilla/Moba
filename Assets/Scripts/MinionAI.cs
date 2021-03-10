@@ -132,6 +132,7 @@ public class MinionAI : MonoBehaviour
     }
 
     void AttackNexus(){
+        target = nexus[0];
         float distance = (nexus[0].transform.position - gameObject.transform.position).magnitude;
         isInRange(distance,nexus[0]);
     }
@@ -162,7 +163,6 @@ public class MinionAI : MonoBehaviour
         Vector3 dir = target.transform.position;
         dir.y = transform.position.y;
         moveDirection = Vector3.MoveTowards(transform.position, dir, step);
-        print("posicion origen " + transform.position + " direccion " + dir + " step "+ step + "nueva pos" + moveDirection + " time" + Time.deltaTime);
         transform.position = moveDirection;
     }
 
@@ -210,6 +210,7 @@ public class MinionAI : MonoBehaviour
                     step = speed * Time.deltaTime;
                     // IA funcionara cada 5 frames
                     if (frameCount > 5){
+                        AttackNexus();
                         TurretTarget();
                         MinionTarget();
                         frameCount = 0;
@@ -223,7 +224,6 @@ public class MinionAI : MonoBehaviour
                             AttackTurret();
                         }
                         else{
-                            print("nexo");
                             AttackNexus();
                         }
                     }
