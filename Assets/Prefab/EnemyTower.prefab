@@ -112,9 +112,7 @@ MonoBehaviour:
   target: {fileID: 0}
   proyectil: {fileID: 4781795942004701236, guid: c91ac49ec67cd3a4cb28482814082dac,
     type: 3}
-  temporizadordisparo: 0
   origen: {x: 0, y: 0, z: 0}
-  bulletcount: 0
 --- !u!114 &1045553644378413737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +151,7 @@ MonoBehaviour:
   exp:
     baseValue: 0
   health:
-    baseValue: 5
+    baseValue: 30
   regenhealth:
     baseValue: 0
   mana:

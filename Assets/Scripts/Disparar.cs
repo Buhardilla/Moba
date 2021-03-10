@@ -28,7 +28,6 @@ public class Disparar : MonoBehaviour
                 temporizadordisparo = 0.0f;
                 spawnproyectil();
             }
-
         }
     }
 

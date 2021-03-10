@@ -7,8 +7,8 @@ public class MinionAI : MonoBehaviour
     public enum MinionState{MOVING,COLLISION, ATTACK}
 
     public MinionState  state = MinionState.MOVING;
-    public CapsuleCollider parentcollider;
-    public CapsuleCollider childcollider;
+
+    public Collider collide;
     
     // Public variables
     public GameObject[] Enemies;
@@ -32,6 +32,23 @@ public class MinionAI : MonoBehaviour
     public Vector3 moveDirection = new Vector3(0,0,0);
     public float step;
 
+    private float evaderoffset = 100;
+    //Todo hacerlo segun la rot
+    void evadeCollider(){ 
+        if(collide){
+            moveDirection = transform.position - collide.transform.position;
+            if (moveDirection.z >= 0)
+            {
+                moveDirection.z += evaderoffset;
+            }
+            else{
+                moveDirection.z -= evaderoffset;
+            }   
+            moveDirection.y = transform.position.y;
+            moveDirection = Vector3.MoveTowards(transform.position, moveDirection, step);
+            transform.position = moveDirection;  
+        }
+    }
     // Start is called before the first frame update
     void TurretTarget()
     {    
@@ -230,20 +247,19 @@ public class MinionAI : MonoBehaviour
                 }
                 break;
             case MinionState.COLLISION:
-                float distance = -1;
-                if(!target){
-                    distance = (target.transform.position - gameObject.transform.position).magnitude; 
-                    if(distance < attackRange){
-                        state = MinionState.ATTACK;
-                    }
-                }
-                else{
-                    Vector3 dir = transform.position;
-                    dir.y = 0;
-                    dir.z -= 10;
-                    moveDirection = Vector3.MoveTowards(transform.position, dir, step);
-                    transform.position = moveDirection;
-                }
+                        if(target){
+                            float distance = (target.transform.position - gameObject.transform.position).magnitude; 
+                            if(distance < attackRange){
+                                state = MinionState.ATTACK;
+                            }
+                            else{
+                                evadeCollider();
+                            }
+                        }
+                        else{
+                            evadeCollider();
+                        }
+
                 break;
             case MinionState.ATTACK:
                 if(target && !target.activeSelf){

@@ -108,14 +108,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932dc90b069475245b87b24861321196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinionPrefab: {fileID: 1744451836598202903, guid: d29e3252fcf8aef42bc6f77b2918424a,
-    type: 3}
+  BasicMinionPrefab: {fileID: 0}
+  BigMinionPrefab: {fileID: 0}
+  LongDistanceMinionPrefab: {fileID: 0}
   game: 1
   numerominions: 3
   offset: {x: -10, y: -0.42, z: 0}
   delayInicial: 5
   delayOleadas: 10
   delayMinions: 1
+  oleada: 0
 --- !u!114 &3943432
 MonoBehaviour:
   m_ObjectHideFlags: 0
