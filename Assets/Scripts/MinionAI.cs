@@ -4,28 +4,33 @@ using UnityEngine;
 
 public class MinionAI : MonoBehaviour
 {
+    public enum MinionState{MOVING,COLLISION, ATTACK}
+
+    public MinionState  state = MinionState.MOVING;
+    public CapsuleCollider parentcollider;
+    public CapsuleCollider childcollider;
     
     // Public variables
     public GameObject[] Enemies;
     public GameObject[] EnemyMinions;
     public GameObject[] EnemyTowers;
 
-    public GameObject nexus;
+    public GameObject[] nexus;
     public int speed;
     public int detectionRadius;
-    public int attackRadius;
+    public int attackRange;
     public int forgettingTime;
     public bool needHelp;
 
     // Private variables
     private int frameCount;
-    private GameObject targetTurret;
-
-    private GameObject targetMinion;
-    private GameObject targetPlayer;
+    private GameObject target;
 
     private float distanceTimer;
     private float distanceTimerPlayer;
+
+    public Vector3 moveDirection = new Vector3(0,0,0);
+    public float step;
 
     // Start is called before the first frame update
     void TurretTarget()
@@ -45,7 +50,7 @@ public class MinionAI : MonoBehaviour
             }
         }
         if(closest){
-            targetTurret = closest;
+            target = closest;
         }
         else{
             AttackNexus();
@@ -53,7 +58,7 @@ public class MinionAI : MonoBehaviour
     }
 
     void MinionTarget(){
-        if(targetMinion != null){
+        if(target != null){
             return;
         }
         int closestID = -1;  // if there is no turrets target nexus
@@ -70,13 +75,13 @@ public class MinionAI : MonoBehaviour
         }
 
         if(closestDistance < detectionRadius){
-            targetMinion = EnemyMinions[closestID];
+            target = EnemyMinions[closestID];
             distanceTimer = 0;
         }
     }
 
     void PlayerTarget(){
-        if(targetPlayer != null) return;
+        if(target != null) return;
         int closestID = -1;  // if there is no turrets target nexus
         float closestDistance = 10000.0f;
         float distance = 10000.0f;
@@ -90,14 +95,13 @@ public class MinionAI : MonoBehaviour
             }
         }
         if(closestDistance < detectionRadius){
-            targetPlayer = Enemies[closestID];
+            target = Enemies[closestID];
             distanceTimerPlayer = 0;
         }
     }
 
     void AttackMinion(){
-        float step = speed * Time.deltaTime;
-        float distance = (targetMinion.transform.position - gameObject.transform.position).magnitude;
+        float distance = (target.transform.position - gameObject.transform.position).magnitude;
         
         // Si esta fuera de rango cuenta tiempo
         // para ver si deja de perseguirlo
@@ -107,57 +111,38 @@ public class MinionAI : MonoBehaviour
 
         // Cuando haya pasado el tiempo deja de perseguirlo
         if(distanceTimer % 60 > forgettingTime){
-            targetMinion = null;
+            target = null;
             distanceTimer = 0;
         }
         else{
-            // Si no esta a distancia de ataque se acerca a el
-            if(distance > attackRadius){
-                Vector3 endpos = targetMinion.transform.position;
-                endpos.y = 0;
-                transform.position = Vector3.MoveTowards(transform.position, endpos, step);
-            }
+            isInRange(distance,target);
         }
     }
 
     void AttackTurret(){
-        if(targetTurret && targetTurret.activeSelf){
-            float step = speed * Time.deltaTime;
-            float distance = (targetTurret.transform.position - gameObject.transform.position).magnitude;
+        if(target && target.activeSelf){
+            float distance = (target.transform.position - gameObject.transform.position).magnitude;
 
-            // Si no esta a distancia de ataque se acerca a el
-            if(distance > attackRadius){
-                Vector3 endpos = targetTurret.transform.position;
-                endpos.y = 0;
-                transform.position = Vector3.MoveTowards(transform.position, endpos, step);
-            }
+            isInRange(distance,target);
         }
         else{
-            targetTurret = null;
+            target = null;
             TurretTarget();
         }
     }
 
     void AttackNexus(){
-        float step = speed * Time.deltaTime;
-        float distance = (nexus.transform.position - gameObject.transform.position).magnitude;
-
-        // Si no esta a distancia de ataque se acerca a el
-        if(distance > attackRadius){
-            Vector3 endpos = nexus.transform.position;
-            endpos.y = 0;
-            transform.position = Vector3.MoveTowards(transform.position,endpos, step);
-        }
+        float distance = (nexus[0].transform.position - gameObject.transform.position).magnitude;
+        isInRange(distance,nexus[0]);
     }
     void AttackPlayer(){
         PlayerTarget();
-        if(targetPlayer == null){
+        if(target == null){
             needHelp = false;
             return;
         } 
 
-        float step = speed * Time.deltaTime;
-        float distance = (targetPlayer.transform.position - gameObject.transform.position).magnitude;
+        float distance = (target.transform.position - gameObject.transform.position).magnitude;
         if(distance > detectionRadius){
             distanceTimerPlayer += Time.deltaTime;
         }
@@ -165,33 +150,45 @@ public class MinionAI : MonoBehaviour
         // Cuando haya pasado el tiempo deja de perseguirlo
         if(distanceTimerPlayer % 60 > forgettingTime){
             needHelp = false;
-            targetPlayer = null;
+            target = null;
             distanceTimerPlayer = 0;
         }
         else
         {
-            if(distance > attackRadius){
-                Vector3 endpos = targetPlayer.transform.position;
-                endpos.y = 0;
-                transform.position = Vector3.MoveTowards(transform.position, endpos, step);
-            }    
+            isInRange(distance,target);
         }
     }
+    private void moveTowardsTarget(GameObject target){
+        Vector3 dir = target.transform.position;
+        dir.y = transform.position.y;
+        moveDirection = Vector3.MoveTowards(transform.position, dir, step);
+        print("posicion origen " + transform.position + " direccion " + dir + " step "+ step + "nueva pos" + moveDirection + " time" + Time.deltaTime);
+        transform.position = moveDirection;
+    }
 
-    void Start()
-    {
-        if(this.tag.Contains("Enemy")){
-            Enemies = GameObject.FindGameObjectsWithTag("Ally");
-            EnemyMinions = GameObject.FindGameObjectsWithTag("AllyMinion");
-            EnemyTowers = GameObject.FindGameObjectsWithTag("AllyTower");
-            nexus = GameObject.FindGameObjectWithTag("AllyNexus");
+    private void isInRange(float distance, GameObject target){
+        // Si no esta a distancia de ataque se acerca a el
+        if(distance > attackRange){
+            moveTowardsTarget(target);
         }
         else{
-            Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            EnemyMinions = GameObject.FindGameObjectsWithTag("EnemyMinion");
-            EnemyTowers = GameObject.FindGameObjectsWithTag("EnemyTower");
-            nexus = GameObject.FindGameObjectWithTag("EnemyNexus");
+            state = MinionState.ATTACK;
         }
+    }
+    void Awake()
+    {
+        //Physics.IgnoreCollision(parentcollider,childcollider);
+        string enemytag;
+        if(this.tag.Contains("Enemy")){
+            enemytag="Ally";
+        }
+        else{
+            enemytag="Enemy";
+        }
+        Enemies = GameObject.FindGameObjectsWithTag(enemytag);
+        EnemyMinions = GameObject.FindGameObjectsWithTag(enemytag + "Minion");
+        EnemyTowers = GameObject.FindGameObjectsWithTag(enemytag + "Tower");
+        nexus = GameObject.FindGameObjectsWithTag(enemytag + "Nexus");
         frameCount = 0;
         distanceTimer = 0;
         needHelp = false;
@@ -202,25 +199,63 @@ public class MinionAI : MonoBehaviour
     {
         frameCount++;
         
-        if(needHelp){
-            AttackPlayer();
-        }
-        else{
-            // IA funcionara cada 5 frames
-            if (frameCount > 5){
-                TurretTarget();
-                MinionTarget();
-                frameCount = 0;
-            }        
-            if(targetMinion != null){
-                AttackMinion();
-            }
-            else if(targetTurret){   
-                AttackTurret();
-            }
-            else{
-                AttackNexus();
-            }
-        }
+        switch (state)
+        {
+            case MinionState.MOVING:
+                if(needHelp){
+                    step = speed * Time.deltaTime;
+                    AttackPlayer();
+                }
+                else{
+                    step = speed * Time.deltaTime;
+                    // IA funcionara cada 5 frames
+                    if (frameCount > 5){
+                        TurretTarget();
+                        MinionTarget();
+                        frameCount = 0;
+                    } 
+                    if(target){  
+                        // AttackNexus();  
+                        if(target.tag.Contains("Minion")){
+                            AttackMinion();
+                        }
+                        else if(target.tag.Contains("Tower")){   
+                            AttackTurret();
+                        }
+                        else{
+                            print("nexo");
+                            AttackNexus();
+                        }
+                    }
+                }
+                break;
+            case MinionState.COLLISION:
+                float distance = -1;
+                if(!target){
+                    distance = (target.transform.position - gameObject.transform.position).magnitude; 
+                    if(distance < attackRange){
+                        state = MinionState.ATTACK;
+                    }
+                }
+                else{
+                    Vector3 dir = transform.position;
+                    dir.y = 0;
+                    dir.z -= 10;
+                    moveDirection = Vector3.MoveTowards(transform.position, dir, step);
+                    transform.position = moveDirection;
+                }
+                break;
+            case MinionState.ATTACK:
+                if(target && !target.activeSelf){
+                    state = MinionState.MOVING;
+                }
+                else{
+                    if(GetComponent<Disparar>()){
+                        GetComponent<Disparar>().setTarget(target);
+                        GetComponent<Disparar>().Shoot();
+                    }
+                }
+            break;
+        }        
     }
 }

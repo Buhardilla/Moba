@@ -109,10 +109,11 @@ public class CharacterStats : MonoBehaviour
     {
         if(gameObject.tag.Contains("Minion")){
             gameObject.SetActive(false);
-            print("se ha muerto una torre");
+            print("se ha muerto un minion");
         }
         else if(gameObject.tag.Contains("Tower")){
             gameObject.SetActive(false);
+            print("se ha muerto una torre");
             //GameObject.FindGameObjectsWithTag("");
         }
         else if(gameObject.tag.Contains("Nexus")){

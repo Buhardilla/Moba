@@ -8,9 +8,9 @@ public class Disparar : MonoBehaviour
     public GameObject target;
     public GameObject proyectil;
     List<GameObject> misSpawns = new List<GameObject>();
-    public float temporizadordisparo = 0.0f;
+    private float temporizadordisparo = 0.0f;
     public Vector3 origen;
-    public int bulletcount;
+    private int bulletcount;
     private float damage;
 
     void Start()

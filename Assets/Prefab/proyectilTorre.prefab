@@ -4803,7 +4803,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  damage: 5
   mytarget: {fileID: 0}
   mylauncher: {fileID: 0}
 --- !u!54 &-4945907367272598463

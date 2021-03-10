@@ -166,7 +166,7 @@ MonoBehaviour:
   experience: 0
   expreward: 0
   AD:
-    baseValue: 0
+    baseValue: 5
   ADpen:
     baseValue: 0
   ADR:
