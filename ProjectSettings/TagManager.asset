@@ -15,6 +15,7 @@ TagManager:
   - AttackCollision
   - EnemyNexus
   - AllyNexus
+  - Projectile
   layers:
   - Default
   - TransparentFX
