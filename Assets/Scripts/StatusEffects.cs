@@ -9,6 +9,7 @@ public class StatusEffects : MonoBehaviour
     public float rootTimer = 0;
     public float slowTimer = 0;
     public float knockupTimer = 0;
+    public float slowPercentage = 0.4f;
     public void SetStatus(string status, float duration)
     {
         switch (status)
@@ -24,17 +25,19 @@ public class StatusEffects : MonoBehaviour
                 this.GetComponent<Controller>().enabled = false;
                 rootTimer = duration;
                 break;
+
+            case ("slow"):
+                this.GetComponent<Controller>().Mspeed *= slowPercentage;
+                break;
+
+            case ("knockup"):
+                //this.GetComponent<Transform>().transform.position = Vector3.Lerp();
+                break;
         }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            SetStatus("root", 5);
-            print("toy root");
-        }
-
         if (stunTimer > 0)
         {
             stunTimer -= Time.deltaTime;
@@ -58,6 +61,14 @@ public class StatusEffects : MonoBehaviour
         {
             slowTimer -= Time.deltaTime;
             if (slowTimer <= 0)
+            {
+                this.GetComponent<Controller>().enabled = true;
+            }
+        }
+        if (knockupTimer > 0)
+        {
+            knockupTimer -= Time.deltaTime;
+            if (knockupTimer <= 0)
             {
                 this.GetComponent<Controller>().enabled = true;
             }

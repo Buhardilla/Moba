@@ -16,6 +16,8 @@ public class Controller : MonoBehaviour
 
     public float Mspeed = 6.0f;
 
+
+
     // inicializa controles
     void Awake()
     {
