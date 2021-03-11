@@ -226,7 +226,7 @@ MonoBehaviour:
   level:
     baseValue: 0
   exp:
-    baseValue: 0
+    baseValue: 100
   health:
     baseValue: 100
   regenhealth:
