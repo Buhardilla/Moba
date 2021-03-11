@@ -72,7 +72,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: 113f77b0ccf852240b5ced87b388104b,
+  m_Motion: {fileID: -623603649343465320, guid: eaeb6d4bf05612e4c880416dcfc1c8b3,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -200,7 +200,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: 5d69425574272d04d9130951dcb0e316,
+  m_Motion: {fileID: -623603649343465320, guid: 12cecab08c154f64886483c130ced62f,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -229,7 +229,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: 1ddc77b557abe6a4b9e600911aa3c412,
+  m_Motion: {fileID: -623603649343465320, guid: c13315d50a6916b4299fd9d03715d613,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -362,7 +362,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: 92fa22244cd23b44a8a0cbec822db3ea,
+  m_Motion: {fileID: -623603649343465320, guid: 082dd3547157237478aefec04b6c0c12,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -395,7 +395,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: 9aabab0a1caa796438cd71a697215b5a,
+  m_Motion: {fileID: -623603649343465320, guid: 4e2973a96ba47764baeb9faf962aa771,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -422,7 +422,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: f2743a71fc7c56b4c92b23f1b91de856,
+  m_Motion: {fileID: -623603649343465320, guid: 9aa4f043e1fe9344c858f6d73e8755a0,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -473,7 +473,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: 30d401830b6efb1448e85ab2bef3ad23,
+  m_Motion: {fileID: -623603649343465320, guid: 5331b563d7d59e649a27670f147495da,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -511,7 +511,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TianaCorrer
+  m_Name: Cisma Animator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Death
