@@ -13,6 +13,7 @@ TagManager:
   - EnemyTower
   - Bush
   - AttackCollision
+  - OnlineMenu
   layers:
   - Default
   - TransparentFX
