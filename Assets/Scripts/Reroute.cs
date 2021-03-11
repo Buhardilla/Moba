@@ -23,7 +23,6 @@ public class Reroute : MonoBehaviour
 		float dir = Vector3.Dot(targetDir, transform.up);
 		//if (dir < 0f) {
             if((other.gameObject.tag != "Bush" && other.gameObject.tag != "Projectile" && other.gameObject.tag != "Untagged") ){
-                print("colisiono con" + other.name+ " - " + other.tag + " - "+other.GetInstanceID());
                 GetComponentInParent<MinionAI>().state = MinionAI.MinionState.COLLISION;
                 GetComponentInParent<MinionAI>().collide = other;
                 GetComponentInParent<MinionAI>().moveDirection = targetDir;

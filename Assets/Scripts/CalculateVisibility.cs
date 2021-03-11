@@ -13,13 +13,13 @@ public class CalculateVisibility : MonoBehaviour
     {
         Allies = GameObject.FindGameObjectsWithTag("Ally");
         Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        AllyMinions = GameObject.FindGameObjectsWithTag("AllyMinion");
-        EnemyMinions = GameObject.FindGameObjectsWithTag("EnemyMinion");
     }
 
     // Update is called once per frame
     void Update()
     {
+        AllyMinions = GameObject.FindGameObjectsWithTag("AllyMinion");
+        EnemyMinions = GameObject.FindGameObjectsWithTag("EnemyMinion");
         findEnemies(); 
     }
      private void findEnemies(){

@@ -8,6 +8,8 @@ public class MinionSpawn : MonoBehaviour
     public GameObject BasicMinionPrefab;
     public GameObject BigMinionPrefab;
     public GameObject LongDistanceMinionPrefab;
+    public GameObject MiniMap;
+    public float roty;
     List<GameObject> misMinions = new List<GameObject>();
     public bool game = true;
     public int numerominions;
@@ -35,20 +37,27 @@ public class MinionSpawn : MonoBehaviour
         for (int i = 0; i < numerominions*4;i++)
         {
             if( i % 2 == 0){
-                misMinions.Add(Instantiate(BasicMinionPrefab, gameObject.transform.position+offset, Quaternion.Euler(0, 90, 0)) as GameObject);
+                misMinions.Add(Instantiate(BasicMinionPrefab, gameObject.transform.position+offset, Quaternion.Euler(0, roty, 0)) as GameObject);
             }
             else{
-                misMinions.Add(Instantiate(LongDistanceMinionPrefab, gameObject.transform.position+offset, Quaternion.Euler(0, 90, 0)) as GameObject);
+                misMinions.Add(Instantiate(LongDistanceMinionPrefab, gameObject.transform.position+offset, Quaternion.Euler(0, roty, 0)) as GameObject);
             }
             misMinions[misMinions.ToArray().Length - 1].GetComponent<MinionAI>();
             misMinions[misMinions.ToArray().Length - 1].SetActive(false);
+            MiniMap.GetComponent<CalculatePositionsMinimap>().addMinion(misMinions[misMinions.ToArray().Length - 1]);
         }
-        misMinions.Add(Instantiate(BigMinionPrefab, gameObject.transform.position+offset, Quaternion.Euler(0, 90, 0)) as GameObject);
+        print("Total de minions" + misMinions.ToArray().Length);
+        /*
+        misMinions.Add(Instantiate(BigMinionPrefab, gameObject.transform.position+offset, Quaternion.Euler(0, roty, 0)) as GameObject);
         misMinions[misMinions.ToArray().Length - 1].GetComponent<MinionAI>();
         misMinions[misMinions.ToArray().Length - 1].SetActive(false);
-        misMinions.Add(Instantiate(BigMinionPrefab, gameObject.transform.position+offset, Quaternion.Euler(0, 90, 0)) as GameObject);
+        MiniMap.GetComponent<CalculatePositionsMinimap>().addMinion(misMinions[misMinions.ToArray().Length - 1]);
+
+        misMinions.Add(Instantiate(BigMinionPrefab, gameObject.transform.position+offset, Quaternion.Euler(0, roty, 0)) as GameObject);
         misMinions[misMinions.ToArray().Length - 1].GetComponent<MinionAI>();
         misMinions[misMinions.ToArray().Length - 1].SetActive(false);
+        MiniMap.GetComponent<CalculatePositionsMinimap>().addMinion(misMinions[misMinions.ToArray().Length - 1]);
+        */
     }
 
     public IEnumerator manejarMinions()

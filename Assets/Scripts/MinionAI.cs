@@ -33,6 +33,7 @@ public class MinionAI : MonoBehaviour
     public float step;
 
     private float evaderoffset = 100;
+    private string enemytag;
     void evadeCollider(){ 
         if(collide){
             moveDirection = transform.position - collide.transform.position;
@@ -155,8 +156,8 @@ public class MinionAI : MonoBehaviour
 
     void AttackNexus(){
         target = nexus[0];
-        float distance = (nexus[0].transform.position - gameObject.transform.position).magnitude;
-        isInRange(distance,nexus[0]);
+        float distance = (target.transform.position - gameObject.transform.position).magnitude;
+        isInRange(distance - 3, target);
     }
     void AttackPlayer(){
         PlayerTarget();
@@ -204,7 +205,6 @@ public class MinionAI : MonoBehaviour
     void Awake()
     {
         //Physics.IgnoreCollision(parentcollider,childcollider);
-        string enemytag;
         if(this.tag.Contains("Enemy")){
             enemytag="Ally";
         }
@@ -212,7 +212,6 @@ public class MinionAI : MonoBehaviour
             enemytag="Enemy";
         }
         Enemies = GameObject.FindGameObjectsWithTag(enemytag);
-        EnemyMinions = GameObject.FindGameObjectsWithTag(enemytag + "Minion");
         EnemyTowers = GameObject.FindGameObjectsWithTag(enemytag + "Tower");
         nexus = GameObject.FindGameObjectsWithTag(enemytag + "Nexus");
         frameCount = 0;
@@ -225,7 +224,7 @@ public class MinionAI : MonoBehaviour
     void Update()
     {
         frameCount++;
-        
+        EnemyMinions = GameObject.FindGameObjectsWithTag(enemytag + "Minion");
         switch (state)
         {
             case MinionState.MOVING:
@@ -266,12 +265,10 @@ public class MinionAI : MonoBehaviour
                 }
                 else{
                     if(GetComponent<Disparar>()){
-                        print("disparo");
                         GetComponent<Disparar>().setTarget(target);
                         GetComponent<Disparar>().Shoot();
                     }
                     else{
-                        //print("ataque");
                         GetComponent<MeleeAttack>().Attack(target);
                     }
                 }
