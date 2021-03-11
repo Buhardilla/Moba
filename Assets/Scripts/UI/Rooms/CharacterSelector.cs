@@ -15,6 +15,10 @@ public class CharacterSelector : MonoBehaviour
         selectedCharId = 0;
         characterslist.Add(0, new List<string>(2){"Shakke", "UI sprites/shakke"});
         characterslist.Add(1, new List<string>(2){"Tiana", "UI sprites/tiana"});
+        characterslist.Add(2, new List<string>(2){"Alfrog", "UI sprites/alfrog"});
+        characterslist.Add(3, new List<string>(2){"BN4", "UI sprites/bn4"});
+        characterslist.Add(4, new List<string>(2){"Cisma", "UI sprites/cisma"});
+        characterslist.Add(5, new List<string>(2){"Rejj", "UI sprites/rejj"});
     }
 
     public void OnClick_Right()
