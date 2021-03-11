@@ -21,7 +21,19 @@ public class Store : MonoBehaviour
     public List<GameObject> buttons;
 
     public Sprite[] sprites;
+
+    public GameObject Player;
+    public GameObject Objs;
     // Start is called before the first frame update
+
+    int getPositionArray(){
+        int pos = 0;
+        for (int i = 0; i < posStore.y; i++)
+        {
+            pos += rowsizes[i];
+        }
+        return pos + posStore.x;
+    }
 
     void checkLegalPositions(bool changeY){
         /*  por que c****** no es esto una matriz cuadrada
@@ -30,8 +42,8 @@ public class Store : MonoBehaviour
         posStore.x = (posStore.x >= storeSize.x) ? 0                 : posStore.x; 
         posStore.y = (posStore.y < 0)           ? storeSize.y - 1   : posStore.y; 
         posStore.y = (posStore.y >= storeSize.y) ? 0                 : posStore.y; 
-        */
         Debug.Log(posStore.y);
+        */
 
         if(posStore.y < 0)
             posStore.y = storeSizeY-1;
@@ -48,19 +60,31 @@ public class Store : MonoBehaviour
 
     }
 
+    void buy(){
+        CharacterStats playerStats = Player.GetComponent<CharacterStats>();
+        Objects objsComp = Objs.GetComponent<Objects>();
+        int posAr = getPositionArray();
+        if(playerStats.money  >= objsComp.objs[posAr].Price){
+            Debug.Log(playerStats.IdObjs[0]);
+            for (int i = 0; i < 4; i++)
+            {
+                if(playerStats.IdObjs[i] != -1){
+                    playerStats.IdObjs[i] = posAr;
+                    playerStats.money -= objsComp.objs[posAr].Price;
+                    break;
+                }
+            }
+        }
+    }
+
     void updateSprite(){
         
         for (int i = 0; i < buttons.Count; i++)
         {
             buttons[i].GetComponent<Image>().sprite = sprites[0];
         }
-        int pos = 0;
-        for (int i = 0; i < posStore.y; i++)
-        {
-            pos += rowsizes[i];
-        }
-        Debug.Log(posStore.x + pos);
-        buttons[posStore.x + pos].GetComponent<Image>().sprite = sprites[1];
+        //Debug.Log(posStore.x + pos);
+        buttons[getPositionArray()].GetComponent<Image>().sprite = sprites[1];
     }
     void moveSelection(move direction){
         Vector2Int currentPos = posStore;
@@ -95,12 +119,13 @@ public class Store : MonoBehaviour
         if(Input.GetKeyDown("left"))    moveSelection(move.left);
         if(Input.GetKeyDown("up"))      moveSelection(move.up);
         if(Input.GetKeyDown("down"))    moveSelection(move.down);
+        if(Input.GetKeyDown(KeyCode.Return))   buy();
     }
 
     void Start()
     {
         posStore = new Vector2Int(0,5);
-        buttons[0].GetComponent<Image>().sprite = sprites[1];
+        updateSprite();
     }
 
     

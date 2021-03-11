@@ -18,7 +18,9 @@ public class ScaleStats : MonoBehaviour
     public float AS;
     public float VEL;
     public float CDR;
-    public float RNG;
+    public float RNG; // OWO 
+    public float Crit;
+    public float RV;
 
     CharacterStats characterStats;
     void Start()
@@ -27,7 +29,7 @@ public class ScaleStats : MonoBehaviour
         
         characterStats.exp.setScale(exp);
         characterStats.health.setScale(health);
-        characterStats.regenhealth.setScale(regenhealth);
+        characterStats.regenHealth.setScale(regenhealth);
         characterStats.mana.setScale(mana);
         characterStats.regenMana.setScale(regenMana);
         //characterStats.AD.setScale(AD);
@@ -40,5 +42,7 @@ public class ScaleStats : MonoBehaviour
         characterStats.VEL.setScale(VEL);
         characterStats.CDR.setScale(CDR);
         characterStats.RNG.setScale(RNG);
+        characterStats.Crit.setScale(Crit);
+        characterStats.RV.setScale(RV);
     }
 }

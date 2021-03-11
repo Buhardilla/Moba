@@ -7,6 +7,10 @@ public class CharacterStats : MonoBehaviour
     public int bushes = -1;
     public GameObject Minimapicon;
 
+    // Cosas de los objetos
+    public int[] IdObjs;
+    public GameObject Objs;
+
     Vector3 initialPos = new Vector3(0, 1, 0);
     public int currentHealth { get; private set; }
     public int currentMana { get; private set; }
@@ -16,7 +20,7 @@ public class CharacterStats : MonoBehaviour
     public Stat exp;
 
     public Stat health;
-    public Stat regenhealth;
+    public Stat regenHealth;
 
     public Stat mana;
     public Stat regenMana;
@@ -40,8 +44,56 @@ public class CharacterStats : MonoBehaviour
     public Stat CDR;
     public Stat RNG;
 
+    public Stat Crit;
+    public Stat RV;
+
     public float timerMuerte = 0;
     GameObject[] enemies;
+
+    void updateStats(){
+        int iAD, iADpen, iADR, iAP, iAPpen, iMR, iAS, iVEL, iCDR, iRNG, ihealth, iregenHealth, imana, iregenMana, iCrit, iRV; 
+        iAD = iADpen = iADR = iAP = iAPpen = iMR = iAS = iVEL = iCDR = iRNG = ihealth = iregenHealth = imana = iregenMana = iCrit = iRV = 0;
+
+        Objects objStats = Objs.GetComponent<Objects>();
+        for (int i = 0; i < IdObjs.Length; i++)
+        {
+            if(IdObjs[i] != -1){
+                
+                //Debug.Log(objStats.objs[IdObjs[i]].Name);
+                iAD += objStats.objs[IdObjs[i]].AD;
+                iADpen += objStats.objs[IdObjs[i]].ADpen;
+                iADR += objStats.objs[IdObjs[i]].ADR;
+                iAP += objStats.objs[IdObjs[i]].AP;
+                iAPpen += objStats.objs[IdObjs[i]].APpen;
+                iMR += objStats.objs[IdObjs[i]].MR;
+                iAS += objStats.objs[IdObjs[i]].AS;
+                iVEL += objStats.objs[IdObjs[i]].VEL;
+                iCDR += objStats.objs[IdObjs[i]].CDR;
+                iRNG += objStats.objs[IdObjs[i]].RNG;
+                ihealth += objStats.objs[IdObjs[i]].health;
+                iregenHealth += objStats.objs[IdObjs[i]].regenHealth;
+                imana += objStats.objs[IdObjs[i]].mana;
+                iregenMana += objStats.objs[IdObjs[i]].regenMana;
+                iCrit += objStats.objs[IdObjs[i]].Crit;
+                iRV += objStats.objs[IdObjs[i]].RV;
+            }
+        }
+        AD.setStatObj(iAD);
+        ADpen.setStatObj(iADpen);
+        ADR.setStatObj(iADR);
+        AP.setStatObj(iAP);
+        APpen.setStatObj(iAPpen);
+        MR.setStatObj(iMR);
+        AS.setStatObj(iAS);
+        VEL.setStatObj(iVEL);
+        CDR.setStatObj(iCDR);
+        RNG.setStatObj(iRNG);
+        health.setStatObj(ihealth);
+        regenHealth.setStatObj(iregenHealth);
+        mana.setStatObj(imana);
+        regenMana.setStatObj(iregenMana);
+        RV.setStatObj(iRV);
+    }
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -77,6 +129,8 @@ public class CharacterStats : MonoBehaviour
             print("me dolio wey");
             currentMana -= 5;
         }
+
+        updateStats();
         
     }
     public void RecibeDmg(float dmg, GameObject other)

@@ -1,0 +1,16 @@
+[
+    {
+        "Name" : "Espada de Madera",
+        "AP" : 8,
+        "health" : 80,
+        "regenhealth" : 3,
+        "Price": 450
+    },
+    {
+        "Name" : "Espadota",
+        "AS" : 8,
+        "health" : 80,
+        "regenhealth" : 3,
+        "Price": 450
+    }
+]
