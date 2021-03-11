@@ -18,5 +18,10 @@ public class AreaOfEffect : MonoBehaviour
         yield return new WaitForSeconds(delay);
         gameObject.transform.position = target;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //implementamos logica basica de colision pero NO eliminamos, de eso se encarga la Corutina lanzarAoe despues de X tiempo por lo que nuestro gameobject solo toma colisiones en unos milisecs
+    }
     void extraeffect() { }
 }

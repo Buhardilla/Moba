@@ -21,8 +21,7 @@ public class AbilityTest : MonoBehaviour //abstract
     public typecast tipocasteo;
     float abTimer = 0;
     public float ab1CDTime;
-    public void CreateAbility(float cd, float basedmg,float lvscaling,float statscaling,string tipo,GameObject hitbox)
-    {
+    public void CreateAbility(float cd, float basedmg,float lvscaling,float statscaling,GameObject hitbox){
         this.cd = cd;
         this.totaldmg = 0;
         this.basedmg = basedmg;
@@ -30,13 +29,6 @@ public class AbilityTest : MonoBehaviour //abstract
         this.lvscaling = lvscaling;
         this.statscaling = statscaling;
         this.hitbox = hitbox;
-       // this.ScalingIsTotal = isTotal; no creo que esto haga falta ya que se le pasa por parametro el stat y eso lo decide el character
-
-        switch (tipo) {
-            case "area":  tipocasteo = typecast.AREA; break;
-            case "proyectil": tipocasteo = typecast.PROJECTILE; break;
-            case "self": tipocasteo = typecast.SELF; break;
-        }
     }
 
     public void cast(Vector3 characterposition,Vector3 castdestination) {
