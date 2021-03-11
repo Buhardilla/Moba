@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 8303302267260175050, guid: 6ce996678540b564ab4f246935cd0f09,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8303302267260175050, guid: 6ce996678540b564ab4f246935cd0f09,
         type: 3}
@@ -94,7 +94,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 115f9bb097d188d41bf31dce0c7931d8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 115f9bb097d188d41bf31dce0c7931d8,
         type: 3}
@@ -180,6 +180,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4554186020996529760, guid: b44b195d34d241e4aa8e17d7710834ee,
+        type: 3}
+      propertyPath: previoustowers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4662483487582912176, guid: b44b195d34d241e4aa8e17d7710834ee,
         type: 3}
       propertyPath: cadencia
@@ -193,7 +198,7 @@ PrefabInstance:
     - target: {fileID: 4946521442397136228, guid: b44b195d34d241e4aa8e17d7710834ee,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.59
+      value: -32.71
       objectReference: {fileID: 0}
     - target: {fileID: 4946521442397136228, guid: b44b195d34d241e4aa8e17d7710834ee,
         type: 3}
@@ -203,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 4946521442397136228, guid: b44b195d34d241e4aa8e17d7710834ee,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.51
+      value: -18.96
       objectReference: {fileID: 0}
     - target: {fileID: 4946521442397136228, guid: b44b195d34d241e4aa8e17d7710834ee,
         type: 3}
@@ -243,7 +248,7 @@ PrefabInstance:
     - target: {fileID: 4946521442397136232, guid: b44b195d34d241e4aa8e17d7710834ee,
         type: 3}
       propertyPath: m_Name
-      value: AllyTower Variant
+      value: AllyTower (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4946521442397136233, guid: b44b195d34d241e4aa8e17d7710834ee,
         type: 3}

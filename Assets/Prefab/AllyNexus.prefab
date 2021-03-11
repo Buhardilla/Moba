@@ -202,8 +202,8 @@ MonoBehaviour:
     type: 3}
   game: 1
   numerominions: 3
-  offset: {x: 10, y: 0.48, z: 0}
-  delayInicial: 1
+  offset: {x: 10, y: -0.8, z: 0}
+  delayInicial: 3
   delayOleadas: 10
   delayMinions: 2
   oleada: 0

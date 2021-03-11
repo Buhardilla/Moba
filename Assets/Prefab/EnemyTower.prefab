@@ -141,7 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3336232d50b6b4fa2e35e0d8dd2a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previoustowers: []
+  previoustowers:
+  - {fileID: 0}
   hidden: 0
   bushes: -1
   Minimapicon: {fileID: 0}

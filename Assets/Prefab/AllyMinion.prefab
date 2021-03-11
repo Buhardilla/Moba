@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 6261982124464036363}
   - component: {fileID: 1934218134926965674}
   - component: {fileID: 4379167843174301282}
-  - component: {fileID: 4579636151739245408}
   - component: {fileID: 3789644104389448226}
   - component: {fileID: 9083507156734782432}
+  - component: {fileID: 7282050057138074210}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: CollisionWithMinions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5853479753937204795}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.86}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.01, y: 1, z: 0.65}
   m_Children: []
   m_Father: {fileID: 8507625335458390430}
@@ -82,19 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4579636151739245408
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5853479753937204795}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3789644104389448226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 100}
+  parentcollider: {fileID: 8507625335458390401}
 --- !u!54 &9083507156734782432
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124,6 +112,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!136 &7282050057138074210
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853479753937204795}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8507625335458390404
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +141,7 @@ GameObject:
   - component: {fileID: 8507625335458390402}
   - component: {fileID: -631607681263250670}
   - component: {fileID: 4001623903845314846}
-  - component: {fileID: 5165845487972782515}
+  - component: {fileID: 6081570015493232552}
   m_Layer: 0
   m_Name: AllyMinion
   m_TagString: AllyMinion
@@ -238,7 +240,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 116
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &-631607681263250670
 MonoBehaviour:
@@ -287,7 +289,7 @@ MonoBehaviour:
   MR:
     baseValue: 0
   AS:
-    baseValue: 2
+    baseValue: 5
   VEL:
     baseValue: 0
   CDR:
@@ -316,12 +318,11 @@ MonoBehaviour:
   - {fileID: 0}
   speed: 2
   detectionRadius: 10
-  attackRange: 4
   forgettingTime: 2
   needHelp: 0
   moveDirection: {x: 0, y: 0, z: 0}
   step: 0
---- !u!114 &5165845487972782515
+--- !u!114 &6081570015493232552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -330,13 +331,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8507625335458390404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54029f50f4dc8224180163168fa5fca7, type: 3}
+  m_Script: {fileID: 11500000, guid: b958fcc5a00bfb742b5d6b5acc773083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  proyectil: {fileID: 4781795942004701236, guid: c91ac49ec67cd3a4cb28482814082dac,
-    type: 3}
-  origen: {x: 0, y: 0, z: 0}
+  cadencia: 0
 --- !u!1 &8507625336174638266
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8507625336174638266}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.15, y: 0.65, z: 0.5}
+  m_LocalPosition: {x: 0.013, y: 0.65, z: 0.5}
   m_LocalScale: {x: 1.181, y: 0.45762, z: 0.32385}
   m_Children: []
   m_Father: {fileID: 8507625335458390430}

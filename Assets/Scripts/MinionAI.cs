@@ -18,7 +18,7 @@ public class MinionAI : MonoBehaviour
     public GameObject[] nexus;
     public int speed;
     public int detectionRadius;
-    public int attackRange;
+    private int attackRange;
     public int forgettingTime;
     public bool needHelp;
 
@@ -33,7 +33,6 @@ public class MinionAI : MonoBehaviour
     public float step;
 
     private float evaderoffset = 100;
-    //Todo hacerlo segun la rot
     void evadeCollider(){ 
         if(collide){
             moveDirection = transform.position - collide.transform.position;
@@ -44,6 +43,12 @@ public class MinionAI : MonoBehaviour
             else{
                 moveDirection.z -= evaderoffset;
             }   
+            if(moveDirection.x >= 0){
+                moveDirection.x -= evaderoffset;
+            }
+            else{
+                moveDirection.x += evaderoffset;
+            }
             moveDirection.y = transform.position.y;
             moveDirection = Vector3.MoveTowards(transform.position, moveDirection, step);
             transform.position = moveDirection;  
@@ -181,6 +186,10 @@ public class MinionAI : MonoBehaviour
         dir.y = transform.position.y;
         moveDirection = Vector3.MoveTowards(transform.position, dir, step);
         transform.position = moveDirection;
+
+        dir -= transform.position;
+        var rotation = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, step);
     }
 
     private void isInRange(float distance, GameObject target){
@@ -209,6 +218,7 @@ public class MinionAI : MonoBehaviour
         frameCount = 0;
         distanceTimer = 0;
         needHelp = false;
+        attackRange = gameObject.GetComponent<CharacterStats>().AS.getStat();
     }
 
     // Update is called once per frame
@@ -247,18 +257,7 @@ public class MinionAI : MonoBehaviour
                 }
                 break;
             case MinionState.COLLISION:
-                        if(target){
-                            float distance = (target.transform.position - gameObject.transform.position).magnitude; 
-                            if(distance < attackRange){
-                                state = MinionState.ATTACK;
-                            }
-                            else{
-                                evadeCollider();
-                            }
-                        }
-                        else{
-                            evadeCollider();
-                        }
+                    evadeCollider();
 
                 break;
             case MinionState.ATTACK:
@@ -267,8 +266,13 @@ public class MinionAI : MonoBehaviour
                 }
                 else{
                     if(GetComponent<Disparar>()){
+                        print("disparo");
                         GetComponent<Disparar>().setTarget(target);
                         GetComponent<Disparar>().Shoot();
+                    }
+                    else{
+                        //print("ataque");
+                        GetComponent<MeleeAttack>().Attack(target);
                     }
                 }
             break;

@@ -101,7 +101,6 @@ public class CharacterStats : MonoBehaviour
                 ++count;
             }
         }
-        print(count);
         return count;
     }
 
