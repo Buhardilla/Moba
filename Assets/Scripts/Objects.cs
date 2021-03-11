@@ -37,6 +37,9 @@ public class Objects : MonoBehaviour
 
         public int RV;
 
+        public int ob1;
+        public int ob2;
+
     }
 
     public List<Object> objs;
@@ -77,14 +80,11 @@ public class Objects : MonoBehaviour
 
             temp.RV = (obj["RV"])?  obj["RV"].AsInt : 0;
 
+            temp.ob1 = (obj["Item 1"])?  obj["Item 1"].AsInt : -1;
+            temp.ob2 = (obj["Item 2"])?  obj["Item 2"].AsInt : -1;
+
             objs.Add(temp);
             
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

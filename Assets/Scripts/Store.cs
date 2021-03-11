@@ -71,11 +71,29 @@ public class Store : MonoBehaviour
         CharacterStats playerStats = Player.GetComponent<CharacterStats>();
         Objects objsComp = Objs.GetComponent<Objects>();
         int posAr = getPositionArray();
-        if(playerStats.money  >= objsComp.objs[posAr].Price){
+        int obj1, obj2;
+        obj1 = obj2 = -1;
+        int discount = 0;
+        for (int i = 0; i < playerStats.IdObjs.Length; i++)
+        {
+            if(obj1 == -1 && objsComp.objs[posAr].ob1 != -1 && playerStats.IdObjs[i] == objsComp.objs[posAr].ob1){
+                obj1 = i;
+                discount += objsComp.objs[objsComp.objs[posAr].ob1].Price;
+            } 
+            else if(obj2 == -1 &&objsComp.objs[posAr].ob2 != -1 && playerStats.IdObjs[i] == objsComp.objs[posAr].ob2){
+                obj2 = i;
+                discount += objsComp.objs[objsComp.objs[posAr].ob2].Price;
+            }
+        }
+        
+        if(playerStats.money + discount >= objsComp.objs[posAr].Price){
+            if(obj1 != -1) playerStats.IdObjs[obj1] = -1;
+            if(obj2 != -1) playerStats.IdObjs[obj2] = -1;
             for (int i = 0; i < 4; i++)
             {
                 if(playerStats.IdObjs[i] == -1){
                     playerStats.IdObjs[i] = posAr;
+                    playerStats.money += discount;
                     playerStats.money -= objsComp.objs[posAr].Price;
                     break;
                 }
@@ -97,12 +115,14 @@ public class Store : MonoBehaviour
 
     void updateSprite(){
         
+        int posAr = getPositionArray();
+
         for (int i = 0; i < buttons.Count; i++)
         {
             buttons[i].GetComponent<Image>().sprite = sprites[0];
         }
 
-        buttons[getPositionArray()].GetComponent<Image>().sprite = sprites[1];
+        buttons[posAr].GetComponent<Image>().sprite = sprites[1];
 
         for (int i = 0; i < inventory.Count; i++)
         {
@@ -117,6 +137,24 @@ public class Store : MonoBehaviour
                 shopInv[i].GetComponent<Image>().sprite = iconosObj[Player.GetComponent<CharacterStats>().IdObjs[i]].GetComponent<Image>().sprite;
             else
                 shopInv[i].GetComponent<Image>().sprite = emptySlot;
+        }
+        objTree[0].GetComponent<Image>().sprite = iconosObj[posAr].GetComponent<Image>().sprite;
+
+        Objects objsComp = Objs.GetComponent<Objects>();
+        if(posAr >= 0 && posAr < objsComp.objs.Count && objsComp.objs[posAr].ob1 != -1){
+            objTree[1].GetComponent<Image>().sprite = iconosObj[objsComp.objs[posAr].ob1].GetComponent<Image>().sprite;
+            if(objsComp.objs[posAr].ob2 != -1){
+                objTree[2].GetComponent<Image>().sprite = iconosObj[objsComp.objs[posAr].ob2].GetComponent<Image>().sprite;
+            }
+            else
+            {
+                objTree[2].GetComponent<Image>().sprite = emptySlot;
+            }
+        }
+        else
+        {
+            objTree[1].GetComponent<Image>().sprite = emptySlot;
+            objTree[2].GetComponent<Image>().sprite = emptySlot;
         }
     }
 

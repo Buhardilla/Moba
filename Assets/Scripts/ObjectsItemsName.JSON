@@ -2,8 +2,8 @@
     {
         "ID" : 0,
         "Name" : "Impenetrable Shell",
-        "Item 1" : 18,
-        "Item 2" : 18,
+        "Item 1" : "Heavy Armor",
+        "Item 2" : "Heavy Armor",
         "ADR" : 115,
         "health" : 80,
         "Price" : 2200
@@ -11,8 +11,8 @@
     {
         "ID" : 1,
         "Name" : "Super Heavy Lava Set",
-        "Item 1" : 19,
-        "Item 2" : 28,
+        "Item 1" : "Magic Protector",
+        "Item 2" : "Fire Horn",
         "MR" : 55,
         "health" : 500,
         "regenhealth" : 5,
@@ -21,8 +21,8 @@
     {
         "ID" : 2,
         "Name" : "Mix Protector",
-        "Item 1" : 19,
-        "Item 2" : 18,
+        "Item 1" : "Magic Protector",
+        "Item 2" : "Heavy Armor",
         "ADR" : 75,
         "MR" : 55,
         "Price" : 2200
@@ -30,8 +30,8 @@
     {
         "ID" : 3,
         "Name" : "Hurricane Gun",
-        "Item 1" : 21,
-        "Item 2" : 23,
+        "Item 1" : "Dagger Jaeger",
+        "Item 2" : "Arrows Quiver",
         "Crit" : 25,
         "AS" : 45,
         "Price" : 2950
@@ -39,8 +39,8 @@
     {
         "ID" : 4,
         "Name" : "Colossal Warhammer",
-        "Item 1" : 22,
-        "Item 2" : 25,
+        "Item 1" : "Devastating Hammer",
+        "Item 2" : "Gigantic Sword",
         "Crit" : 25,
         "AD" : 40,
         "Price" : 3050
@@ -48,8 +48,8 @@
     {
         "ID" : 5,
         "Name" : "Life Destroyer",
-        "Item 1" : 24,
-        "Item 2" : 25,
+        "Item 1" : "Bloodsucker",
+        "Item 2" : "Gigantic Sword",
         "AD" : 55,
         "RV" : 15,
         "Price" : 3600
@@ -57,8 +57,8 @@
     {
         "ID" : 6,
         "Name" : "Blade of the Old Giants",
-        "Item 1" : 25,
-        "Item 2" : 28,
+        "Item 1" : "Gigantic Sword",
+        "Item 2" : "Fire Horn",
         "AD" : 35,
         "health" : 500,
         "regenhealth" : 5,
@@ -67,24 +67,24 @@
     {
         "ID" : 7,
         "Name" : "La Guillotine",
-        "Item 1" : 25,
-        "Item 2" : 25,
+        "Item 1" : "Gigantic Sword",
+        "Item 2" : "Gigantic Sword",
         "AD" : 70,
         "Price" : 3300
     },
     {
         "ID" : 8,
         "Name" : "Definitive Staff",
-        "Item 1" : 26,
-        "Item 2" : 26,
+        "Item 1" : "Cristal Staff",
+        "Item 2" : "Cristal Staff",
         "AP" : 120,
         "Price" : 3200
     },
     {
         "ID" : 9,
         "Name" : "Penetrating Staff",
-        "Item 1" : 27,
-        "Item 2" : 26,
+        "Item 1" : "Powerful Staff",
+        "Item 2" : "Cristal Staff",
         "AP" : 100,
         "APpen" : 20,
         "Price" : 3100
@@ -92,8 +92,8 @@
     {
         "ID" : 10,
         "Name" : "Regenerative Staff",
-        "Item 1" : 26,
-        "Item 2" : 17,
+        "Item 1" : "Cristal Staff",
+        "Item 2" : "Ice Horn",
         "AP" : 70,
         "mana" : 600,
         "regenMana" : 5,
@@ -102,14 +102,14 @@
     {
         "ID" : 11,
         "Name" : "Running Boots",
-        "Item 1" : 20,
+        "Item 1" : "Leather Boots",
         "VEL" : 45,
         "Price" : 900
     },
     {
         "ID" : 12,
         "Name" : "Magical Boots",
-        "Item 1" : 20,
+        "Item 1" : "Leather Boots",
         "AP" : 20,
         "VEL" : 25,
         "Price" : 900
@@ -117,7 +117,7 @@
     {
         "ID" : 13,
         "Name" : "Warrior Boots",
-        "Item 1" : 20,
+        "Item 1" : "Leather Boots",
         "AD" : 10,
         "VEL" : 25,
         "Price" : 900
@@ -125,7 +125,7 @@
     {
         "ID" : 14,
         "Name" : "Armored Boots",
-        "Item 1" : 20,
+        "Item 1" : "Leather Boots",
         "ADR" : 20,
         "VEL" : 25,
         "Price" : 900
@@ -133,7 +133,7 @@
     {
         "ID" : 15,
         "Name" : "Time Boots",
-        "Item 1" : 20,
+        "Item 1" : "Leather Boots",
         "CDR" : 20,
         "VEL" : 25,
         "Price" : 900
@@ -141,7 +141,7 @@
     {
         "ID" : 16,
         "Name" : "Cadence Boots",
-        "Item 1" : 20,
+        "Item 1" : "Leather Boots",
         "AS" : 25,
         "VEL" : 25,
         "Price" : 900
