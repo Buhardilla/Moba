@@ -5,17 +5,18 @@ using UnityEngine.InputSystem;
 
 public class Controller : MonoBehaviour
 {
-
     PlayerControls controls;
-
     public Transform aim;       //movimiento aim
     public GameObject aimer;    //render aim
-
     Vector2 move;
     Vector2 rotate;
 
+    //COSAS DE HABILIDADES
+    private int counthab;
+    public GameObject[] habilidades; //cambiar a private si se le pasa desde arriba por el personaje que sera lo suyo si mas arriba en la jerarquia se necesitase llamar al lv up
+    private List<GameObject> misHabilidades = new List<GameObject>();
+    public Vector3 origen;
     public float Mspeed = 6.0f;
-
 
 
     // inicializa controles
@@ -26,11 +27,11 @@ public class Controller : MonoBehaviour
         controls.Gameplay.Auto.started += ctx => Auto();
         controls.Gameplay.Ab1.started += ctx => Auto();
         controls.Gameplay.Ab2.started += ctx => Auto();
-        controls.Gameplay.Ab3.started += ctx => Auto();
-        controls.Gameplay.fb1x.started += ctx => Auto();
-        controls.Gameplay.fb2sq.started += ctx => Auto();
-        controls.Gameplay.fb3ci.started += ctx => Auto();
-        controls.Gameplay.fb4tr.started += ctx => Auto();
+        controls.Gameplay.Ab3.started += ctx =>Auto();
+        controls.Gameplay.fb1x.started += ctx =>  CastAbility(0,rotate); //A
+        controls.Gameplay.fb2sq.started += ctx => Auto(); //X
+        controls.Gameplay.fb3ci.started += ctx => Auto(); //B
+        controls.Gameplay.fb4tr.started += ctx => Auto(); // Y
         controls.Gameplay.DPup.started += ctx => Auto();
         controls.Gameplay.DPleft.started += ctx => Auto();
         controls.Gameplay.DPright.started += ctx => Auto();
@@ -48,11 +49,28 @@ public class Controller : MonoBehaviour
     {
         Debug.Log("Se realiza un ataque basico.");                                                                  //Función habilidades
     }
+    void CastAbility(int i, Vector3 target)
+    {
+        misHabilidades[i].SetActive(true);
+        misHabilidades[i].transform.position = gameObject.transform.position;
+        print(misHabilidades[i]);
+        print(target);
+        misHabilidades[i].GetComponent<AbilityTest>().cast(gameObject.transform.position, target);
+    }
 
     //para hacer invisible aim
     void Start()
     {
-        aimer.GetComponent<Renderer>().enabled = false;                                                             //aim invisible
+        aimer.GetComponent<Renderer>().enabled = false;
+        //aim invisible
+        foreach (GameObject habilidad in habilidades)
+        {
+                
+            misHabilidades.Add(Instantiate(habilidad));
+            counthab = misHabilidades.ToArray().Length - 1;
+            misHabilidades[counthab].GetComponent<AbilityTest>().CreateAbility(3, 3, 3, 3, "proyectil", misHabilidades[counthab]);
+            misHabilidades[counthab].SetActive(false);
+        }
     }
 
     void Update()
@@ -85,4 +103,5 @@ public class Controller : MonoBehaviour
     {
         controls.Gameplay.Disable();
     }
+
 }

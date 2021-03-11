@@ -34,7 +34,7 @@ public class ManageBars : MonoBehaviour
     {
         //Update money value
         moneyCount.text = chStats.money.ToString();
-        //moneyCount.GetComponent<UnityEngine.UI.Text>().text = gameObject.GetComponent<CharacterStats>().money.ToString(); SI EL DE ARRIBA DA ERROR
+        //moneyCount.GetComponent<UnityEngine.UI.Text>().text = gameObject.GetComponent<CharacterStats>().money.ToString();// SI EL DE ARRIBA DA ERROR
 
         //Update health value
         currentHealth = chStats.currentHealth;
