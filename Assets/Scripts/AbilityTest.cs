@@ -40,13 +40,10 @@ public class AbilityTest : MonoBehaviour //abstract
     }
 
     public void cast(Vector3 characterposition,Vector3 castdestination) {
-
-        print(tipocasteo);
         if (lv > 0) {
-
-            print(tipocasteo);
             switch (tipocasteo) {
-               //case typecast.AREA: tipocasteo = hitbox.GetComponent<AreaOfEffect>().CastAOE(hitbox,castposition,totaldmg,statuseffect); break;
+               case typecast.AREA:
+                    hitbox.GetComponent<AreaOfEffect>().castAoe(characterposition, castdestination); break;
                case typecast.PROJECTILE:
                     hitbox.GetComponent<Projectile>().FireProjectile(characterposition, castdestination,totaldmg) ; break;
                // case typecast.SELF: tipocasteo = ????????; break;

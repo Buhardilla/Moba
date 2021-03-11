@@ -10,8 +10,8 @@ public class Projectile : MonoBehaviour
     bool fired;
     public void FireProjectile(Vector3 castposition,Vector3 target,float damage)
     {
-        print("pañun pañun ");
-        direction = (target - castposition).normalized;
+        Vector3 ayuda = new Vector3(target.x + castposition.x, target.y + castposition.y, target.z + castposition.z);
+        direction = (ayuda - castposition).normalized;
         fired = true;
     }
 
@@ -19,8 +19,6 @@ public class Projectile : MonoBehaviour
     {
         if (fired)
         {
-
-            print("pañun pañun ");
             transform.position += direction * (speed * Time.deltaTime);
         }
     }

@@ -16,6 +16,7 @@ public class Controller : MonoBehaviour
     public GameObject[] habilidades; //cambiar a private si se le pasa desde arriba por el personaje que sera lo suyo si mas arriba en la jerarquia se necesitase llamar al lv up
     private List<GameObject> misHabilidades = new List<GameObject>();
     public Vector3 origen;
+    Vector3 rota;
     public float Mspeed = 6.0f;
 
 
@@ -28,7 +29,7 @@ public class Controller : MonoBehaviour
         controls.Gameplay.Ab1.started += ctx => Auto();
         controls.Gameplay.Ab2.started += ctx => Auto();
         controls.Gameplay.Ab3.started += ctx =>Auto();
-        controls.Gameplay.fb1x.started += ctx =>  CastAbility(0,rotate); //A
+        controls.Gameplay.fb1x.started += ctx =>  CastAbility(0,rota); //A x,y, xz
         controls.Gameplay.fb2sq.started += ctx => Auto(); //X
         controls.Gameplay.fb3ci.started += ctx => Auto(); //B
         controls.Gameplay.fb4tr.started += ctx => Auto(); // Y
@@ -51,10 +52,9 @@ public class Controller : MonoBehaviour
     }
     void CastAbility(int i, Vector3 target)
     {
+        print(target);
         misHabilidades[i].SetActive(true);
         misHabilidades[i].transform.position = gameObject.transform.position;
-        print(misHabilidades[i]);
-        print(target);
         misHabilidades[i].GetComponent<AbilityTest>().cast(gameObject.transform.position, target);
     }
 
@@ -87,11 +87,19 @@ public class Controller : MonoBehaviour
         if(rotate != Vector2.zero)
         {
             aimer.GetComponent<Renderer>().enabled = true;                                                          //aim visible
-            aim.transform.eulerAngles = new Vector3(0, Mathf.Atan2(rotate.x, rotate.y) * 180 / Mathf.PI, 0);       //rotacion aim
-        }else
+            aim.transform.eulerAngles = new Vector3(0, Mathf.Atan2(rotate.x, rotate.y) * 180 / Mathf.PI, 0);      //rotacion aim
+            GetRotate();
+        }
+        else
             aimer.GetComponent<Renderer>().enabled = false;                                                         //aim invisible
         
         //aim.transform.eulerAngles = new Vector3(0, -Mathf.Atan2(rotate.y, rotate.x) * 180 / Mathf.PI, 0);
+    }
+    public void GetRotate()
+    {
+        if (rotate.x != 0 && rotate.y != 0){
+           rota = new Vector3(rotate.x, this.transform.position.y, rotate.y);
+        }
     }
 
     void OnEnable()
