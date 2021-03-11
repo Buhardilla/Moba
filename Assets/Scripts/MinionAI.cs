@@ -204,7 +204,6 @@ public class MinionAI : MonoBehaviour
     }
     void Awake()
     {
-        //Physics.IgnoreCollision(parentcollider,childcollider);
         if(this.tag.Contains("Enemy")){
             enemytag="Ally";
         }

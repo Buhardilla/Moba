@@ -44,20 +44,15 @@ public class MinionSpawn : MonoBehaviour
             }
             misMinions[misMinions.ToArray().Length - 1].GetComponent<MinionAI>();
             misMinions[misMinions.ToArray().Length - 1].SetActive(false);
-            MiniMap.GetComponent<CalculatePositionsMinimap>().addMinion(misMinions[misMinions.ToArray().Length - 1]);
         }
-        print("Total de minions" + misMinions.ToArray().Length);
-        /*
+        
         misMinions.Add(Instantiate(BigMinionPrefab, gameObject.transform.position+offset, Quaternion.Euler(0, roty, 0)) as GameObject);
         misMinions[misMinions.ToArray().Length - 1].GetComponent<MinionAI>();
         misMinions[misMinions.ToArray().Length - 1].SetActive(false);
-        MiniMap.GetComponent<CalculatePositionsMinimap>().addMinion(misMinions[misMinions.ToArray().Length - 1]);
 
         misMinions.Add(Instantiate(BigMinionPrefab, gameObject.transform.position+offset, Quaternion.Euler(0, roty, 0)) as GameObject);
         misMinions[misMinions.ToArray().Length - 1].GetComponent<MinionAI>();
         misMinions[misMinions.ToArray().Length - 1].SetActive(false);
-        MiniMap.GetComponent<CalculatePositionsMinimap>().addMinion(misMinions[misMinions.ToArray().Length - 1]);
-        */
     }
 
     public IEnumerator manejarMinions()
