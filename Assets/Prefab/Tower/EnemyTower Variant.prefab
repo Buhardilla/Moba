@@ -10,12 +10,12 @@ PrefabInstance:
     - target: {fileID: 1045553644378413736, guid: ab801adf6e5afd64f9876f29a213b552,
         type: 3}
       propertyPath: m_Name
-      value: EnemyTower
+      value: EnemyTower Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1045553644378413740, guid: ab801adf6e5afd64f9876f29a213b552,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1045553644378413742, guid: ab801adf6e5afd64f9876f29a213b552,
         type: 3}
@@ -24,13 +24,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1045553644378413743, guid: ab801adf6e5afd64f9876f29a213b552,
         type: 3}
-      propertyPath: m_Radius
-      value: 0.6
+      propertyPath: m_Height
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1045553644378413743, guid: ab801adf6e5afd64f9876f29a213b552,
         type: 3}
-      propertyPath: m_Height
-      value: 6
+      propertyPath: m_Radius
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1045553644378413778, guid: ab801adf6e5afd64f9876f29a213b552,
         type: 3}
@@ -97,7 +97,8 @@ PrefabInstance:
       propertyPath: previoustowers.Array.data[0]
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1045553644378413741, guid: ab801adf6e5afd64f9876f29a213b552, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ab801adf6e5afd64f9876f29a213b552, type: 3}
 --- !u!4 &8626451445890627402 stripped
 Transform:
