@@ -38,12 +38,13 @@ public class CalculatePositionsMinimap : MonoBehaviour
         MiniWidth = Minimap.GetComponent<RectTransform>().rect.width;
         CalculatedCenter = TopLeft.transform.position + ((BottomRight.transform.position - TopLeft.transform.position)/2);
 
-        ChangeIcon(Allies,0, colors[0], playerIcons[0], 20f);
-        ChangeIcon(Enemies,icons.ToArray().Length, colors[1], playerIcons[1], 20f);
-        ChangeIcon(AllyTowers,icons.ToArray().Length, colors[2], playerIcons[2], 15f);
-        ChangeIcon(EnemyTowers,icons.ToArray().Length, colors[3], playerIcons[2], 15f);
-        ChangeIcon(AllyNexus,icons.ToArray().Length, colors[4], playerIcons[3], 15f);
-        ChangeIcon(EnemyNexus,icons.ToArray().Length, colors[5], playerIcons[3], 15f);
+        print(Allies.Length);
+        ChangeIcon(Allies,0, colors[0], playerIcons[0], 18f);
+        ChangeIcon(Enemies,icons.ToArray().Length, colors[1], playerIcons[1], 18f);
+        ChangeIcon(AllyTowers,icons.ToArray().Length, colors[2], playerIcons[2], 10f);
+        ChangeIcon(EnemyTowers,icons.ToArray().Length, colors[3], playerIcons[2], 10f);
+        ChangeIcon(AllyNexus,icons.ToArray().Length, colors[4], playerIcons[3], 10f);
+        ChangeIcon(EnemyNexus,icons.ToArray().Length, colors[5], playerIcons[3], 10f);
     }
     private void ChangeIcon(GameObject[] array, int inicio, Color color, Texture texture, float size){
         for (int i = 0; i < array.Length; i++)
@@ -78,17 +79,6 @@ public class CalculatePositionsMinimap : MonoBehaviour
             ChangePositionAndVisibility( length + i, Enemies, i);
         }
         length += Enemies.Length;
-
-        for (int i = 0; i < AllyTowers.Length; i++)
-        {
-            icons[length + i].GetComponent<RawImage>().enabled = AllyTowers[i].GetComponent<MeshRenderer>().enabled;
-        }
-        length += AllyTowers.Length;
-
-        for (int i = 0; i < EnemyTowers.Length; i++)
-        {
-            icons[length + i].GetComponent<RawImage>().enabled = EnemyTowers[i].GetComponent<MeshRenderer>().enabled;
-        } 
     }
 
     private void ChangePositionAndVisibility(int iconIndex,GameObject[] objectArray, int objectIndex){
