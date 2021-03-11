@@ -8,7 +8,6 @@ public class MainMenu : MonoBehaviour
 {
     public Canvas canvas;
     Image image;
-
     public void PlayGameChange(){
         GameObject tempObject = GameObject.Find("Canvas");
         canvas = tempObject.GetComponent<Canvas>();
@@ -17,8 +16,6 @@ public class MainMenu : MonoBehaviour
             image = backimage.GetComponent<Image>();
             image.sprite = Resources.Load<Sprite>("MenuBackgrounds/OnlineMenu");
         }
-        GameObject tempObject2 = GameObject.Find("Canvas/OnlineMenu");
-        tempObject2.transform.position = new Vector3(400, 335, 0);
     }
 
     public void HeroesTutorialChange(){

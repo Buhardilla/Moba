@@ -259,7 +259,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &7033215945101953934
 MonoBehaviour:
@@ -273,13 +273,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3336232d50b6b4fa2e35e0d8dd2a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  previoustowers: []
   hidden: 0
   bushes: -1
   Minimapicon: {fileID: 0}
+  expMax: 0
   level:
     baseValue: 0
   exp:
-    baseValue: 0
+    baseValue: 100
   health:
     baseValue: 100
   regenhealth:
@@ -291,6 +293,8 @@ MonoBehaviour:
   money: 0
   killreward: 20
   rewardrange: 5
+  experience: 0
+  expreward: 0
   AD:
     baseValue: 0
   ADpen:
