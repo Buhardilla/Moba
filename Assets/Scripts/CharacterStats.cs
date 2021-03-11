@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class CharacterStats : MonoBehaviour
 {
     public GameObject[] previoustowers;
     public bool hidden = false;
     public int bushes = -1;
-    public GameObject Minimapicon;
+    public Sprite Minimapicon;
+    public GameObject Portait;
+
     public GameObject Overlay;
 
     Vector3 initialPos = new Vector3(0, 1, 0);
@@ -58,6 +60,10 @@ public class CharacterStats : MonoBehaviour
         }
         else{
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        }
+
+        if(Portait){
+            Portait.GetComponent<Image>().sprite = Minimapicon;
         }
     }
     void Update()
