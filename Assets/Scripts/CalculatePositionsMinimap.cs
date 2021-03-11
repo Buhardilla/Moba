@@ -38,7 +38,6 @@ public class CalculatePositionsMinimap : MonoBehaviour
         MiniWidth = Minimap.GetComponent<RectTransform>().rect.width;
         CalculatedCenter = TopLeft.transform.position + ((BottomRight.transform.position - TopLeft.transform.position)/2);
 
-        print(Allies.Length);
         ChangeIcon(Allies,0, colors[0], playerIcons[0], 18f);
         ChangeIcon(Enemies,icons.ToArray().Length, colors[1], playerIcons[1], 18f);
         ChangeIcon(AllyTowers,icons.ToArray().Length, colors[2], playerIcons[2], 10f);
@@ -55,7 +54,6 @@ public class CalculatePositionsMinimap : MonoBehaviour
             icons[inicio + i].GetComponent<RawImage>().texture = texture;
             icons[inicio + i].GetComponent<RectTransform>().localPosition = WorldtoMapPosition(array[i].transform.position);
             icons[inicio + i].GetComponent<RectTransform>().sizeDelta = new Vector2(size,size);
-            print("Creating " + (inicio + i) +" icon at " +  WorldtoMapPosition(array[i].transform.position)+" "+ color +"colored");
         }
     }
     private Vector3 WorldtoMapPosition(Vector3 position){
