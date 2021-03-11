@@ -103,6 +103,8 @@ public class CharacterStats : MonoBehaviour
         currentHealth = health.getStat();
         currentMana = mana.getStat();
 
+        IdObjs = new int[4] {-1,-1,-1,-1};
+
         if(gameObject.tag.Contains("Enemy")){
             enemies = GameObject.FindGameObjectsWithTag("Ally");
         }

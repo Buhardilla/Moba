@@ -13,14 +13,22 @@ public class Store : MonoBehaviour
         up = 2,
         down = 3
     }
-    public Vector2Int posStore;
+    private Vector2Int posStore;
+    private int posInv;
 
     public int storeSizeY;
 
-    public int[] rowsizes = {3,8,6,4,8,4}; //{4,8,4,6,8,3};
+    private int[] rowsizes = {3,8,6,4,8,4}; //{4,8,4,6,8,3};
     public List<GameObject> buttons;
+    public List<GameObject> inventory;
+
+    public List<GameObject> iconosObj;
 
     public Sprite[] sprites;
+    public Sprite emptySlot;
+
+    public GameObject[] shopInv;
+    public GameObject[] objTree;
 
     public GameObject Player;
     public GameObject Objs;
@@ -42,7 +50,6 @@ public class Store : MonoBehaviour
         posStore.x = (posStore.x >= storeSize.x) ? 0                 : posStore.x; 
         posStore.y = (posStore.y < 0)           ? storeSize.y - 1   : posStore.y; 
         posStore.y = (posStore.y >= storeSize.y) ? 0                 : posStore.y; 
-        Debug.Log(posStore.y);
         */
 
         if(posStore.y < 0)
@@ -65,16 +72,27 @@ public class Store : MonoBehaviour
         Objects objsComp = Objs.GetComponent<Objects>();
         int posAr = getPositionArray();
         if(playerStats.money  >= objsComp.objs[posAr].Price){
-            Debug.Log(playerStats.IdObjs[0]);
             for (int i = 0; i < 4; i++)
             {
-                if(playerStats.IdObjs[i] != -1){
+                if(playerStats.IdObjs[i] == -1){
                     playerStats.IdObjs[i] = posAr;
                     playerStats.money -= objsComp.objs[posAr].Price;
                     break;
                 }
             }
         }
+        updateSprite();
+    }
+
+    void sell(){
+        CharacterStats playerStats = Player.GetComponent<CharacterStats>();
+        Objects objsComp = Objs.GetComponent<Objects>();
+
+        if(playerStats.IdObjs[posInv] != -1 ){
+            playerStats.money += objsComp.objs[playerStats.IdObjs[posInv]].Price * 2 / 3;
+            playerStats.IdObjs[posInv] = -1;
+        }
+        updateSprite();
     }
 
     void updateSprite(){
@@ -83,9 +101,25 @@ public class Store : MonoBehaviour
         {
             buttons[i].GetComponent<Image>().sprite = sprites[0];
         }
-        //Debug.Log(posStore.x + pos);
+
         buttons[getPositionArray()].GetComponent<Image>().sprite = sprites[1];
+
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            inventory[i].GetComponent<Image>().sprite = sprites[0];
+        }
+
+        inventory[posInv].GetComponent<Image>().sprite = sprites[1];
+
+        for (int i = 0; i < shopInv.Length; i++)
+        {
+            if(Player.GetComponent<CharacterStats>().IdObjs[i] != -1)
+                shopInv[i].GetComponent<Image>().sprite = iconosObj[Player.GetComponent<CharacterStats>().IdObjs[i]].GetComponent<Image>().sprite;
+            else
+                shopInv[i].GetComponent<Image>().sprite = emptySlot;
+        }
     }
+
     void moveSelection(move direction){
         Vector2Int currentPos = posStore;
         bool changeY = false;
@@ -114,17 +148,41 @@ public class Store : MonoBehaviour
         updateSprite();
     }
 
+    void moveInv(move direction){
+        
+        switch (direction)
+        {
+            case move.right:
+                posInv += 1;
+                break;
+
+            case move.left:
+                posInv -= 1;
+                break;
+        }
+
+        if(posInv < 0) posInv = inventory.Count - 1;
+        if(posInv >= inventory.Count) posInv = 0;
+
+        updateSprite();
+
+    }
+
     void updateStore(){
         if(Input.GetKeyDown("right"))   moveSelection(move.right);
         if(Input.GetKeyDown("left"))    moveSelection(move.left);
         if(Input.GetKeyDown("up"))      moveSelection(move.up);
         if(Input.GetKeyDown("down"))    moveSelection(move.down);
         if(Input.GetKeyDown(KeyCode.Return))   buy();
+        if(Input.GetKeyDown(KeyCode.Backspace))  sell();
+        if(Input.GetKeyDown(KeyCode.P))    moveInv(move.right);
+        if(Input.GetKeyDown(KeyCode.O))    moveInv(move.left);
     }
 
     void Start()
     {
         posStore = new Vector2Int(0,5);
+        posInv = 0;
         updateSprite();
     }
 

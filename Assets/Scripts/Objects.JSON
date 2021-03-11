@@ -1,16 +1,225 @@
 [
     {
-        "Name" : "Espada de Madera",
-        "AP" : 8,
+        "Name" : "Impenetrable Shell",
+        "Item 1" : "Heavy Armor",
+        "Item 2" : "Heavy Armor",
+        "ADR" : 115,
         "health" : 80,
-        "regenhealth" : 3,
-        "Price": 450
+        "Price" : 2200
     },
     {
-        "Name" : "Espadota",
-        "AS" : 8,
+        "Name" : "Super Heavy Lava Set",
+        "Item 1" : "Magic Protector",
+        "Item 2" : "Fire Horn",
+        "MR" : 55,
+        "health" : 500,
+        "regenhealth" : 5,
+        "Price" : 2800
+    },
+    {
+        "Name" : "Mix Protector",
+        "Item 1" : "Magic Protector",
+        "Item 2" : "Heavy Armor",
+        "ADR" : 75,
+        "MR" : 55,
+        "Price" : 2200
+    },
+    {
+        "Name" : "Hurricane Gun",
+        "Item 1" : "Dagger Jaeger",
+        "Item 2" : "Arrows Quiver",
+        "Crit" : 25,
+        "AS" : 45,
+        "Price" : 2950
+    },
+    {
+        "Name" : "Colossal Warhammer",
+        "Item 1" : "Devastating Hammer",
+        "Item 2" : "Gigantic Sword",
+        "Crit" : 25,
+        "AD" : 40,
+        "Price" : 3050
+    },
+    {
+        "Name" : "Life Destroyer",
+        "Item 1" : "Bloodsucker",
+        "Item 2" : "Gigantic Sword",
+        "AD" : 55,
+        "RV" : 15,
+        "Price" : 3600
+    },
+    {
+        "Name" : "Blade of the Old Giants",
+        "Item 1" : "Gigantic Sword",
+        "Item 2" : "Fire Horn",
+        "AD" : 35,
+        "health" : 500,
+        "regenhealth" : 5,
+        "Price" : 2650
+    },
+    {
+        "Name" : "La Guillotine",
+        "Item 1" : "Gigantic Sword",
+        "Item 2" : "Gigantic Sword",
+        "AD" : 70,
+        "Price" : 3300
+    },
+    {
+        "Name" : "Definitive Staff",
+        "Item 1" : "Cristal Staff",
+        "Item 2" : "Cristal Staff",
+        "AP" : 120,
+        "Price" : 3200
+    },
+    {
+        "Name" : "Penetrating Staff",
+        "Item 1" : "Powerful Staff",
+        "Item 2" : "Cristal Staff",
+        "AP" : 100,
+        "APpen" : 20,
+        "Price" : 3100
+    },
+    {
+        "Name" : "Regenerative Staff",
+        "Item 1" : "Cristal Staff",
+        "Item 2" : "Ice Horn",
+        "AP" : 70,
+        "mana" : 600,
+        "regenMana" : 5,
+        "Price" : 2750
+    },
+    {
+        "Name" : "Running Boots",
+        "Item 1" : "Leather Boots",
+        "VEL" : 45,
+        "Price" : 900
+    },
+    {
+        "Name" : "Magical Boots",
+        "Item 1" : "Leather Boots",
+        "AP" : 20,
+        "VEL" : 25,
+        "Price" : 900
+    },
+    {
+        "Name" : "Warrior Boots",
+        "Item 1" : "Leather Boots",
+        "AD" : 10,
+        "VEL" : 25,
+        "Price" : 900
+    },
+    {
+        "Name" : "Armored Boots",
+        "Item 1" : "Leather Boots",
+        "ADR" : 20,
+        "VEL" : 25,
+        "Price" : 900
+    },
+    {
+        "Name" : "Time Boots",
+        "Item 1" : "Leather Boots",
+        "CDR" : 20,
+        "VEL" : 25,
+        "Price" : 900
+    },
+    {
+        "Name" : "Cadence Boots",
+        "Item 1" : "Leather Boots",
+        "AS" : 25,
+        "VEL" : 25,
+        "Price" : 900
+    },
+    {
+        "Name" : "Ice Horn",
+        "mana" : 500,
+        "regenMana" : 5,
+        "Price" : 800
+    },
+    {
+        "Name" : "Heavy Armor",
+        "ADR" : 35,
+        "Price" : 750
+    },
+    {
+        "Name" : "Magic Protector",
+        "MR" : 50,
+        "Price" : 750
+    },
+    {
+        "Name" : "Leather Boots",
+        "VEL" : 25,
+        "Price" : 300
+    },
+    {
+        "Name" : "Dagger Jaeger",
+        "AS" : 15,
+        "Crit" : 15,
+        "Price" : 1100
+    },
+    {
+        "Name" : "Devastating Hammer",
+        "AD" : 15,
+        "Crit" : 15,
+        "Price" : 1050
+    },
+    {
+        "Name" : "Arrows Quiver",
+        "AS" : 25,
+        "Price" : 1150
+    },
+    {
+        "Name" : "Bloodsucker",
+        "AD" : 20,
+        "RV" : 10,
+        "Price" : 900
+    },
+    {
+        "Name" : "Gigantic Sword",
+        "AD" : 30,
+        "Price" : 1300
+    },
+    {
+        "Name" : "Cristal Staff",
+        "AP" : 60,
+        "Price" : 1250
+    },
+    {
+        "Name" : "Powerful Staff",
+        "AP" : 40,
+        "APpen" : 10,
+        "Price" : 1150
+    },
+    {
+        "Name" : "Fire Horn",
+        "health" : 400,
+        "regenhealth" : 5,
+        "Price" : 650
+    },
+    {
+        "Name" : "Wooden Sword",
+        "AD" : 8,
         "health" : 80,
-        "regenhealth" : 3,
-        "Price": 450
+        "RV" : 3,
+        "Price" : 300
+    },
+    {
+        "Name" : "Wooden Shield",
+        "ADR" : 5,
+        "MR" : 5,
+        "health" : 80,
+        "regenhealth" : 2,
+        "Price" : 300
+    },
+    {
+        "Name" : "Wooden Staff",
+        "AP" : 15,
+        "health" : 70,
+        "regenMana" : 2,
+        "Price" : 300
+    },
+    {
+        "Name" : "Health Potion",
+        "Healing" : 150,
+        "Price" : 50
     }
 ]
