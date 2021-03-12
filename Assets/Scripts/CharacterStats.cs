@@ -189,6 +189,10 @@ public class CharacterStats : MonoBehaviour
             }
         }
     }
+    public void ReduceMana(int manaCost)
+    {
+        currentMana -= manaCost;
+    }
 
     public int activeTowers(){
         int count = 0;

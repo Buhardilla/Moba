@@ -630,10 +630,11 @@ MonoBehaviour:
   - 5
   - 3
   - 2
+  manaCost: 0
   currentCooldown: 0
-  damage: 20
+  damage: 50
   dmgScaling: 0
-  range: 50
+  range: 10
   level: 0
   dmgType: 
   adRatio: 0

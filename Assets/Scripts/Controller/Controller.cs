@@ -20,7 +20,6 @@ public class Controller : MonoBehaviour
     private Store storeStore;
     private float timer;
 
-
     // inicializa controles
     void Awake()
     {
@@ -29,7 +28,7 @@ public class Controller : MonoBehaviour
         controls.Gameplay.Auto.started += ctx => Auto();
         controls.Gameplay.Ab1.started += ctx => this.GetComponent<TianaAbility1>().CastAbility();
         controls.Gameplay.Ab2.started += ctx => Auto();
-        controls.Gameplay.Ab3.started += ctx => Auto();
+        controls.Gameplay.Ab3.started += ctx => this.GetComponent<TianaAbility2>().CastAbility();
         controls.Gameplay.fb2sq.started += ctx => ToggleStore();
         controls.Gameplay.fb4tr.started += ctx => Auto();
         if(store.GetComponent<Canvas>().enabled){

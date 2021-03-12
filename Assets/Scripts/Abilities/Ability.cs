@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Ability : MonoBehaviour
 {
     public float[] cooldown;
+    public int manaCost;
     public float currentCooldown;
     public float damage;
     public float dmgScaling;
@@ -18,8 +19,8 @@ public abstract class Ability : MonoBehaviour
 
     public void UpdateStats()
     {
+        ++level;
         damage += (dmgScaling * level);
-        level++;
     }
 
     public void UpdateCooldown(float cd)
