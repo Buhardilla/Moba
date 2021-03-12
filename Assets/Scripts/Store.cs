@@ -6,7 +6,7 @@ using UnityEngine;
 public class Store : MonoBehaviour
 {
 
-    private enum move
+    public enum move
     {
         right = 0,
         left = 1,
@@ -209,7 +209,7 @@ public class Store : MonoBehaviour
         dineroPers.GetComponent<UnityEngine.UI.Text>().text = playerStats.money.ToString();
     }
 
-    void moveSelection(move direction){
+    public void moveSelection(move direction){
         Vector2Int currentPos = posStore;
         bool changeY = false;
         switch (direction)
@@ -259,6 +259,7 @@ public class Store : MonoBehaviour
 
     void updateStore(){
         if(Input.GetKeyDown(KeyCode.B)){
+            print("cierro tienda");
             tienda.GetComponent<Canvas>().enabled = !tienda.GetComponent<Canvas>().enabled;
         }
 
@@ -267,10 +268,11 @@ public class Store : MonoBehaviour
             if(Input.GetKeyDown("left"))    moveSelection(move.left);
             if(Input.GetKeyDown("up"))      moveSelection(move.up);
             if(Input.GetKeyDown("down"))    moveSelection(move.down);
-            if(Input.GetKeyDown(KeyCode.Return))   buy();
-            if(Input.GetKeyDown(KeyCode.Backspace))  sell();
             if(Input.GetKeyDown(KeyCode.P))    moveInv(move.right);
             if(Input.GetKeyDown(KeyCode.O))    moveInv(move.left);
+
+            if(Input.GetKeyDown(KeyCode.Return))   buy();
+            if(Input.GetKeyDown(KeyCode.Backspace))  sell();
         }
         
     }

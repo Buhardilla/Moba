@@ -16,6 +16,8 @@ public class Controller : MonoBehaviour
 
     public float Mspeed = 6.0f;
 
+    public GameObject store;
+
 
 
     // inicializa controles
@@ -29,12 +31,20 @@ public class Controller : MonoBehaviour
         controls.Gameplay.Ab3.started += ctx => Auto();
         controls.Gameplay.fb1x.started += ctx => Auto();
         controls.Gameplay.fb2sq.started += ctx => Auto();
-        controls.Gameplay.fb3ci.started += ctx => Auto();
+        controls.Gameplay.fb3ci.started += ctx => ToggleStore();
         controls.Gameplay.fb4tr.started += ctx => Auto();
-        controls.Gameplay.DPup.started += ctx => Auto();
-        controls.Gameplay.DPleft.started += ctx => Auto();
-        controls.Gameplay.DPright.started += ctx => Auto();
-        controls.Gameplay.DPdown.started += ctx => Auto();
+        if(store.GetComponent<Canvas>().enabled){
+            controls.Gameplay.DPup.started += ctx => storeUp();
+            controls.Gameplay.DPleft.started += ctx => storeLeft();
+            controls.Gameplay.DPright.started += ctx => storeRight();
+            controls.Gameplay.DPdown.started += ctx => storeDown();
+        }
+        else{
+            controls.Gameplay.DPup.started += ctx => Auto();
+            controls.Gameplay.DPleft.started += ctx => Auto();
+            controls.Gameplay.DPright.started += ctx => Auto();
+            controls.Gameplay.DPdown.started += ctx => Auto();
+        }
         controls.Gameplay.Start.started += ctx => Auto();
 
         controls.Gameplay.Moving.performed += ctx => move = ctx.ReadValue<Vector2>();
@@ -49,6 +59,24 @@ public class Controller : MonoBehaviour
         Debug.Log("Se realiza un ataque basico.");                                                                  //Función habilidades
     }
 
+    void storeUp(){
+        store.GetComponent<Store>().moveSelection(Store.move.up);
+    }
+    void storeRight(){
+        store.GetComponent<Store>().moveSelection(Store.move.right);
+    }
+    void storeLeft(){
+        store.GetComponent<Store>().moveSelection(Store.move.left);
+    }
+    void storeDown(){
+        store.GetComponent<Store>().moveSelection(Store.move.down);
+    }
+
+    void ToggleStore(){
+        if(Vector3.Distance(GameObject.FindGameObjectWithTag(gameObject.tag+"Nexus").transform.position, gameObject.transform.position) < 20){
+            store.GetComponent<Canvas>().enabled = !store.GetComponent<Canvas>().enabled;
+        }
+    }
     //para hacer invisible aim
     void Start()
     {
