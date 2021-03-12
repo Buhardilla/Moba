@@ -12,7 +12,9 @@ public class CharacterStats : MonoBehaviour
 
     // Cosas de los objetos
     public int[] IdObjs;
-    public GameObject Objs;
+
+    
+    private GameObject Objs;
 
     Vector3 initialPos = new Vector3(0, 1, 0);
     public int currentHealth { get; private set; }
@@ -108,6 +110,11 @@ public class CharacterStats : MonoBehaviour
         currentMana = mana.getStat();
 
         IdObjs = new int[4] {-1,-1,-1,-1};
+
+        if(this.transform.tag.Contains("Player") || this.transform.tag.Contains("Ally") || this.transform.tag.Contains("Enemy")){
+            Objs = GameObject.FindGameObjectsWithTag("Objects")[0];
+        }
+
 
         if(gameObject.tag.Contains("Enemy")){
             enemies = GameObject.FindGameObjectsWithTag("Ally");

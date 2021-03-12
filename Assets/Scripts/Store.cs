@@ -14,6 +14,8 @@ public class Store : MonoBehaviour
         down = 3
     }
     private Vector2Int posStore;
+
+    public GameObject tienda;
     private int posInv;
 
     public int storeSizeY;
@@ -27,6 +29,7 @@ public class Store : MonoBehaviour
     public GameObject[] textos;
 
     public GameObject dineroPers;
+
 
     public Sprite[] sprites;
     public Sprite emptySlot;
@@ -72,6 +75,7 @@ public class Store : MonoBehaviour
     }
 
     void buy(){
+        
         CharacterStats playerStats = Player.GetComponent<CharacterStats>();
         Objects objsComp = Objs.GetComponent<Objects>();
         int posAr = getPositionArray();
@@ -254,14 +258,21 @@ public class Store : MonoBehaviour
     }
 
     void updateStore(){
-        if(Input.GetKeyDown("right"))   moveSelection(move.right);
-        if(Input.GetKeyDown("left"))    moveSelection(move.left);
-        if(Input.GetKeyDown("up"))      moveSelection(move.up);
-        if(Input.GetKeyDown("down"))    moveSelection(move.down);
-        if(Input.GetKeyDown(KeyCode.Return))   buy();
-        if(Input.GetKeyDown(KeyCode.Backspace))  sell();
-        if(Input.GetKeyDown(KeyCode.P))    moveInv(move.right);
-        if(Input.GetKeyDown(KeyCode.O))    moveInv(move.left);
+        if(Input.GetKeyDown(KeyCode.B)){
+            tienda.GetComponent<Canvas>().enabled = !tienda.GetComponent<Canvas>().enabled;
+        }
+
+        if(this.enabled){
+            if(Input.GetKeyDown("right"))   moveSelection(move.right);
+            if(Input.GetKeyDown("left"))    moveSelection(move.left);
+            if(Input.GetKeyDown("up"))      moveSelection(move.up);
+            if(Input.GetKeyDown("down"))    moveSelection(move.down);
+            if(Input.GetKeyDown(KeyCode.Return))   buy();
+            if(Input.GetKeyDown(KeyCode.Backspace))  sell();
+            if(Input.GetKeyDown(KeyCode.P))    moveInv(move.right);
+            if(Input.GetKeyDown(KeyCode.O))    moveInv(move.left);
+        }
+        
     }
 
     void Start()
