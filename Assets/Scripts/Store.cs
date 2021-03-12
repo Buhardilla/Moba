@@ -24,6 +24,10 @@ public class Store : MonoBehaviour
 
     public List<GameObject> iconosObj;
 
+    public GameObject[] textos;
+
+    public GameObject dineroPers;
+
     public Sprite[] sprites;
     public Sprite emptySlot;
 
@@ -113,9 +117,10 @@ public class Store : MonoBehaviour
         updateSprite();
     }
 
-    void updateSprite(){
+    void updateSprite(){ // Y bueno, todo ...
         
         int posAr = getPositionArray();
+        CharacterStats playerStats = Player.GetComponent<CharacterStats>();
 
         for (int i = 0; i < buttons.Count; i++)
         {
@@ -156,6 +161,48 @@ public class Store : MonoBehaviour
             objTree[1].GetComponent<Image>().sprite = emptySlot;
             objTree[2].GetComponent<Image>().sprite = emptySlot;
         }
+
+        if(posAr >= 0 && posAr < objsComp.objs.Count){
+            textos[0].GetComponent<UnityEngine.UI.Text>().text = objsComp.objs[posAr].Name;
+            string txt = "";
+            if(objsComp.objs[posAr].AD != 0) txt += objsComp.objs[posAr].AD.ToString() + " AD. \n";
+            if(objsComp.objs[posAr].ADpen != 0) txt += objsComp.objs[posAr].ADpen.ToString() + " AD Penetration. \n";
+            if(objsComp.objs[posAr].ADR != 0) txt += objsComp.objs[posAr].ADR.ToString() + " AD Resistance. \n";
+            if(objsComp.objs[posAr].AP != 0) txt += objsComp.objs[posAr].AP.ToString() + " AP. \n";
+            if(objsComp.objs[posAr].APpen != 0) txt += objsComp.objs[posAr].APpen.ToString() + " AP Penetration. \n";
+            if(objsComp.objs[posAr].MR != 0) txt += objsComp.objs[posAr].MR.ToString() + " MR. \n";
+            if(objsComp.objs[posAr].AS != 0) txt += objsComp.objs[posAr].AS.ToString() + " Attack Speed. \n";
+            if(objsComp.objs[posAr].VEL != 0) txt += objsComp.objs[posAr].VEL.ToString() + " Speed. \n";
+            if(objsComp.objs[posAr].CDR != 0) txt += objsComp.objs[posAr].CDR.ToString() + " Cooldown Reduction. \n";
+            if(objsComp.objs[posAr].RNG != 0) txt += objsComp.objs[posAr].RNG.ToString() + " Range. \n";
+            if(objsComp.objs[posAr].health != 0) txt += objsComp.objs[posAr].health.ToString() + " Health. \n";
+            if(objsComp.objs[posAr].regenHealth != 0) txt += objsComp.objs[posAr].regenHealth.ToString() + " Health Regeneration. \n";
+            if(objsComp.objs[posAr].mana != 0) txt += objsComp.objs[posAr].mana.ToString() + " Mana. \n";
+            if(objsComp.objs[posAr].regenMana != 0) txt += objsComp.objs[posAr].regenMana.ToString() + " Mana Regeneration. \n";
+            if(objsComp.objs[posAr].Crit != 0) txt += objsComp.objs[posAr].Crit.ToString() + " Crit. \n";
+            if(objsComp.objs[posAr].RV != 0) txt += objsComp.objs[posAr].RV.ToString() + " LifeSteal. \n";
+
+            int obj1, obj2, discount;
+            obj1 = obj2 = -1;
+            discount = 0;
+
+            for (int i = 0; i < playerStats.IdObjs.Length; i++)
+            {
+                if(obj1 == -1 && objsComp.objs[posAr].ob1 != -1 && playerStats.IdObjs[i] == objsComp.objs[posAr].ob1){
+                    obj1 = i;
+                    discount += objsComp.objs[objsComp.objs[posAr].ob1].Price;
+                } 
+                else if(obj2 == -1 &&objsComp.objs[posAr].ob2 != -1 && playerStats.IdObjs[i] == objsComp.objs[posAr].ob2){
+                    obj2 = i;
+                    discount += objsComp.objs[objsComp.objs[posAr].ob2].Price;
+                }
+            }
+
+            textos[1].GetComponent<UnityEngine.UI.Text>().text = txt; 
+            textos[2].GetComponent<UnityEngine.UI.Text>().text = (objsComp.objs[posAr].Price - discount).ToString();
+        }
+
+        dineroPers.GetComponent<UnityEngine.UI.Text>().text = playerStats.money.ToString();
     }
 
     void moveSelection(move direction){
