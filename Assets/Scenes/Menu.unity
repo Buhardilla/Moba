@@ -1715,6 +1715,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 152273807107034834, guid: 70da9cd61914b7348bba2ce353172844,
+        type: 3}
+      propertyPath: backgroundSound
+      value: maintheme
+      objectReference: {fileID: 0}
     - target: {fileID: 152273807107034835, guid: 70da9cd61914b7348bba2ce353172844,
         type: 3}
       propertyPath: m_Name

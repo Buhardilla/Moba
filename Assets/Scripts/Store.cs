@@ -115,6 +115,7 @@ public class Store : MonoBehaviour
             if(playerStats.IdObjs[posInv] != -1 ){
                 playerStats.money += objsComp.objs[playerStats.IdObjs[posInv]].Price * 2 / 3;
                 playerStats.IdObjs[posInv] = -1;
+                FindObjectOfType<AudioManager>().Play("refund_sound");
             }
             updateSprite();
         }
