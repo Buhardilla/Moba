@@ -27,7 +27,7 @@ public class Controller : MonoBehaviour
         controls = new PlayerControls();
 
         controls.Gameplay.Auto.started += ctx => Auto();
-        controls.Gameplay.Ab1.started += ctx => Auto();
+        controls.Gameplay.Ab1.started += ctx => this.GetComponent<TianaAbility1>().CastAbility();
         controls.Gameplay.Ab2.started += ctx => Auto();
         controls.Gameplay.Ab3.started += ctx => Auto();
         controls.Gameplay.fb2sq.started += ctx => ToggleStore();

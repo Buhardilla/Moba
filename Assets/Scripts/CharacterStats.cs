@@ -172,9 +172,18 @@ public class CharacterStats : MonoBehaviour
         //si es un nexo o torre compruebo si se han muerto las torres anteriores, en otro caso no hago comprobación
         if(((gameObject.tag.Contains("Tower") || gameObject.tag.Contains("Nexus")) && activeTowers() == 0) || (!gameObject.tag.Contains("Tower") && !gameObject.tag.Contains("Nexus"))){
 
-            currentHealth -= (int) dmg;
+            int dmgMultiplier;
+            if (ADR.getStat() >= 0)
+            {
+                dmgMultiplier = 100 / (100 + ADR.getStat());
+}
+            else
+            {
+                dmgMultiplier = 2 - (100 / (100 - ADR.getStat()));
+            }
+            currentHealth -= (int) (dmg * dmgMultiplier);
 
-            if(currentHealth <= 0 && timerMuerte == 0)
+            if (currentHealth <= 0 && timerMuerte == 0)
             {
                 Morir(other);
             }

@@ -614,6 +614,34 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4557761022227445848}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &198594094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198594079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c146ee30e970a64ebec7dc254f1b2b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown:
+  - 5
+  - 3
+  - 2
+  currentCooldown: 0
+  damage: 20
+  dmgScaling: 0
+  range: 50
+  level: 0
+  dmgType: 
+  adRatio: 0
+  apRatio: 0
+  cd:
+  - 5
+  - 3
+  - 2
 --- !u!1001 &235010139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2065,6 +2093,11 @@ PrefabInstance:
         type: 3}
       propertyPath: AD.baseValue
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
+        type: 3}
+      propertyPath: health.baseValue
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
         type: 3}
@@ -6599,6 +6632,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2989696626974224676, guid: 2c3f48c58e8586941be083cad21ce694,
+        type: 3}
+      propertyPath: store
+      value: 
+      objectReference: {fileID: 8317126602688784472}
     - target: {fileID: 2989696626974224677, guid: 2c3f48c58e8586941be083cad21ce694,
         type: 3}
       propertyPath: expBar
