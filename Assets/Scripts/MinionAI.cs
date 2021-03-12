@@ -102,7 +102,6 @@ public class MinionAI : MonoBehaviour
     }
 
     void PlayerTarget(){
-        if(target != null) return;
         int closestID = -1;  // if there is no turrets target nexus
         float closestDistance = 10000.0f;
         float distance = 10000.0f;
@@ -153,14 +152,13 @@ public class MinionAI : MonoBehaviour
     }
 
     void AttackNexus(){
-        if(!target) return;
         target = nexus[0];
         float distance = (target.transform.position - gameObject.transform.position).magnitude;
         isInRange(distance - 3, target);
     }
     void AttackPlayer(){
         PlayerTarget();
-        if(target == null){
+        if(!target.tag.Contains("Ally") && !target.tag.Contains("Enemy")){
             needHelp = false;
             return;
         } 
@@ -234,14 +232,18 @@ public class MinionAI : MonoBehaviour
                     step = speed * Time.deltaTime;
                     // IA funcionara cada 5 frames
                     if (frameCount > 5){
-                        MinionTarget();
-                        TurretTarget();
                         AttackNexus();
+                        TurretTarget();
+                        PlayerTarget();
+                        MinionTarget();
                         frameCount = 0;
                     } 
                     if(target){  
                         if(target.tag.Contains("Minion")){
                             AttackMinion();
+                        }
+                        else if(target.tag.Contains("Ally") ||target.tag.Contains("Enemy")){
+                            AttackPlayer();
                         }
                         else if(target.tag.Contains("Tower")){   
                             AttackTurret();
