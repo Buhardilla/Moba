@@ -89,7 +89,7 @@ BoxCollider:
   m_GameObject: {fileID: 2989696625197195670}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -287,9 +287,10 @@ GameObject:
   - component: {fileID: 2989696626974224689}
   - component: {fileID: 198594080}
   - component: {fileID: 198594081}
+  - component: {fileID: 3306102776226574786}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Ally
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -406,18 +407,24 @@ MonoBehaviour:
   Minimapicon: {fileID: 21300000, guid: 40c2a4c2013716e4d8527debd0a45759, type: 3}
   Portait: {fileID: 0}
   Overlay: {fileID: 0}
+  IdObjs: 
   expMax: 0
   level: 1
   exp:
     baseValue: 100
+    statObjs: 0
   health:
     baseValue: 100
-  regenhealth:
+    statObjs: 0
+  regenHealth:
     baseValue: 0
+    statObjs: 0
   mana:
     baseValue: 100
+    statObjs: 0
   regenMana:
     baseValue: 0
+    statObjs: 0
   money: 0
   killreward: 20
   rewardrange: 5
@@ -425,24 +432,40 @@ MonoBehaviour:
   expreward: 0
   AD:
     baseValue: 0
+    statObjs: 0
   ADpen:
     baseValue: 0
+    statObjs: 0
   ADR:
     baseValue: 0
+    statObjs: 0
   AP:
     baseValue: 0
+    statObjs: 0
   APpen:
     baseValue: 0
+    statObjs: 0
   MR:
     baseValue: 0
+    statObjs: 0
   AS:
     baseValue: 0
+    statObjs: 0
   VEL:
     baseValue: 0
+    statObjs: 0
   CDR:
     baseValue: 0
+    statObjs: 0
   RNG:
     baseValue: 0
+    statObjs: 0
+  Crit:
+    baseValue: 0
+    statObjs: 0
+  RV:
+    baseValue: 0
+    statObjs: 0
   timerMuerte: 0
 --- !u!114 &2989696626974224680
 MonoBehaviour:
@@ -471,6 +494,8 @@ MonoBehaviour:
   VEL: 0
   CDR: 0
   RNG: 0
+  Crit: 0
+  RV: 0
 --- !u!114 &2989696626974224683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +573,7 @@ MonoBehaviour:
   aim: {fileID: 2989696625504276773}
   aimer: {fileID: 2989696625504276772}
   Mspeed: 6
+  store: {fileID: 0}
 --- !u!114 &2989696626974224689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,3 +630,15 @@ MonoBehaviour:
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &3306102776226574786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2989696626974224679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa6e4f350b18744491c8fda1fa4ba0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
