@@ -100,6 +100,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -631607681263250670, guid: a927f0bd67ee65545affd33ac4101d4a,
+        type: 3}
+      propertyPath: RNG.baseValue
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6261982124464036363, guid: a927f0bd67ee65545affd33ac4101d4a,
         type: 3}
       propertyPath: m_RootOrder
@@ -123,7 +128,7 @@ PrefabInstance:
     - target: {fileID: 8507625335458390404, guid: a927f0bd67ee65545affd33ac4101d4a,
         type: 3}
       propertyPath: m_Name
-      value: EnemyMinion Variant
+      value: EnemyMinion Variant 2
       objectReference: {fileID: 0}
     - target: {fileID: 8507625335458390404, guid: a927f0bd67ee65545affd33ac4101d4a,
         type: 3}

@@ -213,7 +213,7 @@ public class MinionAI : MonoBehaviour
         frameCount = 0;
         distanceTimer = 0;
         needHelp = false;
-        attackRange = gameObject.GetComponent<CharacterStats>().AS.getStat();
+        attackRange = gameObject.GetComponent<CharacterStats>().RNG.getStat();
     }
 
     // Update is called once per frame
@@ -256,7 +256,6 @@ public class MinionAI : MonoBehaviour
                 break;
             case MinionState.COLLISION:
                     evadeCollider();
-
                 break;
             case MinionState.ATTACK:
                 if(target && !target.activeSelf){

@@ -2296,13 +2296,13 @@ PrefabInstance:
         type: 3}
       propertyPath: BigMinionPrefab
       value: 
-      objectReference: {fileID: 1859371136175574918, guid: 78ec3ddb32180f64db11871ecf1645dd,
+      objectReference: {fileID: 1062131614249999493, guid: 93a5fe2cf2f92b54db0ac9ee8c53fb74,
         type: 3}
     - target: {fileID: 8722521979373558298, guid: 51ca9a2c42bd6764e8757f8abd3aaecc,
         type: 3}
       propertyPath: BasicMinionPrefab
       value: 
-      objectReference: {fileID: 7693089560671969302, guid: a6163188060b96949af24e4865d27459,
+      objectReference: {fileID: 1062131614249999493, guid: 93a5fe2cf2f92b54db0ac9ee8c53fb74,
         type: 3}
     - target: {fileID: 8722521979373558298, guid: 51ca9a2c42bd6764e8757f8abd3aaecc,
         type: 3}
