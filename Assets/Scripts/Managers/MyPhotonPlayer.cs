@@ -19,8 +19,7 @@ public class MyPhotonPlayer : MonoBehaviour
 
     void Awake()
     {
-        store.GetComponent<Store>().Player = gameObject;
-        cameraplayer.GetComponent<LookAtPlayer>().player = gameObject; 
+    
     }
 
     // Start is called before the first frame update
@@ -52,6 +51,9 @@ public class MyPhotonPlayer : MonoBehaviour
                 gameObject.transform.SetParent(GameObject.Find("Player Dummy Enemy").transform);
             }
         }
+
+        store.GetComponent<Store>().Player = gameObject;
+        cameraplayer.GetComponent<LookAtPlayer>().player = gameObject; 
 
     }
 
