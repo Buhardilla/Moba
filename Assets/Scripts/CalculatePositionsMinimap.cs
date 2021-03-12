@@ -69,7 +69,7 @@ public class CalculatePositionsMinimap : MonoBehaviour
     {
         for (int i = 0; i < Allies.Length; i++)
         {
-            icons[i].GetComponent<RectTransform>().localPosition = WorldtoMapPosition(Allies[i].transform.position);
+            ChangePositionAndVisibility(i, Allies,i);
         }
         int length = Allies.Length;
 
