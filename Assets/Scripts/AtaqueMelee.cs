@@ -23,6 +23,8 @@ public class AtaqueMelee : MonoBehaviour
     List<GameObject> enemigosEnRango;
     GameObject masCercano;
 
+    public bool hasAttacked = false;
+
     private void Start()
     {
         enemigosEnRango = new List<GameObject>();
@@ -70,8 +72,13 @@ public class AtaqueMelee : MonoBehaviour
                     masCercano = enemigo;
                 }
             }
-            masCercano.GetComponent<CharacterStats>().RecibeDmg(5,this.gameObject);
-            enemigosEnRango.Clear();
+            if (!hasAttacked)
+            {
+                masCercano.GetComponent<CharacterStats>().RecibeDmg(5, this.gameObject);
+                enemigosEnRango.Clear();
+                hasAttacked = true;
+            }
+            
         }
 
 
@@ -79,6 +86,7 @@ public class AtaqueMelee : MonoBehaviour
         {
             if(gatDerPulsado == false)
             {
+                hasAttacked = false;
                 AtaqueBasico();
                 gatDerPulsado = true;
             }

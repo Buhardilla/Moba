@@ -64,7 +64,7 @@ public class Controller : MonoBehaviour
 
     void Auto()
     {
-        Debug.Log("Se realiza un ataque basico.");                                                                  //Función habilidades
+        //Debug.Log("Se realiza un ataque basico.");                                                                  //Función habilidades
     }
 
     void storeUp(){
