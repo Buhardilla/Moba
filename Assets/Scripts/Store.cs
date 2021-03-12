@@ -98,6 +98,7 @@ public class Store : MonoBehaviour
                         playerStats.IdObjs[i] = posAr;
                         playerStats.money += discount;
                         playerStats.money -= objsComp.objs[posAr].Price;
+                        FindObjectOfType<AudioManager>().Play("buy_sound");
                         break;
                     }
                 }
@@ -231,6 +232,8 @@ public class Store : MonoBehaviour
                 break;
         }
 
+        FindObjectOfType<AudioManager>().Play("mouse_hover_sound");
+
         checkLegalPositions(changeY);
         updateSprite();
     }
@@ -251,8 +254,8 @@ public class Store : MonoBehaviour
         if(posInv < 0) posInv = inventory.Count - 1;
         if(posInv >= inventory.Count) posInv = 0;
 
+        FindObjectOfType<AudioManager>().Play("mouse_hover_sound");
         updateSprite();
-
     }
 
     void updateStore(){

@@ -23,7 +23,7 @@ public class Disparar : MonoBehaviour
     {
         if (target) {
             temporizadordisparo += Time.deltaTime;
-            if (temporizadordisparo >= cadencia)
+            if (temporizadordisparo >= 1/(cadencia / 10))
             {
                 temporizadordisparo = 0.0f;
                 spawnproyectil();
