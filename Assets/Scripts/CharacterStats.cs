@@ -228,6 +228,7 @@ public class CharacterStats : MonoBehaviour
         else{
             print("soy un jugador y me muero");
             if(Overlay){
+                
                 print(gameObject.name + "ha muerto");
                 timerMuerte = 5;
                 this.GetComponent<AtaqueMelee>().enabled = false;

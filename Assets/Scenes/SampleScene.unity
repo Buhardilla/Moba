@@ -614,35 +614,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4557761022227445848}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &198594094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 198594079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c146ee30e970a64ebec7dc254f1b2b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown:
-  - 5
-  - 3
-  - 2
-  manaCost: 0
-  currentCooldown: 0
-  damage: 50
-  dmgScaling: 0
-  range: 10
-  level: 0
-  dmgType: 
-  adRatio: 0
-  apRatio: 0
-  cd:
-  - 5
-  - 3
-  - 2
 --- !u!1001 &235010139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6696,7 +6667,7 @@ PrefabInstance:
     - target: {fileID: 2989696626974224688, guid: 2c3f48c58e8586941be083cad21ce694,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14
+      value: -13.33
       objectReference: {fileID: 0}
     - target: {fileID: 2989696626974224688, guid: 2c3f48c58e8586941be083cad21ce694,
         type: 3}
@@ -6706,7 +6677,7 @@ PrefabInstance:
     - target: {fileID: 2989696626974224688, guid: 2c3f48c58e8586941be083cad21ce694,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.7
+      value: -10.49
       objectReference: {fileID: 0}
     - target: {fileID: 2989696626974224688, guid: 2c3f48c58e8586941be083cad21ce694,
         type: 3}
@@ -6741,6 +6712,31 @@ PrefabInstance:
     - target: {fileID: 2989696626974224688, guid: 2c3f48c58e8586941be083cad21ce694,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874409414692574084, guid: 2c3f48c58e8586941be083cad21ce694,
+        type: 3}
+      propertyPath: range
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874409414692574084, guid: 2c3f48c58e8586941be083cad21ce694,
+        type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874409414692574084, guid: 2c3f48c58e8586941be083cad21ce694,
+        type: 3}
+      propertyPath: manaCost
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874409414692574084, guid: 2c3f48c58e8586941be083cad21ce694,
+        type: 3}
+      propertyPath: dmgScaling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874409414692574084, guid: 2c3f48c58e8586941be083cad21ce694,
+        type: 3}
+      propertyPath: currentCooldown
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

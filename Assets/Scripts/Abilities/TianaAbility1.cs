@@ -8,10 +8,12 @@ public class TianaAbility1 : Ability
     
 
     public float[] cd = {5f, 3f, 2f };
+    public Animator animate;
     public override void CastAbility()
     {
         if (currentCooldown <= 0)
         {
+            animate.SetTrigger("Ability 1");
             Collider[] enemiesHit;
             this.UpdateCooldown(this.GetCurrentCooldown());
             enemiesHit = Physics.OverlapSphere(this.transform.position, this.range);

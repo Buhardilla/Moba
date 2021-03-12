@@ -11,7 +11,7 @@ public class AtaqueMelee : MonoBehaviour
 
     private bool gatDerPulsado = false;
     private bool gatIzqPulsado = false;
-    public float cooldownBasico = 2f;
+    public float cooldownBasico = 30f;
     public float cooldownHab1;
     public float cooldownHab2;
     public float cooldownHab3;
@@ -24,7 +24,8 @@ public class AtaqueMelee : MonoBehaviour
     GameObject masCercano;
 
     public bool hasAttacked = false;
-
+    public Animator animate;
+    public bool move;
     private void Start()
     {
         enemigosEnRango = new List<GameObject>();
@@ -37,12 +38,6 @@ public class AtaqueMelee : MonoBehaviour
 
     void AtaqueBasico()
     {
-        //Pendiente hacer animación de ataque
-        //Debug.Log("ataca");
-
-        //Para el movimiento del personaje
-        
-
         //Activa el collider del ataque
         hitboxMelee.enabled = true;
         timerBasico = activarTimer;
@@ -84,30 +79,17 @@ public class AtaqueMelee : MonoBehaviour
 
         if(Input.GetAxisRaw("GatilloDer") != 0 && cooldownBasico <= 0)
         {
+            print("attack");
             if(gatDerPulsado == false)
             {
                 hasAttacked = false;
+
+                if(animate){
+                    animate.SetTrigger("Attack");
+                }
                 AtaqueBasico();
                 gatDerPulsado = true;
             }
-        }
-        if(Input.GetAxisRaw("GatilloDer") == 0)
-        {
-            gatDerPulsado = false;
-        }
-
-        if(Input.GetAxisRaw("GatilloIzq") != 0)
-        {
-            if(gatIzqPulsado == false)
-            {
-                //Gatillo izquierdo hace cosas
-                Debug.Log("Gatillo izquierdo pulsado");
-                gatIzqPulsado = true;
-            }
-        }
-        if(Input.GetAxisRaw("GatilloIzq") == 0)
-        {
-            gatIzqPulsado = false;
         }
 
         if(cooldownBasico > 0)
@@ -121,6 +103,10 @@ public class AtaqueMelee : MonoBehaviour
             if(timerBasico <= 0)
             {
                 hitboxMelee.enabled = false;
+            }
+            if(move){
+                hitboxMelee.enabled = false;
+                move = false;
             }
         }
     }
