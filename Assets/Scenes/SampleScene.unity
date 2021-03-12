@@ -6822,6 +6822,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tienda
       objectReference: {fileID: 0}
+    - target: {fileID: 3921182729647388243, guid: d26352aee212a754c8db939b557bb98b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3921182729647388246, guid: d26352aee212a754c8db939b557bb98b,
         type: 3}
       propertyPath: m_Enabled
@@ -6935,6 +6940,21 @@ PrefabInstance:
     - target: {fileID: 3921182729647388247, guid: d26352aee212a754c8db939b557bb98b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440267562889923332, guid: d26352aee212a754c8db939b557bb98b,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440267562889923332, guid: d26352aee212a754c8db939b557bb98b,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440267562889923332, guid: d26352aee212a754c8db939b557bb98b,
+        type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
