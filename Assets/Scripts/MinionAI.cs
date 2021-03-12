@@ -260,7 +260,7 @@ public class MinionAI : MonoBehaviour
             case MinionState.ATTACK:
                 if(target && (GetComponent<CharacterStats>().timerMuerte > 0 || !target.activeSelf)){
                     target = null;
-                    GetComponent<Disparar>().setTarget(null);
+                    if(GetComponent<Disparar>()) GetComponent<Disparar>().setTarget(null);
                     state = MinionState.MOVING;
                 }
                 else{
