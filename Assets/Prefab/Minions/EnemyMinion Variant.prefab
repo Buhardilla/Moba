@@ -9,6 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -631607681263250670, guid: a927f0bd67ee65545affd33ac4101d4a,
         type: 3}
+      propertyPath: AD.baseValue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -631607681263250670, guid: a927f0bd67ee65545affd33ac4101d4a,
+        type: 3}
       propertyPath: RNG.baseValue
       value: 4
       objectReference: {fileID: 0}

@@ -258,16 +258,20 @@ public class MinionAI : MonoBehaviour
                     evadeCollider();
                 break;
             case MinionState.ATTACK:
-                if(target && !target.activeSelf){
+                if(target && (GetComponent<CharacterStats>().timerMuerte > 0 || !target.activeSelf)){
+                    target = null;
+                    GetComponent<Disparar>().setTarget(null);
                     state = MinionState.MOVING;
                 }
                 else{
-                    if(GetComponent<Disparar>()){
-                        GetComponent<Disparar>().setTarget(target);
-                        GetComponent<Disparar>().Shoot();
-                    }
-                    else{
-                        GetComponent<MeleeAttack>().Attack(target);
+                    if(target){
+                        if(GetComponent<Disparar>() && target.activeSelf){
+                            GetComponent<Disparar>().setTarget(target);
+                            GetComponent<Disparar>().Shoot();
+                        }
+                        else{
+                            GetComponent<MeleeAttack>().Attack(target);
+                        }
                     }
                 }
             break;

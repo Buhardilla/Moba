@@ -489,6 +489,21 @@ PrefabInstance:
       objectReference: {fileID: 386291232}
     - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
         type: 3}
+      propertyPath: AD.baseValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
+        type: 3}
+      propertyPath: AS.baseValue
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
+        type: 3}
+      propertyPath: health.baseValue
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
+        type: 3}
       propertyPath: previoustowers.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1615,6 +1630,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5914965268795263936, guid: e1f0d2215f476ca429258f74ac006fad,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7604058310843357731, guid: 6786d0d456dfbee49a265ec2b1281735,
         type: 3}
       propertyPath: m_FillCenter
@@ -2068,6 +2088,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
         type: 3}
+      propertyPath: AS.baseValue
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
+        type: 3}
+      propertyPath: health.baseValue
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
+        type: 3}
       propertyPath: previoustowers.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -2284,25 +2314,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8722521979373558298, guid: 51ca9a2c42bd6764e8757f8abd3aaecc,
         type: 3}
+      propertyPath: game
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722521979373558298, guid: 51ca9a2c42bd6764e8757f8abd3aaecc,
+        type: 3}
       propertyPath: roty
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8722521979373558298, guid: 51ca9a2c42bd6764e8757f8abd3aaecc,
         type: 3}
+      propertyPath: MiniMap
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722521979373558298, guid: 51ca9a2c42bd6764e8757f8abd3aaecc,
+        type: 3}
+      propertyPath: delayOleadas
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722521979373558298, guid: 51ca9a2c42bd6764e8757f8abd3aaecc,
+        type: 3}
       propertyPath: numerominions
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8722521979373558298, guid: 51ca9a2c42bd6764e8757f8abd3aaecc,
         type: 3}
       propertyPath: BigMinionPrefab
       value: 
-      objectReference: {fileID: 1062131614249999493, guid: 93a5fe2cf2f92b54db0ac9ee8c53fb74,
+      objectReference: {fileID: 1859371136175574918, guid: 78ec3ddb32180f64db11871ecf1645dd,
         type: 3}
     - target: {fileID: 8722521979373558298, guid: 51ca9a2c42bd6764e8757f8abd3aaecc,
         type: 3}
       propertyPath: BasicMinionPrefab
       value: 
-      objectReference: {fileID: 1062131614249999493, guid: 93a5fe2cf2f92b54db0ac9ee8c53fb74,
+      objectReference: {fileID: 7693089560671969302, guid: a6163188060b96949af24e4865d27459,
         type: 3}
     - target: {fileID: 8722521979373558298, guid: 51ca9a2c42bd6764e8757f8abd3aaecc,
         type: 3}
@@ -2541,6 +2586,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
         type: 3}
+      propertyPath: AS.baseValue
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
+        type: 3}
+      propertyPath: health.baseValue
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
+        type: 3}
       propertyPath: previoustowers.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -2726,6 +2781,16 @@ PrefabInstance:
         type: 3}
       propertyPath: AD.baseValue
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
+        type: 3}
+      propertyPath: AS.baseValue
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
+        type: 3}
+      propertyPath: health.baseValue
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
         type: 3}
@@ -3352,7 +3417,7 @@ PrefabInstance:
     - target: {fileID: 7033215945101953933, guid: 4bbba70005beb504e83d08854861ab8b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: 8.950001
       objectReference: {fileID: 0}
     - target: {fileID: 7033215945101953933, guid: 4bbba70005beb504e83d08854861ab8b,
         type: 3}
@@ -4309,6 +4374,21 @@ PrefabInstance:
       objectReference: {fileID: 386291232}
     - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
         type: 3}
+      propertyPath: AD.baseValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
+        type: 3}
+      propertyPath: AS.baseValue
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
+        type: 3}
+      propertyPath: health.baseValue
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
+        type: 3}
       propertyPath: previoustowers.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -4443,7 +4523,7 @@ PrefabInstance:
     - target: {fileID: 7033215945101953933, guid: 4bbba70005beb504e83d08854861ab8b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: 8.95
       objectReference: {fileID: 0}
     - target: {fileID: 7033215945101953933, guid: 4bbba70005beb504e83d08854861ab8b,
         type: 3}
@@ -4568,6 +4648,16 @@ PrefabInstance:
         type: 3}
       propertyPath: AD.baseValue
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
+        type: 3}
+      propertyPath: AS.baseValue
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
+        type: 3}
+      propertyPath: health.baseValue
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
         type: 3}
@@ -6014,6 +6104,21 @@ PrefabInstance:
       propertyPath: Objs
       value: 
       objectReference: {fileID: 386291232}
+    - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
+        type: 3}
+      propertyPath: AD.baseValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
+        type: 3}
+      propertyPath: AS.baseValue
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
+        type: 3}
+      propertyPath: health.baseValue
+      value: 1500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d3232f8e2cecb5418f988a5011c6cd5, type: 3}
 --- !u!1 &2034003755
@@ -7041,6 +7146,21 @@ PrefabInstance:
       propertyPath: Objs
       value: 
       objectReference: {fileID: 386291232}
+    - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
+        type: 3}
+      propertyPath: AD.baseValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
+        type: 3}
+      propertyPath: AS.baseValue
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
+        type: 3}
+      propertyPath: health.baseValue
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 8167689079870745386, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
         type: 3}
       propertyPath: previoustowers.Array.size
