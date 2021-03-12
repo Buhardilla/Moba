@@ -125,7 +125,6 @@ public class CharacterStats : MonoBehaviour
                 ++count;
             }
         }
-        print(count);
         return count;
     }
 
@@ -140,7 +139,7 @@ public class CharacterStats : MonoBehaviour
     {
         if(gameObject.tag.Contains("Minion")){
             gameObject.SetActive(false);
-            print("se ha muerto una torre");
+            print("se ha muerto un minion");
         }
         else if(gameObject.tag.Contains("Tower")){
             gameObject.SetActive(false);
@@ -168,11 +167,16 @@ public class CharacterStats : MonoBehaviour
                 enemy.GetComponent<CharacterStats>().experience += expreward;
             }
         }
-         timerMuerte = 5;
+        
+        if(Overlay){
+            print(gameObject.name + "ha muerto");
+            timerMuerte = 5;
             this.GetComponent<AtaqueMelee>().enabled = false;
             this.GetComponent<Movimiento>().enabled = false;
             this.gameObject.transform.localPosition = gameObject.transform.position;
-            Overlay.SetActive(true);
+            //Overlay.SetActive(true);
             timerMuerte = 2.5f;
+        }
+        
     }
 }

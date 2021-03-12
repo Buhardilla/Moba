@@ -32,6 +32,8 @@ public class CalculatePositionsMinimap : MonoBehaviour
         EnemyTowers = GameObject.FindGameObjectsWithTag("EnemyTower");
         AllyNexus  = GameObject.FindGameObjectsWithTag("AllyNexus");
         EnemyNexus = GameObject.FindGameObjectsWithTag("EnemyNexus");
+
+        print(EnemyTowers.Length);
         icons = new List<GameObject>();
 
         MapWidth = BottomRight.transform.position.x - TopLeft.transform.position.x;

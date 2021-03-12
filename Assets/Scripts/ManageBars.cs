@@ -47,9 +47,9 @@ public class ManageBars : MonoBehaviour
         manaBar.fillAmount = currentMana / manaMax;
         //borrar desde aqui para abajo si error
         //Update exp value
-        currentExp = chStats.currentExp;
-        currentExp = Mathf.Clamp(currentExp, 0, expMax);
-        expBar.fillAmount = currentExp / expMax;
+        //currentExp = chStats.currentExp;
+        //currentExp = Mathf.Clamp(currentExp, 0, expMax);
+        //expBar.fillAmount = currentExp / expMax;
 
         //Update level value
         levelCount.text = chStats.level.ToString();
