@@ -11,6 +11,12 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     [SerializeField]
     private TextMeshProUGUI _roomName;
 
+    private RoomsCanvases _roomsCanvases;
+    public void FirstInitialize(RoomsCanvases canvases)
+    {
+        _roomsCanvases = canvases;
+    }
+
     public void OnClick_CreateRoom()
     {
         if(!PhotonNetwork.IsConnected)
@@ -24,6 +30,9 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     {
         Debug.Log("Created room succesfully", this);
+        _roomsCanvases.CurrentRoomMenu.Show();
+        GameObject tempObject2 =  GameObject.FindGameObjectWithTag("OnlineMenu");
+        tempObject2.transform.position = new Vector3(1500, 0, 0);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
