@@ -5759,6 +5759,11 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1597148513}
+    - target: {fileID: 3921182729647388232, guid: d26352aee212a754c8db939b557bb98b,
+        type: 3}
+      propertyPath: tienda
+      value: 
+      objectReference: {fileID: 1693813352}
     - target: {fileID: 3921182729647388243, guid: d26352aee212a754c8db939b557bb98b,
         type: 3}
       propertyPath: m_Name
