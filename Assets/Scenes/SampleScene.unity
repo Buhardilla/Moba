@@ -591,6 +591,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2989696626974224676, guid: 2c3f48c58e8586941be083cad21ce694,
+        type: 3}
+      propertyPath: store
+      value: 
+      objectReference: {fileID: 1693813352}
     - target: {fileID: 2989696626974224677, guid: 2c3f48c58e8586941be083cad21ce694,
         type: 3}
       propertyPath: expBar
@@ -1986,6 +1991,11 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2989696626974224676, guid: 2c3f48c58e8586941be083cad21ce694,
+        type: 3}
+      propertyPath: store
+      value: 
+      objectReference: {fileID: 1693813352}
     - target: {fileID: 2989696626974224677, guid: 2c3f48c58e8586941be083cad21ce694,
         type: 3}
       propertyPath: expBar
@@ -5861,6 +5871,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d26352aee212a754c8db939b557bb98b, type: 3}
+--- !u!1 &1693813352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3921182729647388243, guid: d26352aee212a754c8db939b557bb98b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1693813351}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1848134541 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 778945664517894178, guid: 7d3232f8e2cecb5418f988a5011c6cd5,
