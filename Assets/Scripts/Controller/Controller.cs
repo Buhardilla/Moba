@@ -17,7 +17,8 @@ public class Controller : MonoBehaviour
     public float Mspeed = 6.0f;
 
     public GameObject store;
-
+    private Store storeStore;
+    private float timer;
 
 
     // inicializa controles
@@ -29,22 +30,27 @@ public class Controller : MonoBehaviour
         controls.Gameplay.Ab1.started += ctx => Auto();
         controls.Gameplay.Ab2.started += ctx => Auto();
         controls.Gameplay.Ab3.started += ctx => Auto();
-        controls.Gameplay.fb1x.started += ctx => Auto();
-        controls.Gameplay.fb2sq.started += ctx => Auto();
-        controls.Gameplay.fb3ci.started += ctx => ToggleStore();
+        controls.Gameplay.fb2sq.started += ctx => ToggleStore();
         controls.Gameplay.fb4tr.started += ctx => Auto();
         if(store.GetComponent<Canvas>().enabled){
+            controls.Gameplay.fb3ci.started += ctx => sell(); 
+            controls.Gameplay.fb1x.started += ctx => buy();
+
             controls.Gameplay.DPup.started += ctx => storeUp();
             controls.Gameplay.DPleft.started += ctx => storeLeft();
             controls.Gameplay.DPright.started += ctx => storeRight();
             controls.Gameplay.DPdown.started += ctx => storeDown();
         }
         else{
+            controls.Gameplay.fb3ci.started += ctx => Auto(); 
+            controls.Gameplay.fb1x.started += ctx => Auto();
+
             controls.Gameplay.DPup.started += ctx => Auto();
             controls.Gameplay.DPleft.started += ctx => Auto();
             controls.Gameplay.DPright.started += ctx => Auto();
             controls.Gameplay.DPdown.started += ctx => Auto();
         }
+
         controls.Gameplay.Start.started += ctx => Auto();
 
         controls.Gameplay.Moving.performed += ctx => move = ctx.ReadValue<Vector2>();
@@ -52,6 +58,8 @@ public class Controller : MonoBehaviour
 
         controls.Gameplay.Aiming.performed += ctx => rotate = ctx.ReadValue<Vector2>();
         controls.Gameplay.Aiming.canceled += ctx => rotate = Vector2.zero;
+
+        storeStore = store.GetComponent<Store>();
     }
 
     void Auto()
@@ -60,22 +68,28 @@ public class Controller : MonoBehaviour
     }
 
     void storeUp(){
-        store.GetComponent<Store>().moveSelection(Store.move.up);
+        storeStore.moveSelection(Store.move.up);
     }
     void storeRight(){
-        store.GetComponent<Store>().moveSelection(Store.move.right);
+       storeStore.moveSelection(Store.move.right);
     }
     void storeLeft(){
-        store.GetComponent<Store>().moveSelection(Store.move.left);
+       storeStore.moveSelection(Store.move.left);
     }
     void storeDown(){
-        store.GetComponent<Store>().moveSelection(Store.move.down);
+        storeStore.moveSelection(Store.move.down);
+    }
+
+    void buy(){
+        storeStore.buy();
+    }
+
+    void sell(){
+        storeStore.sell();
     }
 
     void ToggleStore(){
-        if(Vector3.Distance(GameObject.FindGameObjectWithTag(gameObject.tag+"Nexus").transform.position, gameObject.transform.position) < 20){
-            store.GetComponent<Canvas>().enabled = !store.GetComponent<Canvas>().enabled;
-        }
+        store.GetComponent<Canvas>().enabled = !store.GetComponent<Canvas>().enabled;
     }
     //para hacer invisible aim
     void Start()
@@ -94,13 +108,25 @@ public class Controller : MonoBehaviour
         //transform.Rotate(r, Space.World);
 
         // para hacer invisible aim
-        if(rotate != Vector2.zero)
-        {
-            aimer.GetComponent<Renderer>().enabled = true;                                                          //aim visible
-            aim.transform.eulerAngles = new Vector3(0, Mathf.Atan2(rotate.x, rotate.y) * 180 / Mathf.PI, 0);       //rotacion aim
-        }else
-            aimer.GetComponent<Renderer>().enabled = false;                                                         //aim invisible
-        
+        if(!store.GetComponent<Canvas>().enabled){
+            if(rotate != Vector2.zero)
+            {
+                aimer.GetComponent<Renderer>().enabled = true;                                                          //aim visible
+                aim.transform.eulerAngles = new Vector3(0, Mathf.Atan2(rotate.x, rotate.y) * 180 / Mathf.PI, 0);       //rotacion aim
+            }else
+                aimer.GetComponent<Renderer>().enabled = false;                                                         //aim invisible
+        }
+        else{
+            timer -= Time.deltaTime;
+            if(rotate.x < -0.8 && timer <= 0){
+                timer = 0.5f;
+                storeStore.moveInv(Store.move.left);
+            }
+            else if(rotate.x > 0.8 && timer <= 0){
+                timer = 0.5f;
+                storeStore.moveInv(Store.move.right);
+            }
+        }
         //aim.transform.eulerAngles = new Vector3(0, -Mathf.Atan2(rotate.y, rotate.x) * 180 / Mathf.PI, 0);
     }
 

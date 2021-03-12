@@ -5722,6 +5722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4386f5fc1632d3b4d8243c23af3cdcac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tienda: {fileID: 0}
   storeSizeY: 6
   buttons:
   - {fileID: 3921182729652700058}
@@ -5758,10 +5759,10 @@ MonoBehaviour:
   - {fileID: 3921182730072418952}
   - {fileID: 3921182730059915875}
   inventory:
-  - {fileID: 3921182729436764339}
-  - {fileID: 3921182728839075042}
-  - {fileID: 3921182729341235009}
-  - {fileID: 3921182730333751661}
+  - {fileID: 3921182728842382437}
+  - {fileID: 3921182729361828098}
+  - {fileID: 3921182729493001113}
+  - {fileID: 3921182728820533681}
   iconosObj:
   - {fileID: 3921182728276025132}
   - {fileID: 3921182730308057282}
@@ -5816,6 +5817,7 @@ MonoBehaviour:
   - {fileID: 3921182728927153716}
   Player: {fileID: 0}
   Objs: {fileID: 0}
+  Alerta: {fileID: 0}
 --- !u!1 &3921182729652700058
 GameObject:
   m_ObjectHideFlags: 0

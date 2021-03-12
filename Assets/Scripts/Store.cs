@@ -39,6 +39,9 @@ public class Store : MonoBehaviour
 
     public GameObject Player;
     public GameObject Objs;
+
+    public GameObject Alerta;
+    private bool ableToBuy;
     // Start is called before the first frame update
 
     int getPositionArray(){
@@ -51,14 +54,6 @@ public class Store : MonoBehaviour
     }
 
     void checkLegalPositions(bool changeY){
-        /*  por que c****** no es esto una matriz cuadrada
-            ahora me toca hacer calculitos >:(
-        posStore.x = (posStore.x < 0)           ? storeSize.x - 1   : posStore.x; 
-        posStore.x = (posStore.x >= storeSize.x) ? 0                 : posStore.x; 
-        posStore.y = (posStore.y < 0)           ? storeSize.y - 1   : posStore.y; 
-        posStore.y = (posStore.y >= storeSize.y) ? 0                 : posStore.y; 
-        */
-
         if(posStore.y < 0)
             posStore.y = storeSizeY-1;
         if(posStore.y >= storeSizeY)
@@ -74,51 +69,54 @@ public class Store : MonoBehaviour
 
     }
 
-    void buy(){
-        
-        CharacterStats playerStats = Player.GetComponent<CharacterStats>();
-        Objects objsComp = Objs.GetComponent<Objects>();
-        int posAr = getPositionArray();
-        int obj1, obj2;
-        obj1 = obj2 = -1;
-        int discount = 0;
-        for (int i = 0; i < playerStats.IdObjs.Length; i++)
-        {
-            if(obj1 == -1 && objsComp.objs[posAr].ob1 != -1 && playerStats.IdObjs[i] == objsComp.objs[posAr].ob1){
-                obj1 = i;
-                discount += objsComp.objs[objsComp.objs[posAr].ob1].Price;
-            } 
-            else if(obj2 == -1 &&objsComp.objs[posAr].ob2 != -1 && playerStats.IdObjs[i] == objsComp.objs[posAr].ob2){
-                obj2 = i;
-                discount += objsComp.objs[objsComp.objs[posAr].ob2].Price;
-            }
-        }
-        
-        if(playerStats.money + discount >= objsComp.objs[posAr].Price){
-            if(obj1 != -1) playerStats.IdObjs[obj1] = -1;
-            if(obj2 != -1) playerStats.IdObjs[obj2] = -1;
-            for (int i = 0; i < 4; i++)
+    public void buy(){
+        if(ableToBuy){
+            CharacterStats playerStats = Player.GetComponent<CharacterStats>();
+            Objects objsComp = Objs.GetComponent<Objects>();
+            int posAr = getPositionArray();
+            int obj1, obj2;
+            obj1 = obj2 = -1;
+            int discount = 0;
+            for (int i = 0; i < playerStats.IdObjs.Length; i++)
             {
-                if(playerStats.IdObjs[i] == -1){
-                    playerStats.IdObjs[i] = posAr;
-                    playerStats.money += discount;
-                    playerStats.money -= objsComp.objs[posAr].Price;
-                    break;
+                if(obj1 == -1 && objsComp.objs[posAr].ob1 != -1 && playerStats.IdObjs[i] == objsComp.objs[posAr].ob1){
+                    obj1 = i;
+                    discount += objsComp.objs[objsComp.objs[posAr].ob1].Price;
+                } 
+                else if(obj2 == -1 &&objsComp.objs[posAr].ob2 != -1 && playerStats.IdObjs[i] == objsComp.objs[posAr].ob2){
+                    obj2 = i;
+                    discount += objsComp.objs[objsComp.objs[posAr].ob2].Price;
                 }
             }
+            
+            if(playerStats.money + discount >= objsComp.objs[posAr].Price){
+                if(obj1 != -1) playerStats.IdObjs[obj1] = -1;
+                if(obj2 != -1) playerStats.IdObjs[obj2] = -1;
+                for (int i = 0; i < 4; i++)
+                {
+                    if(playerStats.IdObjs[i] == -1){
+                        playerStats.IdObjs[i] = posAr;
+                        playerStats.money += discount;
+                        playerStats.money -= objsComp.objs[posAr].Price;
+                        break;
+                    }
+                }
+            }
+            updateSprite();
         }
-        updateSprite();
     }
 
-    void sell(){
-        CharacterStats playerStats = Player.GetComponent<CharacterStats>();
-        Objects objsComp = Objs.GetComponent<Objects>();
+    public void sell(){
+        if(ableToBuy){
+            CharacterStats playerStats = Player.GetComponent<CharacterStats>();
+            Objects objsComp = Objs.GetComponent<Objects>();
 
-        if(playerStats.IdObjs[posInv] != -1 ){
-            playerStats.money += objsComp.objs[playerStats.IdObjs[posInv]].Price * 2 / 3;
-            playerStats.IdObjs[posInv] = -1;
+            if(playerStats.IdObjs[posInv] != -1 ){
+                playerStats.money += objsComp.objs[playerStats.IdObjs[posInv]].Price * 2 / 3;
+                playerStats.IdObjs[posInv] = -1;
+            }
+            updateSprite();
         }
-        updateSprite();
     }
 
     void updateSprite(){ // Y bueno, todo ...
@@ -237,7 +235,7 @@ public class Store : MonoBehaviour
         updateSprite();
     }
 
-    void moveInv(move direction){
+    public void moveInv(move direction){
         
         switch (direction)
         {
@@ -264,15 +262,24 @@ public class Store : MonoBehaviour
         }
 
         if(this.enabled){
+            if(Vector3.Distance(GameObject.FindGameObjectWithTag(Player.tag+"Nexus").transform.position, Player.transform.position) < 20){
+                Alerta.SetActive(false);
+                ableToBuy = true;
+            }
+            else{
+                Alerta.SetActive(true);
+                ableToBuy = false;
+            }
+
             if(Input.GetKeyDown("right"))   moveSelection(move.right);
             if(Input.GetKeyDown("left"))    moveSelection(move.left);
             if(Input.GetKeyDown("up"))      moveSelection(move.up);
             if(Input.GetKeyDown("down"))    moveSelection(move.down);
             if(Input.GetKeyDown(KeyCode.P))    moveInv(move.right);
             if(Input.GetKeyDown(KeyCode.O))    moveInv(move.left);
-
             if(Input.GetKeyDown(KeyCode.Return))   buy();
             if(Input.GetKeyDown(KeyCode.Backspace))  sell();
+
         }
         
     }
