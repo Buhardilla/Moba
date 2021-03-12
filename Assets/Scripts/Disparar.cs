@@ -10,7 +10,7 @@ public class Disparar : MonoBehaviour
     List<GameObject> misSpawns = new List<GameObject>();
     public float temporizadordisparo = 0.0f;
     public Vector3 origen;
-    public int bulletcount;
+    private int bulletcount;
     private float damage;
 
     void Start()
@@ -28,7 +28,6 @@ public class Disparar : MonoBehaviour
                 temporizadordisparo = 0.0f;
                 spawnproyectil();
             }
-
         }
     }
 

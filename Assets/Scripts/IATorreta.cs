@@ -43,7 +43,13 @@ public class IATorreta : MonoBehaviour
                 TargetObject(torreta.target);
                 break;
         }
-        torreta.Shoot();
+        if(torreta.target && torreta.target.GetComponent<CharacterStats>().currentHealth > 0){
+            torreta.Shoot();
+        }
+        else
+        {
+            torreta.target = null;
+        }
     }
 
     void TargetNearest(GameObject[] array) {
@@ -52,17 +58,19 @@ public class IATorreta : MonoBehaviour
         float closestDist = 0;
         float dist = 0;
         for (int i = 0; i < array.Length; i++) {
-            dist = (array[i].transform.position - transform.position).magnitude;
-            if(curTarget){
-                if (dist < closestDist) {
+            if(array[i].GetComponent<CharacterStats>().currentHealth > 0){
+                dist = (array[i].transform.position - transform.position).magnitude;
+                if(curTarget){
+                    if (dist < closestDist) {
+                        curTarget = array[i];
+                        closestDist = dist;
+                    }
+
+                }
+                else{
                     curTarget = array[i];
                     closestDist = dist;
                 }
-
-            }
-            else{
-                curTarget = array[i];
-                closestDist = dist;
             }
            
         }

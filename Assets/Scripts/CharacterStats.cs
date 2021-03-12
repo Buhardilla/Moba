@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class CharacterStats : MonoBehaviour
 {
     public GameObject[] previoustowers;
     public bool hidden = false;
     public int bushes = -1;
-    public GameObject Minimapicon;
+    public Sprite Minimapicon;
+    public GameObject Portait;
+
+    public GameObject Overlay;
 
     // Cosas de los objetos
     public int[] IdObjs;
@@ -16,8 +19,9 @@ public class CharacterStats : MonoBehaviour
     public int currentMana { get; private set; }
     public int expMax;
 
-    public Stat level;
+    public int level;
     public Stat exp;
+    public int currentExp{get; private set;}
 
     public Stat health;
     public Stat regenHealth;
@@ -111,29 +115,49 @@ public class CharacterStats : MonoBehaviour
         else{
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
         }
+
+        if(Portait){
+            Portait.GetComponent<Image>().sprite = Minimapicon;
+        }
     }
     void Update()
     {
-        if(timerMuerte > 0)
+        if (timerMuerte > 0)
         {
             timerMuerte -= Time.deltaTime;
             if (timerMuerte <= 0)
             {
-                this.GetComponent<AtaqueMelee>().enabled = true;
-                //this.GetComponent<Movimiento>().enabled = true;
-                this.GetComponent<Transform>().position = initialPos;
+                print("revivir");
+                this.GetComponent<MeshRenderer>().enabled = true;
+                if (Overlay)
+                {
+                    Overlay.SetActive(false);
+                    this.GetComponent<AtaqueMelee>().enabled = true;
+                    this.GetComponent<Transform>().position = initialPos;
+                    currentHealth = health.getStat();
+                    currentMana = mana.getStat();
+                }
+            }
+            else
+            {
+                print("Sigo muerto");
+                if (Overlay)
+                {
+                    //int death = timermuerte * 10;
+                    //float death2 
+                    Overlay.GetComponentsInChildren<UnityEngine.UI.Text>()[2].text = ((int)timerMuerte).ToString();
+                }
             }
         }
-
-        if(Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             currentHealth -= 10;
             print("me dolio wey");
             currentMana -= 5;
+            currentExp += 30;
+            detectLevelUp();
         }
-
         updateStats();
-        
     }
     public void RecibeDmg(float dmg, GameObject other)
     {
@@ -142,7 +166,7 @@ public class CharacterStats : MonoBehaviour
 
             currentHealth -= (int) dmg;
 
-            if(currentHealth <= 0)
+            if(currentHealth <= 0 && timerMuerte == 0)
             {
                 Morir(other);
             }
@@ -157,15 +181,21 @@ public class CharacterStats : MonoBehaviour
                 ++count;
             }
         }
-        print(count);
         return count;
+    }
+
+    public void detectLevelUp(){
+        if(currentExp>=exp.getStat()){
+            ++level;
+            currentExp-=exp.getStat();
+        }
     }
 
     public virtual void Morir(GameObject other)
     {
         if(gameObject.tag.Contains("Minion")){
             gameObject.SetActive(false);
-            print("se ha muerto una torre");
+            print("se ha muerto un minion");
         }
         else if(gameObject.tag.Contains("Tower")){
             gameObject.SetActive(false);
@@ -176,9 +206,17 @@ public class CharacterStats : MonoBehaviour
         }
         else{
             print("soy un jugador y me muero");
+            if(Overlay){
+                print(gameObject.name + "ha muerto");
+                timerMuerte = 5;
+                this.GetComponent<AtaqueMelee>().enabled = false;
+                this.gameObject.transform.localPosition = gameObject.transform.position;
+                Overlay.SetActive(true);
+                timerMuerte = 2.5f;
+            }
         }
         //TODO aquí habría que llamar al servidor
-        giveReward(other);
+        giveReward(other); // Toma galletita
     }
 
     public void giveReward(GameObject other){
@@ -186,12 +224,22 @@ public class CharacterStats : MonoBehaviour
         {
             if(enemy == other){
                 enemy.GetComponent<CharacterStats>().money += killreward;
-                enemy.GetComponent<CharacterStats>().experience += expreward;
+                enemy.GetComponent<CharacterStats>().experience += expreward; //aqui y abajo estaba experience y current exp, creo que es experience
             }
             else if(Vector3.Distance(enemy.transform.position,transform.position) < rewardrange){
                 enemy.GetComponent<CharacterStats>().money += killreward / 2;
                 enemy.GetComponent<CharacterStats>().experience += expreward;
             }
         }
+        
+        if(Overlay){
+            print(gameObject.name + "ha muerto");
+            timerMuerte = 5;
+            this.GetComponent<AtaqueMelee>().enabled = false;
+            this.gameObject.transform.localPosition = gameObject.transform.position;
+            //Overlay.SetActive(true);
+            timerMuerte = 2.5f;
+        }
+        
     }
 }

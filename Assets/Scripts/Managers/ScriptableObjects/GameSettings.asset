@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec0d576776dd0c408a106fd6e7ec175, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  _gameVersion: 0.0.0
-  _nickname: Mediotaku
+  _gameVersion: 0.0.1
+  _nickname: MMPlayer

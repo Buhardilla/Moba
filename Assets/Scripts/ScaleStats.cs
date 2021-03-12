@@ -32,7 +32,7 @@ public class ScaleStats : MonoBehaviour
         characterStats.regenHealth.setScale(regenhealth);
         characterStats.mana.setScale(mana);
         characterStats.regenMana.setScale(regenMana);
-        //characterStats.AD.setScale(AD);
+        characterStats.AD.setScale(AD);
         characterStats.ADpen.setScale(ADpen);
         characterStats.ADR.setScale(ADR);
         characterStats.AP.setScale(AP);
