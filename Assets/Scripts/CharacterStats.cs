@@ -78,7 +78,6 @@ public class CharacterStats : MonoBehaviour
                 if (Overlay)
                 {
                     Overlay.SetActive(false);
-                    this.GetComponent<Movimiento>().enabled = true;
                     this.GetComponent<AtaqueMelee>().enabled = true;
                     this.GetComponent<Transform>().position = initialPos;
                     currentHealth = health.getStat();
@@ -90,7 +89,9 @@ public class CharacterStats : MonoBehaviour
                 print("Sigo muerto");
                 if (Overlay)
                 {
-                    Overlay.GetComponentsInChildren<UnityEngine.UI.Text>()[1].text = timerMuerte.ToString();
+                    //int death = timermuerte * 10;
+                    //float death2 
+                    Overlay.GetComponentsInChildren<UnityEngine.UI.Text>()[2].text = ((int)timerMuerte).ToString();
                 }
             }
         }
@@ -110,7 +111,7 @@ public class CharacterStats : MonoBehaviour
 
             currentHealth -= (int) dmg;
 
-            if(currentHealth <= 0)
+            if(currentHealth <= 0 && timerMuerte == 0)
             {
                 Morir(other);
             }
@@ -150,9 +151,17 @@ public class CharacterStats : MonoBehaviour
         }
         else{
             print("soy un jugador y me muero");
+            if(Overlay){
+                print(gameObject.name + "ha muerto");
+                timerMuerte = 5;
+                this.GetComponent<AtaqueMelee>().enabled = false;
+                this.gameObject.transform.localPosition = gameObject.transform.position;
+                Overlay.SetActive(true);
+                timerMuerte = 2.5f;
+            }
         }
         //TODO aquí habría que llamar al servidor
-        giveReward(other);
+        giveReward(other); // Toma galletita
     }
 
     public void giveReward(GameObject other){
@@ -172,7 +181,6 @@ public class CharacterStats : MonoBehaviour
             print(gameObject.name + "ha muerto");
             timerMuerte = 5;
             this.GetComponent<AtaqueMelee>().enabled = false;
-            this.GetComponent<Movimiento>().enabled = false;
             this.gameObject.transform.localPosition = gameObject.transform.position;
             //Overlay.SetActive(true);
             timerMuerte = 2.5f;
