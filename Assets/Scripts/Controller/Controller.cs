@@ -20,6 +20,7 @@ public class Controller : MonoBehaviour
     private Store storeStore;
     private float timer;
 
+    public Animator animate;
 
     // inicializa controles
     void Awake()
@@ -27,11 +28,11 @@ public class Controller : MonoBehaviour
         controls = new PlayerControls();
 
         controls.Gameplay.Auto.started += ctx => Auto();
-        controls.Gameplay.Ab1.started += ctx => Auto();
-        controls.Gameplay.Ab2.started += ctx => Auto();
-        controls.Gameplay.Ab3.started += ctx => Auto();
+        controls.Gameplay.Ab1.started += ctx => this.GetComponent<TianaAbility1>().CastAbility();
+        //controls.Gameplay.Ab2.started += ctx => Auto();
+        controls.Gameplay.Ab3.started += ctx => this.GetComponent<TianaAbility2>().CastAbility();
         controls.Gameplay.fb2sq.started += ctx => ToggleStore();
-        controls.Gameplay.fb4tr.started += ctx => Auto();
+       // controls.Gameplay.fb4tr.started += ctx => Auto();
         if(store.GetComponent<Canvas>().enabled){
             controls.Gameplay.fb3ci.started += ctx => sell(); 
             controls.Gameplay.fb1x.started += ctx => buy();
@@ -41,17 +42,17 @@ public class Controller : MonoBehaviour
             controls.Gameplay.DPright.started += ctx => storeRight();
             controls.Gameplay.DPdown.started += ctx => storeDown();
         }
-        else{
-            controls.Gameplay.fb3ci.started += ctx => Auto(); 
-            controls.Gameplay.fb1x.started += ctx => Auto();
+        //else{
+        //    controls.Gameplay.fb3ci.started += ctx => Auto(); 
+        //    controls.Gameplay.fb1x.started += ctx => Auto();
+        //
+        //    controls.Gameplay.DPup.started += ctx => Auto();
+        //    controls.Gameplay.DPleft.started += ctx => Auto();
+        //    controls.Gameplay.DPright.started += ctx => Auto();
+        //    controls.Gameplay.DPdown.started += ctx => Auto();
+        //}
 
-            controls.Gameplay.DPup.started += ctx => Auto();
-            controls.Gameplay.DPleft.started += ctx => Auto();
-            controls.Gameplay.DPright.started += ctx => Auto();
-            controls.Gameplay.DPdown.started += ctx => Auto();
-        }
-
-        controls.Gameplay.Start.started += ctx => Auto();
+        //controls.Gameplay.Start.started += ctx => Auto();
 
         controls.Gameplay.Moving.performed += ctx => move = ctx.ReadValue<Vector2>();
         controls.Gameplay.Moving.canceled += ctx => move = Vector2.zero;
@@ -94,13 +95,21 @@ public class Controller : MonoBehaviour
     //para hacer invisible aim
     void Start()
     {
-        aimer.GetComponent<Renderer>().enabled = false;                                                             //aim invisible
+        aimer.GetComponent<Renderer>().enabled = false;   
     }
 
     void Update()
     {
         Vector3 m = new Vector3(move.x, 0.0f, move.y) * Mspeed * Time.deltaTime;                                    //movimiento personaje
         transform.Translate(m, Space.World);
+        if(m != Vector3.zero){
+            GetComponent<AtaqueMelee>().move = true;
+            animate.SetTrigger("Move");
+        }
+        else{
+            animate.SetBool("Move", false);
+        }
+
 
        if(move != Vector2.zero)
             transform.eulerAngles = new Vector3(0, Mathf.Atan2(move.x, move.y) * 180 / Mathf.PI, 0);              //rotacion personaje

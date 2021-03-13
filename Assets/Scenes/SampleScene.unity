@@ -2226,6 +2226,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
         type: 3}
+      propertyPath: health.baseValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626451445890627403, guid: 03f7ce35c64b2134e84e149c6d741b20,
+        type: 3}
       propertyPath: previoustowers.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -7162,7 +7167,7 @@ PrefabInstance:
     - target: {fileID: 2989696626974224688, guid: 2c3f48c58e8586941be083cad21ce694,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14
+      value: -13.33
       objectReference: {fileID: 0}
     - target: {fileID: 2989696626974224688, guid: 2c3f48c58e8586941be083cad21ce694,
         type: 3}
@@ -7172,7 +7177,7 @@ PrefabInstance:
     - target: {fileID: 2989696626974224688, guid: 2c3f48c58e8586941be083cad21ce694,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.7
+      value: -10.49
       objectReference: {fileID: 0}
     - target: {fileID: 2989696626974224688, guid: 2c3f48c58e8586941be083cad21ce694,
         type: 3}
@@ -7207,6 +7212,31 @@ PrefabInstance:
     - target: {fileID: 2989696626974224688, guid: 2c3f48c58e8586941be083cad21ce694,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874409414692574084, guid: 2c3f48c58e8586941be083cad21ce694,
+        type: 3}
+      propertyPath: range
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874409414692574084, guid: 2c3f48c58e8586941be083cad21ce694,
+        type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874409414692574084, guid: 2c3f48c58e8586941be083cad21ce694,
+        type: 3}
+      propertyPath: manaCost
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874409414692574084, guid: 2c3f48c58e8586941be083cad21ce694,
+        type: 3}
+      propertyPath: dmgScaling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874409414692574084, guid: 2c3f48c58e8586941be083cad21ce694,
+        type: 3}
+      propertyPath: currentCooldown
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

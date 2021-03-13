@@ -10,6 +10,7 @@ public class StatusEffects : MonoBehaviour
     public float slowTimer = 0;
     public float knockupTimer = 0;
     public float slowPercentage = 0.4f;
+    public float knockupDuration = 3f;
     public void SetStatus(string status, float duration)
     {
         switch (status)
@@ -31,13 +32,18 @@ public class StatusEffects : MonoBehaviour
                 break;
 
             case ("knockup"):
-                //this.GetComponent<Transform>().transform.position = Vector3.Lerp();
+                knockupTimer = duration;
+                knockupDuration = duration;
                 break;
         }
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            this.SetStatus("knockup", 3);
+        }
         if (stunTimer > 0)
         {
             stunTimer -= Time.deltaTime;
@@ -67,6 +73,14 @@ public class StatusEffects : MonoBehaviour
         }
         if (knockupTimer > 0)
         {
+            if(knockupTimer > knockupDuration * 3/4)
+            {
+                this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x, 3, this.transform.position.z), knockupDuration * 5 * Time.deltaTime);
+            }
+            else
+            {
+                this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x, 0, this.transform.position.z), knockupDuration * 5 * Time.deltaTime);
+            }
             knockupTimer -= Time.deltaTime;
             if (knockupTimer <= 0)
             {
